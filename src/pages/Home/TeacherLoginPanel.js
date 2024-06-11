@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import tcIcon from '../../assets/images/personIcon.svg';
+import tcIcon from '../../assets/images/idIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import { validateTc } from '../../helpers/validation';
 

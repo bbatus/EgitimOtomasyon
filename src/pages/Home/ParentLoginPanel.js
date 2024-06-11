@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import phoneIcon from '../../assets/images/personIcon.svg';
+import phoneIcon from '../../assets/images/phoneIcon.svg';
 import { validatePhone } from '../../helpers/validation';
 
 const ParentLoginPanel = ({ handleBackClick }) => {

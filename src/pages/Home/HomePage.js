@@ -4,7 +4,7 @@ import schoolImage from '../../assets/images/school.svg';
 import adminIcon from '../../assets/images/admin.svg';
 import teacherIcon from '../../assets/images/teacher.svg';
 import studentIcon from '../../assets/images/student.svg';
-import parentIcon from '../../assets/images/admin.svg';
+import parentIcon from '../../assets/images/parent.svg';
 import AdminLoginPanel from './AdminLoginPanel';
 import TeacherLoginPanel from './TeacherLoginPanel';
 import StudentLoginPanel from './StudentLoginPanel';

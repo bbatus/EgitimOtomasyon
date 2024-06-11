@@ -12,12 +12,12 @@ body {
 
 .logo-container {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 40px;
+  left: 40px;
 }
 
 .logo-image {
-  width: 100px; /* Logonun genişliğini ayarlayın */
+  width: 160px;
   height: auto;
 }
 
@@ -27,7 +27,7 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
-  padding: 0 100px;
+  padding: 0 20px;
 }
 
 .image-container {
@@ -38,7 +38,7 @@ body {
 }
 
 .image-container img {
-  max-width: 80%;
+  max-width: 70%;
   height: auto;
 }
 
@@ -50,15 +50,18 @@ body {
   background-color: #fff;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 2px solid #ff9800;
-  margin-left: -100px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5); /* Increased shadow effect */
+  /* border: 2px solid #ff9800; */
+  width: 400px;
+  min-height: 500px;
+  margin-left: 0;
+  margin-right: 100px; /* Add margin-right to move it to the left */
 }
 
 .login-panel h2 {
   margin-bottom: 20px;
   color: #3b3b3b;
-  font-size: 24px;
+  font-size: 36px;
 }
 
 .button-container {
@@ -69,13 +72,13 @@ body {
 
 .login-button {
   width: 300px;
-  padding: 15px;
+  padding: 20px;
   margin: 10px 0;
   border: 2px solid #ff9800;
-  border-radius: 10px;
+  border-radius: 45px; /* Butonları daha yuvarlak yapalım */
   background-color: transparent;
   color: #3b3b3b;
-  font-size: 18px;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -84,9 +87,9 @@ body {
 }
 
 .login-button img {
-  width: 32px;
-  height: 32px;
-  margin-right: 15px;
+  width: 48px;
+  height: 48px;
+  margin-right: 20px;
 }
 
 .login-button:hover {
