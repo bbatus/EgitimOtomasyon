@@ -89,8 +89,8 @@
 
 .input-container {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  flex-direction: column; /* Dikine hizalama */
+  margin-bottom: 25px; /* Daha fazla boşluk */
   width: 100%;
 }
 
@@ -149,6 +149,18 @@
 
 .back-button:hover {
   color: #e68900;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px; /* Yukarıdan biraz boşluk */
+}
+
+.error-icon {
+  margin-right: 5px;
 }
 
 /* Media Queries for Responsive Design */

@@ -138,4 +138,18 @@ body {
   .login-panel h2 {
     font-size: 20px;
   }
+
+  .error-message {
+    color: red;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    font-size: 2px;
+  }
+  
+  .error-icon {
+    width: 2px;
+    height: 2px;
+    margin-right: 5px;
+  }
 }
