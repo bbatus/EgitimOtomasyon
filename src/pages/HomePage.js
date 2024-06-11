@@ -1,8 +1,14 @@
-import React, { useState } from 'react'; //gerekli react kütüphanesi iceri aktariyor
+import React, { useState } from 'react';
 import '../assets/styles/HomePage.css';
-import schoolImage from '../assets/images/blue.png';
-import adminIcon from '../assets/images/red.png';
-import teacherIcon from '../assets/images/red.png';
+import schoolImage from '../assets/images/school.svg';
+import adminIcon from '../assets/images/admin.svg';
+import teacherIcon from '../assets/images/teacher.svg';
+import studentIcon from '../assets/images/student.svg';
+import parentIcon from '../assets/images/admin.svg';
+import usernameIcon from '../assets/images/personIcon.svg';
+import passwordIcon from '../assets/images/lockIcon.svg';
+import tcIcon from '../assets/images/personIcon.svg';
+import phoneIcon from '../assets/images/personIcon.svg';
 
 function HomePage() {
   const [loginType, setLoginType] = useState('');
@@ -19,6 +25,7 @@ function HomePage() {
     const isAdmin = loginType === 'admin';
     const isTeacher = loginType === 'teacher';
     const isStudent = loginType === 'student';
+    const isParent = loginType === 'parent';
 
     return (
       <>
@@ -27,7 +34,7 @@ function HomePage() {
           {isAdmin && (
             <div className="input-container">
               <div className="input-with-icon">
-                <img src={adminIcon} alt="Username" className="input-icon" />
+                <img src={usernameIcon} alt="Username" className="input-icon" />
                 <input type="text" placeholder="Kullanıcı Adı" />
               </div>
             </div>
@@ -35,16 +42,24 @@ function HomePage() {
           {(isTeacher || isStudent) && (
             <div className="input-container">
               <div className="input-with-icon">
-                <img src={adminIcon} alt="TC" className="input-icon" />
+                <img src={tcIcon} alt="TC" className="input-icon" />
                 <input type="text" placeholder="TC Kimlik No" />
               </div>
             </div>
           )}
-          {!isStudent && (
+          {!isStudent && !isParent && (
             <div className="input-container">
               <div className="input-with-icon">
-                <img src={adminIcon} alt="Password" className="input-icon" />
+                <img src={passwordIcon} alt="Password" className="input-icon" />
                 <input type="password" placeholder="Şifre" />
+              </div>
+            </div>
+          )}
+          {isParent && (
+            <div className="input-container">
+              <div className="input-with-icon">
+                <img src={phoneIcon} alt="Phone" className="input-icon" />
+                <input type="text" placeholder="Telefon No" />
               </div>
             </div>
           )}
@@ -66,12 +81,16 @@ function HomePage() {
         Yönetici Girişi
       </button>
       <button className="login-button" onClick={() => handleButtonClick('teacher')}>
-        <img src={adminIcon} alt="Teacher" />
+        <img src={teacherIcon} alt="Teacher" />
         Öğretmen Girişi
       </button>
       <button className="login-button" onClick={() => handleButtonClick('student')}>
-        <img src={adminIcon} alt="Student" />
+        <img src={studentIcon} alt="Student" />
         Öğrenci Girişi
+      </button>
+      <button className="login-button" onClick={() => handleButtonClick('parent')}>
+        <img src={parentIcon} alt="Parent" />
+        Veli Girişi
       </button>
     </div>
   );
