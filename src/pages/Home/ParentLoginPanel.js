@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import phoneIcon from '../../assets/images/personIcon.svg';
+import phoneIcon from '../../assets/images/phoneIcon.svg';
 import { useForm } from 'react-hook-form';
 
 const ParentLoginPanel = ({ handleBackClick }) => {

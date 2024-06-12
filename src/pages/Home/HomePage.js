@@ -9,6 +9,7 @@ import AdminLoginPanel from './AdminLoginPanel';
 import TeacherLoginPanel from './TeacherLoginPanel';
 import StudentLoginPanel from './StudentLoginPanel';
 import ParentLoginPanel from './ParentLoginPanel';
+import Logo from '../../components/Logo';
 
 function HomePage() {
   const [loginType, setLoginType] = useState('');
@@ -59,6 +60,7 @@ function HomePage() {
 
   return (
     <div className="homepage">
+      <Logo />
       <div className="image-container">
         <img src={schoolImage} alt="School" />
       </div>
