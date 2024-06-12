@@ -38,7 +38,7 @@ body {
 }
 
 .image-container img {
-  max-width: 70%;
+  max-width: 65%;
   height: auto;
 }
 
@@ -154,5 +154,12 @@ body {
     width: 2px;
     height: 2px;
     margin-right: 5px;
+  }
+
+  .input-with-icon .PhoneInputInput {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
   }
 }

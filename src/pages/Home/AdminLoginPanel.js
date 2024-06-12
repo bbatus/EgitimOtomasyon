@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import { validateUsername } from '../../helpers/validation';
@@ -10,6 +11,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     const value = e.target.value.toUpperCase();
@@ -32,23 +34,28 @@ const AdminLoginPanel = ({ handleBackClick }) => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
+    if (e.target.value) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
+    }
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const errors = { username: validateUsername(username) };
-    if (!password) {
-      errors.password = 'Şifre zorunludur';
-    }
+    const errors = {
+      username: validateUsername(username),
+      password: password ? '' : 'Şifre alanı boş olamaz'
+    };
     setFormErrors(errors);
 
     if (!errors.username && !errors.password) {
-      // Form submission logic
-    } else if (errors.password) {
-      passwordRef.current.focus();
+      // Giriş başarılı, dashboard'a yönlendirin
+      navigate('/dashboard');
     } else {
-      usernameRef.current.focus();
+      if (errors.username) {
+        usernameRef.current.focus();
+      } else if (errors.password) {
+        passwordRef.current.focus();
+      }
     }
   };
 
@@ -70,7 +77,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.username && (
             <p className="error-message">
-              <span className="error-icon">⚠️</span>
+              <span role="img" aria-label="warning">⚠️</span>
               {formErrors.username}
             </p>
           )}
@@ -88,7 +95,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.password && (
             <p className="error-message">
-              <span className="error-icon">⚠️</span>
+              <span role="img" aria-label="warning">⚠️</span>
               {formErrors.password}
             </p>
           )}

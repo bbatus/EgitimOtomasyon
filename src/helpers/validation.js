@@ -19,11 +19,9 @@ export const validateUsername = (username) => {
   };
   
   export const validatePhone = (phone) => {
-    const phonePattern = /^\+90 \(\d{3}\) \d{3} \d{2} \d{2}$/;
+    const phonePattern = /^\+90 \d{3} \d{3} \d{4}$/;
     if (!phonePattern.test(phone)) {
-      return 'Telefon No geçerli formatta olmalıdır (+90 (___) ___ ____)';
+      return 'Telefon No geçerli formatta olmalıdır (+90 ___ ___ __ __)';
     }
     return '';
   };
-  
-  

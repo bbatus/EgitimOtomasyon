@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import tcIcon from '../../assets/images/idIcon.svg';
+import tcIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import { validateTc } from '../../helpers/validation';
 
@@ -9,20 +9,17 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
   const [password, setPassword] = useState('');
 
   const tcRef = useRef(null);
-  const passwordRef = useRef(null);
 
   const handleTcChange = (e) => {
     const value = e.target.value;
-    if (/^\d*$/.test(value)) { // Sadece sayılar
-      setTc(value);
-      if (value.length === 11) {
-        const error = validateTc(value);
-        setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
-      } else if (value.startsWith('0')) {
-        setFormErrors((prevErrors) => ({ ...prevErrors, tc: 'TC Kimlik No 0 ile başlamamalıdır' }));
-      } else {
-        setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
-      }
+    setTc(value);
+    if (value.length === 11) {
+      const error = validateTc(value);
+      setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
+    } else if (value.startsWith('0')) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, tc: 'TC Kimlik No 0 ile başlamamalıdır' }));
+    } else {
+      setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
     }
   };
 
@@ -31,16 +28,33 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
     setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
   };
 
+  const handleTcKeyPress = (e) => {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      e.preventDefault();
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const errors = { tc: validateTc(tc), password: password ? '' : 'Şifre zorunludur' };
+    const errors = { tc: validateTc(tc) };
     setFormErrors(errors);
 
-    if (!errors.tc && !errors.password) {
+    if (!errors.tc) {
       // Form submission logic
     } else {
-      if (errors.tc) tcRef.current.focus();
-      else if (errors.password) passwordRef.current.focus();
+      tcRef.current.focus();
+    }
+
+    if (!password) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, password: 'Şifre zorunludur' }));
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (e.target.value) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
     }
   };
 
@@ -57,13 +71,14 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
               value={tc}
               onChange={handleTcChange}
               onBlur={handleTcBlur}
+              onKeyPress={handleTcKeyPress}
               maxLength={11}
               ref={tcRef}
             />
           </div>
           {formErrors.tc && (
             <p className="error-message">
-              <span className="error-icon">⚠️</span>
+              <span role="img" aria-label="warning">⚠️</span>
               {formErrors.tc}
             </p>
           )}
@@ -75,18 +90,12 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
               type="password"
               placeholder="Şifre"
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if (e.target.value) {
-                  setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
-                }
-              }}
-              ref={passwordRef}
+              onChange={handlePasswordChange}
             />
           </div>
           {formErrors.password && (
             <p className="error-message">
-              <span className="error-icon">⚠️</span>
+              <span role="img" aria-label="warning">⚠️</span>
               {formErrors.password}
             </p>
           )}
