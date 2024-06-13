@@ -6,7 +6,6 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Gerekiyorsa çıkış işlemlerini burada yapın, örneğin kullanıcı oturumunu sonlandırmak gibi.
     navigate('/');
   };
 
@@ -21,37 +20,37 @@ const Sidebar = () => {
       </div>
       <ul className="sidebar-nav">
         <li>
-          <NavLink to="/dashboard" activeClassName="active">
+          <NavLink to="/dashboard/adminmainpage" activeClassName="active">
             <i className="fas fa-home"></i> Anasayfa
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/notifications" activeClassName="active">
+          <NavLink to="/dashboard/notifications" className={({ isActive }) => (isActive ? 'active' : '')}>
             <i className="fas fa-bell"></i> Bildirimler
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/video-solution" activeClassName="active">
+          <NavLink to="/dashboard/video-solution" className={({ isActive }) => (isActive ? 'active' : '')}>
             <i className="fas fa-video"></i> Video Çözüm Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/attendance" activeClassName="active">
+          <NavLink to="/dashboard/attendance" className={({ isActive }) => (isActive ? 'active' : '')}>
             <i className="fas fa-calendar-check"></i> Yoklama Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/homework-tracking" activeClassName="active">
+          <NavLink to="/dashboard/homework-tracking" className={({ isActive }) => (isActive ? 'active' : '')}>
             <i className="fas fa-tasks"></i> Ödev Takip Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/accounting" activeClassName="active">
+          <NavLink to="/dashboard/accounting" className={({ isActive }) => (isActive ? 'active' : '')}>
             <i className="fas fa-money-bill"></i> Muhasebe Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/registration" activeClassName="active">
+          <NavLink to="/dashboard/registration" className={({ isActive }) => (isActive ? 'active' : '')}>
             <i className="fas fa-user-plus"></i> Kayıt Modülü
           </NavLink>
         </li>

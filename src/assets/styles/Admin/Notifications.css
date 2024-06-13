@@ -1,0 +1,217 @@
+.notification-container {
+  background-color: #fff;
+  border-radius: 60px;
+  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  min-height: 650px;
+  position: relative;
+  overflow-y: auto; /* Kaydırma çubuğu için */
+  max-height: 80vh; /* Container'ın maksimum yüksekliği */
+}
+
+.notification-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.notification-message {
+  font-size: 18px;
+  color: #4F4C4C;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.notification-image {
+  width: 200px;
+  height: auto;
+}
+
+.send-notification-button {
+  position: absolute;
+  top: 45px;
+  right: 40px;
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+.send-notification-button:hover {
+  background-color: #e68900;
+}
+
+.textbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.input-field {
+  width: 70%;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 60px;
+}
+
+.textbox {
+  width: 70%;
+  height: 250px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  resize: none;
+}
+
+.dropdown {
+  width: 200px;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 60px;
+}
+
+.back-button, .submit-button {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+.back-button:hover, .submit-button:hover {
+  background-color: #e68900;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: flex-end;
+  width: 70%;
+  margin-bottom: 20px;
+}
+
+.top-controls .submit-button {
+  width: auto;
+}
+
+.top-controls .back-button {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.notification-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.notification-item {
+  background-color: #4F4C4C;
+  padding: 20px; /* Padding'i arttırdık */
+  margin-bottom: 20px;
+  border-radius: 60px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  color: white; /* Yazıları beyaz yap */
+  position: relative;
+}
+
+.notification-content {
+  flex: 1; /* İçeriği genişlet */
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-preview {
+  font-size: 16px; /* Yazı boyutunu arttırdık */
+  color: white; /* Yazıları beyaz yap */
+}
+
+.notification-date {
+  font-size: 16px; /* Tarih ve saat boyutunu arttırdık */
+  color: white; /* Yazıları beyaz yap */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Orta hizalama */
+}
+
+.expand-button {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 20px; /* Buton ile içerik arasındaki boşluk */
+}
+
+.expand-button:hover {
+  background-color: #e68900;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+  .notification-container {
+    width: 90%;
+    padding: 30px;
+    margin: 20px;
+  }
+
+  .input-field, .textbox {
+    width: 90%;
+  }
+
+  .top-controls {
+    width: 90%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-controls .submit-button {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .send-notification-button {
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+
+  .back-button, .submit-button {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+}

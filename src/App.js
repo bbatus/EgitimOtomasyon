@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminMainPage from './pages/Admin/AdminMainPage'; // Yeni ismiyle import edin
 import Notifications from './pages/Admin/Notifications';
 import VideoSolutionModule from './pages/Admin/VideoSolutionModule';
 import AttendanceModule from './pages/Admin/AttendanceModule';
@@ -18,6 +19,7 @@ const AdminLayout = () => (
     <div className="content">
       <Routes>
         <Route path="/" element={<AdminDashboard />} />
+        <Route path="adminmainpage" element={<AdminMainPage />} /> {/* Yeni rota */}
         <Route path="notifications" element={<Notifications />} />
         <Route path="video-solution" element={<VideoSolutionModule />} />
         <Route path="attendance" element={<AttendanceModule />} />

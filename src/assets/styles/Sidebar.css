@@ -1,123 +1,123 @@
 /* Sidebar genel stilleri */
 .sidebar {
-    width: 350px;
-    background-color: #f8f8f8;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s; /* Genişlik değişimi için geçiş efekti */
+  width: 350px;
+  background-color: #f8f8f8;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s; /* Genişlik değişimi için geçiş efekti */
+}
+
+.logo {
+  margin: 20px 0 20px 40px;
+}
+
+.logo img {
+  width: 160px;
+  height: auto;
+  cursor: pointer;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar-nav li {
+  width: 100%;
+}
+
+.sidebar-nav li a,
+.logout-button {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #3b3b3b;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a.active {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+.sidebar-nav li a i,
+.logout-button i {
+  margin-right: 10px;
+}
+
+.sidebar-nav li:last-child {
+  margin-top: auto;
+  border-top: 1px solid #ff9800;
+}
+
+.sidebar-nav li:nth-child(2) {
+  border-bottom: 1px solid #ff9800;
+}
+
+/* İçerik alanı */
+.content {
+  margin-left: 350px;
+  padding: 20px;
+  transition: margin-left 0.3s; /* Kenar boşluğu değişimi için geçiş efekti */
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #7e7d7b;
+  color: #fff;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Daha küçük ekranlar için sidebar genişliği */
   }
-  
-  .logo {
-    margin: 20px 0 20px 40px;
+
+  .content {
+    margin-left: 200px; /* İçerik alanı kenar boşluğu */
   }
-  
-  .logo img {
-    width: 160px;
-    height: auto;
-    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 150px; /* Daha küçük ekranlar için sidebar genişliği */
   }
-  
-  .sidebar-nav {
-    list-style: none;
-    padding: 0;
-    width: 100%;
+
+  .content {
+    margin-left: 150px; /* İçerik alanı kenar boşluğu */
   }
-  
-  .sidebar-nav li {
-    width: 100%;
-  }
-  
+
   .sidebar-nav li a,
   .logout-button {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    color: #3b3b3b;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s, color 0.3s;
+    padding: 10px 20px; /* Daha küçük ekranlar için padding */
+    font-size: 16px; /* Daha küçük ekranlar için font boyutu */
   }
-  
-  .sidebar-nav li a:hover,
-  .sidebar-nav li a.active {
-    background-color: #ff9800;
-    color: #fff;
+
+  .logo img {
+    width: 120px; /* Daha küçük ekranlar için logo genişliği */
   }
-  
-  .sidebar-nav li a i,
-  .logout-button i {
-    margin-right: 10px;
-  }
-  
-  .sidebar-nav li:last-child {
-    margin-top: auto;
-    border-top: 1px solid #ff9800;
-  }
-  
-  .sidebar-nav li:nth-child(2) {
-    border-bottom: 1px solid #ff9800;
-  }
-  
-  /* İçerik alanı */
-  .content {
-    margin-left: 350px;
-    padding: 20px;
-    transition: margin-left 0.3s; /* Kenar boşluğu değişimi için geçiş efekti */
-  }
-  
-  .logout-button {
-    background: none;
-    border: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    text-align: left;
-    width: 100%;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .logout-button:hover {
-    background-color: #7e7d7b;
-    color: #fff;
-  }
-  
-  /* Responsive düzenlemeler */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 200px; /* Daha küçük ekranlar için sidebar genişliği */
-    }
-  
-    .content {
-      margin-left: 200px; /* İçerik alanı kenar boşluğu */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .sidebar {
-      width: 150px; /* Daha küçük ekranlar için sidebar genişliği */
-    }
-  
-    .content {
-      margin-left: 150px; /* İçerik alanı kenar boşluğu */
-    }
-  
-    .sidebar-nav li a,
-    .logout-button {
-      padding: 10px 20px; /* Daha küçük ekranlar için padding */
-      font-size: 16px; /* Daha küçük ekranlar için font boyutu */
-    }
-  
-    .logo img {
-      width: 120px; /* Daha küçük ekranlar için logo genişliği */
-    }
-  }
+}

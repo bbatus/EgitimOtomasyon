@@ -8,7 +8,7 @@ function AdminDashboard() {
     <div className="admin-dashboard">
       <Sidebar />
       <div className="dashboard-content">
-        <h1>Admin Dashboard</h1>
+        <h1>Admin Anasayfa</h1>
       </div>
     </div>
   );
