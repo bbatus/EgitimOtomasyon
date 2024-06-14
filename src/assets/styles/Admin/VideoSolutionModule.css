@@ -1,0 +1,202 @@
+.video-solution-module-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+  }
+  
+  .exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-exam-button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 60px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-exam-button:hover {
+    background-color: #e68900;
+  }
+  
+  .add-exam-container,
+  .upload-excel-container,
+  .exam-details-container {
+    background-color: #333;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .exam-type-options {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .exam-type-options label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .exam-type-options input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .cancel-button,
+  .save-button,
+  .back-button,
+  .upload-button,
+  .edit-button,
+  .delete-button,
+  .publish-button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 60px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .cancel-button:hover,
+  .save-button:hover,
+  .back-button:hover,
+  .upload-button:hover,
+  .edit-button:hover,
+  .delete-button:hover,
+  .publish-button:hover {
+    background-color: #e68900;
+  }
+  
+  .info-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .upload-label {
+    cursor: pointer;
+  }
+  
+  .upload-icon {
+    font-size: 48px;
+    color: #ccc;
+  }
+  
+  .upload-text {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .exam-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .exam-item {
+    display: flex;
+    align-items: center;
+    background-color: #444;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  .exam-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 10px;
+    background-color: #ccc;
+  }
+  
+  .exam-details {
+    flex: 1;
+  }
+  
+  .exam-details h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .exam-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .exam-status.published {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .exam-status.unpublished {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .details-button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .details-button:hover {
+    background-color: #e68900;
+  }
+  
