@@ -120,4 +120,12 @@
   .logo img {
     width: 120px; /* Daha küçük ekranlar için logo genişliği */
   }
+
+.sidebar-icon {
+  width: 0.11px;
+  height: .1px;
+  margin-right: 1px;
+  vertical-align: middle;
+}
+
 }

@@ -1,81 +1,295 @@
 .video-solution-module-container {
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 20px;
-  }
-  
-  .exam-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .add-exam-button {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 60px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .add-exam-button:hover {
-    background-color: #e68900;
-  }
-  
-  .add-exam-container,
-  .upload-excel-container,
-  .exam-details-container {
-    background-color: #333;
-    color: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: white;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="date"] {
-    width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 60px;
+  box-shadow: 0 2px 90px rgba(117, 117, 117, 0.3);
+  margin: 40px;
+}
+
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-exam-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-exam-button:hover {
+  background-color: #e68900;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.exam-type-options {
+  display: flex;
+  gap: 20px;
+}
+
+.exam-type-options label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.exam-type-options input[type="radio"] {
+  margin-right: 10px;
+}
+
+.radio-button {
+  border: 2px solid #ff9800;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-button,
+.save-button,
+.back-button,
+.upload-button,
+.edit-button,
+.delete-button,
+.publish-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cancel-button:hover,
+.save-button:hover,
+.back-button:hover,
+.upload-button:hover,
+.edit-button:hover,
+.delete-button:hover,
+.publish-button:hover {
+  background-color: #e68900;
+}
+
+.info-text {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-label {
+  cursor: pointer;
+}
+
+.upload-icon {
+  font-size: 48px;
+  color: #ccc;
+}
+
+.upload-text {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #666;
+}
+
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exam-item {
+  display: flex;
+  align-items: center;
+  background-color: #4F4C4C;
+  border-radius: 60px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.exam-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.exam-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+}
+
+.exam-details h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.exam-status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.exam-status.published {
+  background-color: #4caf50;
+  color: white;
+}
+
+.exam-status.unpublished {
+  background-color: #f44336;
+  color: white;
+}
+
+.exam-date {
+  text-align: center; /* Tarihi ortaya hizalamak için */
+}
+
+.details-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px; /* Sağ tarafa dayalı hale getirmek için */
+}
+
+.details-button:hover {
+  background-color: #e68900;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button.active {
+  background-color: #e68900;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.search-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 60px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 20px; /* Sınav Tanımla butonuyla arama çubuğu arasına boşluk eklemek için */
+  width: 300px; /* Arama çubuğunun genişliğini küçültmek için */
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  margin-left: 10px;
+  width: 200px; /* Genişliği küçültmek için */
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.no-exams-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh; /* Ekranı kaplamak için yeterli yüksekliği ayarlayın */
+  text-align: center;
+  color: #666;
+}
+
+.no-exams-icon {
+  width: 200px; /* İkon boyutunu ayarlayın */
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .video-solution-module-container {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    margin: 20px;
   }
-  
-  .exam-type-options {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .exam-type-options label {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-  }
-  
-  .exam-type-options input[type="radio"] {
-    margin-right: 10px;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-  
+
+  .add-exam-button,
+  .details-button,
   .cancel-button,
   .save-button,
   .back-button,
@@ -83,120 +297,93 @@
   .edit-button,
   .delete-button,
   .publish-button {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 60px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 5px 10px;
+    font-size: 14px;
   }
-  
-  .cancel-button:hover,
-  .save-button:hover,
-  .back-button:hover,
-  .upload-button:hover,
-  .edit-button:hover,
-  .delete-button:hover,
-  .publish-button:hover {
-    background-color: #e68900;
+
+  .form-group input[type="text"],
+  .form-group input[type="date"] {
+    width: 100%;
   }
-  
-  .info-text {
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #666;
-  }
-  
-  .upload-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .upload-label {
-    cursor: pointer;
-  }
-  
-  .upload-icon {
-    font-size: 48px;
-    color: #ccc;
-  }
-  
-  .upload-text {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #666;
-  }
-  
-  .exam-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .exam-item {
-    display: flex;
-    align-items: center;
-    background-color: #444;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: white;
-  }
-  
+
   .exam-image {
-    width: 80px;
-    height: 80px;
-    margin-right: 20px;
-    border-radius: 10px;
-    background-color: #ccc;
+    width: 60px;
+    height: 60px;
   }
-  
-  .exam-details {
-    flex: 1;
-  }
-  
+
   .exam-details h2 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
+    font-size: 16px;
   }
-  
-  .exam-status {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .exam-status.published {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .exam-status.unpublished {
-    background-color: #f44336;
-    color: white;
-  }
-  
+
   .details-button {
-    background-color: #ff9800;
-    color: white;
-    border: none;
     padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 14px;
   }
-  
-  .details-button:hover {
-    background-color: #e68900;
+
+  .pagination button {
+    padding: 5px 10px;
+    font-size: 12px;
   }
-  
+
+  .search-box {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+
+  .exam-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .exam-date {
+    text-align: left;
+  }
+
+  .no-exams-container {
+    height: 40vh; /* Küçük ekranlar için yüksekliği ayarlayın */
+  }
+}
+
+@media (max-width: 480px) {
+  .add-exam-button,
+  .details-button,
+  .cancel-button,
+  .save-button,
+  .back-button,
+  .upload-button,
+  .edit-button,
+  .delete-button,
+  .publish-button {
+    padding: 3px 7px;
+    font-size: 12px;
+  }
+
+  .exam-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .exam-details h2 {
+    font-size: 14px;
+  }
+
+  .details-button {
+    padding: 3px 7px;
+    font-size: 12px;
+  }
+
+  .pagination button {
+    padding: 3px 7px;
+    font-size: 10px;
+  }
+
+  .no-exams-icon {
+    width: 100px;
+    height: 100px;
+  }
+}

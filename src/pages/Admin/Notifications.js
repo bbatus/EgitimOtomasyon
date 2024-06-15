@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../assets/styles/Admin/Notifications.css';
+import NoNotificationImage from '../../assets/images/no notification.svg'; // SVG dosyasını dahil edin
 
 const Notifications = () => {
   const [isSending, setIsSending] = useState(false);
@@ -108,7 +109,7 @@ const Notifications = () => {
           {notifications.length === 0 ? (
             <>
               <p className="notification-message">Henüz hiçbir bildirim yok. Bildirim geldiği zaman size haber vereceğiz.</p>
-              <img className="notification-image" src="https://app.refkolej.com/assets/no-notifications.svg" alt="No Notifications" />
+              <img className="notification-image" src={NoNotificationImage} alt="No Notifications" /> {/* SVG dosyasını kullanın */}
             </>
           ) : (
             <ul className="notification-list">
