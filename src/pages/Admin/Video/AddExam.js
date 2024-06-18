@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AddExam = ({ onSave, onCancel }) => {
-  const [examDetails, setExamDetails] = useState({ title: '', date: '', type: '' });
+  const [examDetails, setExamDetails] = useState({ title: '', date: null, type: '' });
 
   const handleExamDetailChange = (e) => {
     const { name, value } = e.target;
@@ -11,17 +13,26 @@ const AddExam = ({ onSave, onCancel }) => {
     }));
   };
 
+  const handleDateChange = (date) => {
+    setExamDetails(prevDetails => ({
+      ...prevDetails,
+      date: date
+    }));
+  };
+
   const handleSaveClick = () => {
     if (!examDetails.title || !examDetails.date || !examDetails.type) {
       alert('Lütfen tüm alanları doldurun.');
       return;
     }
-    onSave(examDetails);
+    onSave({
+      ...examDetails,
+      date: examDetails.date.toISOString().split('T')[0] // Tarihi ISO formatına çevirme
+    });
   };
 
   return (
     <div className="add-exam-container">
-      <h2>Sınav Bilgilerini Tanımla</h2>
       <div className="form-group">
         <label>Sınav Adı</label>
         <input
@@ -34,11 +45,12 @@ const AddExam = ({ onSave, onCancel }) => {
       </div>
       <div className="form-group">
         <label>Sınav Tarihi</label>
-        <input
-          type="date"
-          name="date"
-          value={examDetails.date}
-          onChange={handleExamDetailChange}
+        <DatePicker
+          selected={examDetails.date}
+          onChange={handleDateChange}
+          dateFormat="yyyy/MM/dd"
+          placeholderText="Tarih seçin"
+          className="date-picker"
         />
       </div>
       <div className="form-group">

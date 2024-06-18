@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import ExamIcon from '../../assets/images/exam.svg';
-import '../../assets/styles/Admin/VideoSolutionModule.css';
+// Güncellenmiş dosya yolu
+import ExamIcon from '../../../assets/images/exam.svg';
+import '../../../assets/styles/Admin/VideoSolutionModule.css';
 
 const ExamList = ({ exams, onDetailsClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const examsPerPage = 5;
-  
+
   const indexOfLastExam = currentPage * examsPerPage;
   const indexOfFirstExam = indexOfLastExam - examsPerPage;
   const currentExams = exams.slice(indexOfFirstExam, indexOfLastExam);

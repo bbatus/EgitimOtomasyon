@@ -105,7 +105,6 @@ const Notifications = () => {
           <button className="send-notification-button" onClick={handleSendNotificationClick}>
             Bildirim Gönder
           </button>
-          <h2 className="notification-header">Bildirimler</h2>
           {notifications.length === 0 ? (
             <>
               <p className="notification-message">Henüz hiçbir bildirim yok. Bildirim geldiği zaman size haber vereceğiz.</p>

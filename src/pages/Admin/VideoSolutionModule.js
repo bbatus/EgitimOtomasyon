@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ExamList from './ExamList';
-import AddExam from './AddExam';
-import UploadExcel from './UploadExcel';
-import SearchBar from './SearchBar';
+import ExamList from './Video/ExamList';
+import AddExam from './Video/AddExam';
+import UploadExcel from './Video/UploadExcel';
+import SearchBar from './Video/SearchBar';
 import NoExamsIcon from '../../assets/images/no exam.svg';
 import '../../assets/styles/Admin/VideoSolutionModule.css';
 
@@ -13,7 +13,6 @@ const VideoSolutionModule = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [step, setStep] = useState(1);
   const [currentExam, setCurrentExam] = useState(null);
-  const [isViewingDetails, setIsViewingDetails] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleAddExamClick = () => {
@@ -37,11 +36,6 @@ const VideoSolutionModule = () => {
 
   const handleDetailsClick = (exam) => {
     setCurrentExam(exam);
-    setIsViewingDetails(true);
-  };
-
-  const handleBackToList = () => {
-    setIsViewingDetails(false);
   };
 
   const handleSearchChange = (e) => {
