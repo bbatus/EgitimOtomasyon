@@ -1,0 +1,160 @@
+.registration-module-container {
+  background-color: #fff;
+  border-radius: 60px;
+  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  min-height: 400px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.student-registration-container {
+  width: 100%;
+}
+
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.student-header h2 {
+  margin: 0;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.student-list {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.add-student-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.module-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+.module-button:hover {
+  background-color: #e68900;
+}
+
+.add-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button.active {
+  background-color: #e68900;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.registration-module-container h1 {
+  margin-bottom: 20px;
+}
+
+.registration-module-container .module-button {
+  align-self: flex-end;
+}
+
+.registration-module-container .search-box {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.registration-module-container .search-box input {
+  width: 300px;
+}
+
+.notification-container .send-notification-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+.notification-container .send-notification-button:hover {
+  background-color: #e68900;
+}

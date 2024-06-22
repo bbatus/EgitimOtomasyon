@@ -61,7 +61,7 @@ const VideoSolutionModule = () => {
           {filteredExams.length === 0 ? (
             <div className="no-exams-container">
               <img src={NoExamsIcon} alt="No Exams" className="no-exams-icon" />
-              <p>Henüz hiç deneme sınavı yok.</p>
+              <p>Henüz hiçbir deneme sınavı yok.</p>
             </div>
           ) : (
             <ExamList exams={filteredExams} onDetailsClick={handleDetailsClick} />
