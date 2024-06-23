@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import RegistrationSearchBar from './RegistrationSearchBar';
 import EditIcon from '../../../assets/images/idIcon.svg';
+import FilterIcon from '../../../assets/images/filter.svg';
 import '../../../assets/styles/Admin/RegistrationModule.css';
 
-const students = [
-  { id: 1, name: 'Örnek Öğrenci 1' },
-  { id: 2, name: 'Örnek Öğrenci 2' },
-  { id: 3, name: 'Örnek Öğrenci 3' },
-  { id: 4, name: 'Örnek Öğrenci 4' },
-  { id: 5, name: 'Örnek Öğrenci 5' },
-  { id: 6, name: 'Örnek Öğrenci 6' },
-];
-
-const StudentRegistration = () => {
+const StudentRegistration = ({ addStudent, editStudent, students }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddOptions, setShowAddOptions] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedClassroom, setSelectedClassroom] = useState('');
   const studentsPerPage = 5;
 
   const handleSearchChange = (e) => {
@@ -26,8 +19,13 @@ const StudentRegistration = () => {
     setShowAddOptions(!showAddOptions);
   };
 
-  const filteredStudents = students.filter((student) =>
-    student.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const handleClassroomFilterChange = (e) => {
+    setSelectedClassroom(e.target.value);
+  };
+
+  const filteredStudents = students.filter((student) => 
+    student.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (selectedClassroom ? student.classroom === selectedClassroom : true)
   );
 
   const indexOfLastStudent = currentPage * studentsPerPage;
@@ -45,12 +43,23 @@ const StudentRegistration = () => {
       <div className="student-registration-container">
         <div className="student-header">
           <h2>Öğrenciler</h2>
-          <button className="module-button" onClick={handleAddClick}>Öğrenci Ekle</button>
+          <div className="header-buttons">
+            <button className="module-button" onClick={handleAddClick}>Öğrenci Ekle</button>
+            <div className="filter-container">
+              <select className="filter-select" value={selectedClassroom} onChange={handleClassroomFilterChange}>
+                <option value="">Tüm Sınıflar</option>
+                {['9-A', '9-B', '9-C', '9-D', '10-A', '10-B', '10-C', '10-D', '11-A', '11-B', '11-C', '11-D', '12-A', '12-B', '12-C', '12-D'].map((cls) => (
+                  <option key={cls} value={cls}>{cls}</option>
+                ))}
+              </select>
+              <img src={FilterIcon} alt="Filter" className="filter-icon" />
+            </div>
+          </div>
         </div>
         {showAddOptions && (
           <div className="add-options">
-            <button className="module-button">Excel</button>
-            <button className="module-button">Manuel</button>
+            <button className="module-button" onClick={() => window.location.href = '/dashboard/registration/student/excel'}>Excel</button>
+            <button className="module-button" onClick={() => window.location.href = '/dashboard/registration/student/add'}>Manuel</button>
           </div>
         )}
         <div className="search-container">
@@ -60,7 +69,7 @@ const StudentRegistration = () => {
           {currentStudents.map((student) => (
             <div key={student.id} className="student-item">
               <span>{student.name}</span>
-              <button className="edit-button">
+              <button className="edit-button" onClick={() => editStudent(student)}>
                 <img src={EditIcon} alt="Edit" />
               </button>
             </div>
