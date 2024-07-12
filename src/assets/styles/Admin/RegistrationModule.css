@@ -84,6 +84,8 @@
   font-size: 16px;
   margin-bottom: 10px;
   align-self: flex-end;
+  width: 250px; /* Button genişliği */
+  text-align: center; /* Metni ortala */
 }
 
 .module-button:hover {
@@ -176,6 +178,13 @@
   font-size: 16px;
   margin-left: 10px;
   width: 100%;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Butonlar arası boşluk */
 }
 
 /* Responsive Styles */

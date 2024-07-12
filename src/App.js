@@ -13,6 +13,7 @@ import StudentRegistration from './pages/Admin/Registration/StudentRegistration'
 import AddStudent from './pages/Admin/Registration/AddStudent';
 import AddStudentExcel from './pages/Admin/Registration/AddStudentExcel';
 import TeacherRegistration from './pages/Admin/Registration/TeacherRegistration';
+import AddTeacher from './pages/Admin/Registration/AddTeacher'; // Yeni import
 import CourseRegistration from './pages/Admin/Registration/CourseRegistration';
 import Sidebar from './components/Sidebar';
 import './App.css';
@@ -26,6 +27,15 @@ const AdminLayout = () => {
     { id: 5, name: 'Örnek Öğrenci 5', classroom: '9-B' },
     { id: 6, name: 'Örnek Öğrenci 6', classroom: '10-C' },
   ]);
+
+  const [teachers, setTeachers] = useState([
+    { id: 1, name: 'Örnek Öğretmen 1', department: 'Matematik' },
+    { id: 2, name: 'Örnek Öğretmen 2', department: 'Fen Bilimleri' },
+    { id: 3, name: 'Örnek Öğretmen 3', department: 'Türkçe' },
+    { id: 4, name: 'Örnek Öğretmen 4', department: 'Sosyal Bilgiler' },
+    { id: 5, name: 'Örnek Öğretmen 5', department: 'İngilizce' },
+  ]);
+
   const navigate = useNavigate();
 
   const addStudent = (newStudent) => {
@@ -40,10 +50,25 @@ const AdminLayout = () => {
     );
   };
 
-  const addStudentsFromExcel = (file) => {
-    // Excel dosyasını okuma ve öğrenci listesine ekleme işlemlerini burada gerçekleştirin.
+  const addStudentsFromExcel = (students) => {
+    setStudents((prevStudents) => [
+      ...prevStudents,
+      ...students.map((student, index) => ({ ...student, id: prevStudents.length + index + 1 })),
+    ]);
     alert('Excel dosyasından öğrenciler eklendi!');
     navigate('/dashboard/registration/student');
+  };
+
+  const addTeacher = (newTeacher) => {
+    setTeachers((prevTeachers) => [...prevTeachers, { ...newTeacher, id: prevTeachers.length + 1 }]);
+  };
+
+  const updateTeacher = (updatedTeacher) => {
+    setTeachers((prevTeachers) =>
+      prevTeachers.map((teacher) =>
+        teacher.id === updatedTeacher.id ? updatedTeacher : teacher
+      )
+    );
   };
 
   return (
@@ -63,7 +88,9 @@ const AdminLayout = () => {
           <Route path="registration/student/add" element={<AddStudent addStudent={addStudent} />} />
           <Route path="registration/student/edit" element={<AddStudent updateStudent={updateStudent} />} />
           <Route path="registration/student/excel" element={<AddStudentExcel addStudentsFromExcel={addStudentsFromExcel} />} />
-          <Route path="registration/teacher" element={<TeacherRegistration />} />
+          <Route path="registration/teacher" element={<TeacherRegistration addTeacher={addTeacher} editTeacher={(teacher) => navigate('/dashboard/registration/teacher/edit', { state: { teacher } })} teachers={teachers} />} />
+          <Route path="registration/teacher/add" element={<AddTeacher addTeacher={addTeacher} />} /> {/* Yeni rota */}
+          <Route path="registration/teacher/edit" element={<AddTeacher updateTeacher={updateTeacher} />} /> {/* Yeni rota */}
           <Route path="registration/course" element={<CourseRegistration />} />
         </Routes>
       </div>
