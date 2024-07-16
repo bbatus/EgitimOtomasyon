@@ -1,7 +1,6 @@
-// src/pages/Admin/AdminDashboard.js
 import React from 'react';
-import Sidebar from '../../components/Sidebar';
-import '../../assets/styles/AdminDashboard.css';
+import Sidebar from '../../../components/Sidebar';
+import '../../../assets/styles/AdminDashboard.css';
 
 function AdminDashboard() {
   return (

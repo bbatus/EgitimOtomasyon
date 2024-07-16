@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchIcon from '../../../assets/images/search.svg';
+import SearchIcon from '../../../../assets/images/search.svg';
 
 const SearchBar = ({ searchTerm, onSearchChange }) => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../../assets/styles/Admin/AddTeacher.css';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/TeacherRegistration/AddTeacher.css';
 
 const AddTeacher = ({ addTeacher, updateTeacher }) => {
   const [name, setName] = useState('');

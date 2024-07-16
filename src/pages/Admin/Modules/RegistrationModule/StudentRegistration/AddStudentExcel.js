@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../../assets/styles/Admin/AddStudent.css';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import * as XLSX from 'xlsx';
 
 const AddStudentExcel = ({ addStudentsFromExcel }) => {

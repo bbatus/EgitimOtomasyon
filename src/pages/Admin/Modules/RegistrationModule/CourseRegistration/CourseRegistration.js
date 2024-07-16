@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../../assets/styles/Admin/CourseRegistration.css';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseRegistration.css';
+
 
 const CourseRegistration = ({ courses, addCourse }) => {
   const navigate = useNavigate();

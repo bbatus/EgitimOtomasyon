@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../../assets/styles/Admin/Notifications.css';
-import NoNotificationImage from '../../assets/images/no notification.svg';
+import '../../../../assets/styles/Admin/Modules/NotificationModule/Notifications.css';
+import NoNotificationImage from '../../../../assets/images/no notification.svg';
 
 const Notifications = () => {
   const [isSending, setIsSending] = useState(false);

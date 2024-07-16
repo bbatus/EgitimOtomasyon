@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../../assets/styles/Admin/VideoSolutionModule.css';
+import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css';
 
 const UploadExcel = ({ onContinue, onBack }) => {
   const [selectedFile, setSelectedFile] = useState(null);

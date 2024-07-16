@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../../assets/styles/Admin/CourseTopics.css';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics.css';
 
 const CourseTopics = () => {
   const [topics, setTopics] = useState([

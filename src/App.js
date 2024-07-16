@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage';
-import AdminDashboard from './pages/Admin/AdminDashboard';
-import AdminMainPage from './pages/Admin/AdminMainPage';
-import Notifications from './pages/Admin/Notifications';
-import VideoSolutionModule from './pages/Admin/VideoSolutionModule';
-import AttendanceModule from './pages/Admin/AttendanceModule';
-import HomeworkTrackingModule from './pages/Admin/HomeworkTrackingModule';
-import AccountingModule from './pages/Admin/AccountingModule';
-import RegistrationModule from './pages/Admin/RegistrationModule';
-import StudentRegistration from './pages/Admin/Registration/StudentRegistration';
-import AddStudent from './pages/Admin/Registration/AddStudent';
-import AddStudentExcel from './pages/Admin/Registration/AddStudentExcel';
-import TeacherRegistration from './pages/Admin/Registration/TeacherRegistration';
-import AddTeacher from './pages/Admin/Registration/AddTeacher';
-import CourseRegistration from './pages/Admin/Registration/CourseRegistration';
-import CourseTopics from './pages/Admin/Registration/CourseTopics';
-import AddCourse from './pages/Admin/Registration/AddCourse';
+import AdminDashboard from './pages/Admin/Modules/AdminDashboard';
+import AdminMainPage from './pages/Admin/Modules/AdminMainPage';
+import Notifications from './pages/Admin/Modules/NotificationModule/Notifications';
+import VideoSolutionModule from './pages/Admin/Modules/VideoModule/VideoSolutionModule';
+import AttendanceModule from './pages/Admin/Modules/AttendanceModule/AttendanceModule';
+import HomeworkTrackingModule from './pages/Admin/Modules/HomeworkTrackingModule/HomeworkTrackingModule';
+import AccountingModule from './pages/Admin/Modules/AccountingModule/AccountingModule';
+import RegistrationModule from './pages/Admin/Modules/RegistrationModule/RegistrationModule';
+import StudentRegistration from './pages/Admin/Modules/RegistrationModule/StudentRegistration/StudentRegistration';
+import AddStudent from './pages/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent';
+import AddStudentExcel from './pages/Admin/Modules/RegistrationModule/StudentRegistration/AddStudentExcel';
+import TeacherRegistration from './pages/Admin/Modules/RegistrationModule/TeacherRegistration/TeacherRegistration';
+import AddTeacher from './pages/Admin/Modules/RegistrationModule/TeacherRegistration/AddTeacher';
+import CourseRegistration from './pages/Admin/Modules/RegistrationModule/CourseRegistration/CourseRegistration';
+import CourseTopics from './pages/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics';
+import AddCourse from './pages/Admin/Modules/RegistrationModule/CourseRegistration/AddCourse';
 import Sidebar from './components/Sidebar';
 import './App.css';
 
@@ -103,8 +103,8 @@ const AdminLayout = () => {
           <Route path="registration/teacher/add" element={<AddTeacher addTeacher={addTeacher} />} />
           <Route path="registration/teacher/edit" element={<AddTeacher updateTeacher={updateTeacher} />} />
           <Route path="registration/course" element={<CourseRegistration courses={courses} addCourse={addCourse} />} />
-          <Route path="registration/course/topics/:courseId" element={<CourseTopics />} /> {/* Yeni rota */}
-          <Route path="registration/course/add" element={<AddCourse addCourse={addCourse} />} /> {/* Yeni rota */}
+          <Route path="registration/course/topics/:courseId" element={<CourseTopics />} />
+          <Route path="registration/course/add" element={<AddCourse addCourse={addCourse} />} />
         </Routes>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import RegistrationSearchBarTeacher from './RegistrationSearchBarTeacher';
-import EditIcon from '../../../assets/images/idIcon.svg';
-import FilterIcon from '../../../assets/images/filter.svg';
-import '../../../assets/styles/Admin/RegistrationModule.css';
+import EditIcon from '../../../../../assets/images/idIcon.svg';
+import FilterIcon from '../../../../../assets/images/filter.svg';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 import { useNavigate } from 'react-router-dom';
 
 const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {

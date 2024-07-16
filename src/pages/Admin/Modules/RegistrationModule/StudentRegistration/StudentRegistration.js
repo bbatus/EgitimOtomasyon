@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import RegistrationSearchBar from './RegistrationSearchBar';
-import EditIcon from '../../../assets/images/idIcon.svg';
-import FilterIcon from '../../../assets/images/filter.svg';
-import '../../../assets/styles/Admin/RegistrationModule.css';
+import EditIcon from '../../../../../assets/images/idIcon.svg';
+import FilterIcon from '../../../../../assets/images/filter.svg';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
+
 
 const StudentRegistration = ({ addStudent, editStudent, students }) => {
   const [searchTerm, setSearchTerm] = useState('');

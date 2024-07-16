@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../../assets/styles/Admin/RegistrationSearchBar.css';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/RegistrationSearchBar.css';
+
 
 const RegistrationSearchBarTeacher = ({ searchTerm, onSearchChange }) => {
   return (

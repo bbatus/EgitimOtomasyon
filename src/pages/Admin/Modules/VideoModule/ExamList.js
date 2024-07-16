@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ExamIcon from '../../../assets/images/exam.svg';
-import '../../../assets/styles/Admin/VideoSolutionModule.css';
+import ExamIcon from '../../../../assets/images/exam.svg'; // Güncellenmiş yol
+import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css'; // Güncellenmiş yol
 
 const ExamList = ({ exams, onDetailsClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +14,7 @@ const ExamList = ({ exams, onDetailsClick }) => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
+  
   return (
     <div className="exam-list-container">
       <div className="exam-list">
