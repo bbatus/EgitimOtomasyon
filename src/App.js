@@ -13,8 +13,10 @@ import StudentRegistration from './pages/Admin/Registration/StudentRegistration'
 import AddStudent from './pages/Admin/Registration/AddStudent';
 import AddStudentExcel from './pages/Admin/Registration/AddStudentExcel';
 import TeacherRegistration from './pages/Admin/Registration/TeacherRegistration';
-import AddTeacher from './pages/Admin/Registration/AddTeacher'; // Yeni import
+import AddTeacher from './pages/Admin/Registration/AddTeacher';
 import CourseRegistration from './pages/Admin/Registration/CourseRegistration';
+import CourseTopics from './pages/Admin/Registration/CourseTopics';
+import AddCourse from './pages/Admin/Registration/AddCourse'; // Yeni import
 import Sidebar from './components/Sidebar';
 import './App.css';
 
@@ -34,6 +36,11 @@ const AdminLayout = () => {
     { id: 3, name: 'Örnek Öğretmen 3', department: 'Türkçe' },
     { id: 4, name: 'Örnek Öğretmen 4', department: 'Sosyal Bilgiler' },
     { id: 5, name: 'Örnek Öğretmen 5', department: 'İngilizce' },
+  ]);
+
+  const [courses, setCourses] = useState([
+    { id: 1, courseName: 'Matematik', courseType: 'TYT' },
+    { id: 2, courseName: 'Fizik', courseType: 'AYT' },
   ]);
 
   const navigate = useNavigate();
@@ -71,6 +78,10 @@ const AdminLayout = () => {
     );
   };
 
+  const addCourse = (newCourse) => {
+    setCourses((prevCourses) => [...prevCourses, { ...newCourse, id: prevCourses.length + 1 }]);
+  };
+
   return (
     <div className="admin-layout">
       <Sidebar />
@@ -89,9 +100,11 @@ const AdminLayout = () => {
           <Route path="registration/student/edit" element={<AddStudent updateStudent={updateStudent} />} />
           <Route path="registration/student/excel" element={<AddStudentExcel addStudentsFromExcel={addStudentsFromExcel} />} />
           <Route path="registration/teacher" element={<TeacherRegistration addTeacher={addTeacher} editTeacher={(teacher) => navigate('/dashboard/registration/teacher/edit', { state: { teacher } })} teachers={teachers} />} />
-          <Route path="registration/teacher/add" element={<AddTeacher addTeacher={addTeacher} />} /> {/* Yeni rota */}
-          <Route path="registration/teacher/edit" element={<AddTeacher updateTeacher={updateTeacher} />} /> {/* Yeni rota */}
-          <Route path="registration/course" element={<CourseRegistration />} />
+          <Route path="registration/teacher/add" element={<AddTeacher addTeacher={addTeacher} />} />
+          <Route path="registration/teacher/edit" element={<AddTeacher updateTeacher={updateTeacher} />} />
+          <Route path="registration/course" element={<CourseRegistration courses={courses} addCourse={addCourse} />} />
+          <Route path="registration/course/topics/:courseId" element={<CourseTopics />} /> {/* Yeni rota */}
+          <Route path="registration/course/add" element={<AddCourse addCourse={addCourse} />} /> {/* Yeni rota */}
         </Routes>
       </div>
     </div>
