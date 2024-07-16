@@ -1,4 +1,3 @@
-/* Sidebar genel stilleri */
 .sidebar {
   width: 350px;
   background-color: #f8f8f8;
@@ -11,7 +10,7 @@
   align-items: flex-start;
   padding-top: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s; /* Genişlik değişimi için geçiş efekti */
+  transition: width 0.3s;
 }
 
 .logo {
@@ -65,11 +64,10 @@
   border-bottom: 1px solid #ff9800;
 }
 
-/* İçerik alanı */
 .content {
   margin-left: 350px;
   padding: 20px;
-  transition: margin-left 0.3s; /* Kenar boşluğu değişimi için geçiş efekti */
+  transition: margin-left 0.3s;
 }
 
 .logout-button {
@@ -91,41 +89,39 @@
   color: #fff;
 }
 
-/* Responsive düzenlemeler */
 @media (max-width: 768px) {
   .sidebar {
-    width: 200px; /* Daha küçük ekranlar için sidebar genişliği */
+    width: 200px;
   }
 
   .content {
-    margin-left: 200px; /* İçerik alanı kenar boşluğu */
+    margin-left: 200px;
   }
 }
 
 @media (max-width: 480px) {
   .sidebar {
-    width: 150px; /* Daha küçük ekranlar için sidebar genişliği */
+    width: 150px;
   }
 
   .content {
-    margin-left: 150px; /* İçerik alanı kenar boşluğu */
+    margin-left: 150px;
   }
 
   .sidebar-nav li a,
   .logout-button {
-    padding: 10px 20px; /* Daha küçük ekranlar için padding */
-    font-size: 16px; /* Daha küçük ekranlar için font boyutu */
+    padding: 10px 20px;
+    font-size: 16px;
   }
 
   .logo img {
-    width: 120px; /* Daha küçük ekranlar için logo genişliği */
+    width: 120px;
   }
 
-.sidebar-icon {
-  width: 0.11px;
-  height: .1px;
-  margin-right: 1px;
-  vertical-align: middle;
-}
-
+  .sidebar-icon {
+    width: 0.11px;
+    height: .1px;
+    margin-right: 1px;
+    vertical-align: middle;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../../assets/styles/Admin/AddTeacher.css'; // Doğru CSS dosyasını ekleyin
+import '../../../assets/styles/Admin/AddTeacher.css';
 
 const AddTeacher = ({ addTeacher, updateTeacher }) => {
   const [name, setName] = useState('');

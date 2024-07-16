@@ -9,7 +9,7 @@ const ParentLoginPanel = ({ handleBackClick }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handlePhoneNumberChange = (value) => {
-    if (value && value.length <= 16) { // Maximum length including country code
+    if (value && value.length <= 16) { 
       setPhoneNumber(value);
       setValue('phoneNumber', value, { shouldValidate: true });
     }

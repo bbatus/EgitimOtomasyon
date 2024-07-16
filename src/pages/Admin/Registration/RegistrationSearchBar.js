@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../assets/styles/Admin/RegistrationSearchBar.css'; // Yeni CSS dosyasını ekleyin
+import '../../../assets/styles/Admin/RegistrationSearchBar.css';
 
 const RegistrationSearchBar = ({ searchTerm, onSearchChange }) => {
   return (

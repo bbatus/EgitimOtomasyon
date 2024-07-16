@@ -16,7 +16,7 @@ import TeacherRegistration from './pages/Admin/Registration/TeacherRegistration'
 import AddTeacher from './pages/Admin/Registration/AddTeacher';
 import CourseRegistration from './pages/Admin/Registration/CourseRegistration';
 import CourseTopics from './pages/Admin/Registration/CourseTopics';
-import AddCourse from './pages/Admin/Registration/AddCourse'; // Yeni import
+import AddCourse from './pages/Admin/Registration/AddCourse';
 import Sidebar from './components/Sidebar';
 import './App.css';
 

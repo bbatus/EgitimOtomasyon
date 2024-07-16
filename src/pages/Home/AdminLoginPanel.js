@@ -48,7 +48,6 @@ const AdminLoginPanel = ({ handleBackClick }) => {
     setFormErrors(errors);
 
     if (!errors.username && !errors.password) {
-      // Giriş başarılı, dashboard'a yönlendirin
       navigate('/dashboard');
     } else {
       if (errors.username) {

@@ -8,20 +8,20 @@
     flex-direction: column;
     align-items: center;
     width: 90%;
-    position: relative; /* Relative konumlandırma ekleniyor */
+    position: relative;
   }
-  
+
   .add-course-container h1 {
     margin-bottom: 20px;
   }
-  
+
   .form-group {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .form-group label {
     display: block;
     margin-bottom: 10px;
@@ -29,7 +29,7 @@
     font-size: 18px;
     text-align: center;
   }
-  
+
   .form-group input {
     width: 100%;
     padding: 15px;
@@ -38,24 +38,24 @@
     font-size: 18px;
     color: #333;
   }
-  
+
   .radio-group {
     display: flex;
     justify-content: center;
     gap: 20px;
   }
-  
+
   .radio-group label {
     font-size: 16px;
   }
-  
+
   .button-group {
     display: flex;
     gap: 20px;
     justify-content: flex-end;
-    width: 100%; /* Butonları sağa hizalamak için */
+    width: 100%;
   }
-  
+
   .cancel-button,
   .submit-button {
     background-color: #ff9800;
@@ -65,19 +65,18 @@
     border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
-    width: auto; /* Butonların boyutlarını düzeltiyoruz */
+    width: auto;
   }
-  
+
   .cancel-button:hover,
   .submit-button:hover {
     background-color: #e68900;
   }
-  
+
   @media (max-width: 768px) {
     .button-group {
-      justify-content: center; /* Daha küçük ekranlarda butonları merkeze hizala */
-      flex-direction: column; /* Butonları alt alta hizala */
-      gap: 10px; /* Butonlar arasındaki boşluğu azalt */
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
     }
   }
-  

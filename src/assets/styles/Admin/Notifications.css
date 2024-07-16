@@ -10,10 +10,9 @@
   width: 90%;
   min-height: 650px;
   position: relative;
-  overflow-y: auto; /* Kaydırma çubuğu için */
-  max-height: 80vh; /* Container'ın maksimum yüksekliği */
+  overflow-y: auto;
+  max-height: 80vh;
 }
-
 
 .notification-message {
   font-size: 18px;
@@ -122,34 +121,34 @@
 
 .notification-item {
   background-color: #4F4C4C;
-  padding: 20px; /* Padding'i arttırdık */
+  padding: 20px;
   margin-bottom: 20px;
   border-radius: 60px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  color: white; /* Yazıları beyaz yap */
+  color: white;
   position: relative;
 }
 
 .notification-content {
-  flex: 1; /* İçeriği genişlet */
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .notification-preview {
-  font-size: 16px; /* Yazı boyutunu arttırdık */
-  color: white; /* Yazıları beyaz yap */
+  font-size: 16px;
+  color: white;
 }
 
 .notification-date {
-  font-size: 16px; /* Tarih ve saat boyutunu arttırdık */
-  color: white; /* Yazıları beyaz yap */
+  font-size: 16px;
+  color: white;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Orta hizalama */
+  transform: translate(-50%, -50%);
 }
 
 .expand-button {
@@ -160,14 +159,13 @@
   border-radius: 60px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 20px; /* Buton ile içerik arasındaki boşluk */
+  margin-left: 20px;
 }
 
 .expand-button:hover {
   background-color: #e68900;
 }
 
-/* Responsive düzenlemeler */
 @media (max-width: 768px) {
   .notification-container {
     width: 90%;

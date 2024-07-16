@@ -43,7 +43,6 @@ const CourseTopics = () => {
   };
 
   const confirmDeleteCourse = () => {
-    // Implement course delete logic here
     setShowDeleteConfirmation(false);
     alert('Ders silindi.');
   };

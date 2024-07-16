@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// Güncellenmiş dosya yolu
 import ExamIcon from '../../../assets/images/exam.svg';
 import '../../../assets/styles/Admin/VideoSolutionModule.css';
 

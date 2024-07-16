@@ -1,10 +1,10 @@
 .video-solution-module-container {
-  padding: 40px; /* Padding artırıldı */
+  padding: 40px;
   background-color: #fff;
   border-radius: 60px;
   box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
   margin: 40px;
-  min-height: 60vh; /* Ensures the container maintains a minimum height */
+  min-height: 60vh;
 }
 
 .exam-header {
@@ -32,30 +32,30 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Ortalamak için */
+  align-items: center;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
-  font-size: 18px; /* Yazı tipi boyutu artırıldı */
-  text-align: center; /* Etiketleri ortalamak için */
+  font-size: 18px;
+  text-align: center;
 }
 
 .form-group input[type="text"] {
-  width: 50%; /* Genişliği küçültüldü */
-  padding: 15px; /* Padding artırıldı */
+  width: 50%;
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 30px; /* Border radius artırıldı */
-  font-size: 18px; /* Yazı tipi boyutu artırıldı */
+  border-radius: 30px;
+  font-size: 18px;
   color: #333;
-  margin-bottom: 40px; /* Alt boşluk eklendi */
+  margin-bottom: 40px;
 }
 
 .react-datepicker-wrapper {
-  width: 50%; /* Genişliği küçültüldü */
-  text-align: center; /* Tarihi ortaya hizalamak için */
+  width: 50%;
+  text-align: center;
 }
 
 .react-datepicker__input-container {
@@ -64,20 +64,20 @@
 
 .react-datepicker-ignore-onclickoutside {
   width: 100%;
-  padding: 15px; /* Padding artırıldı */
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 30px; /* Border radius artırıldı */
-  font-size: 18px; /* Yazı tipi boyutu artırıldı */
+  border-radius: 30px;
+  font-size: 18px;
   color: #333;
-  margin-bottom: 40px; /* Alt boşluk eklendi */
-  text-align: center; /* Tarihi ortaya hizalamak için */
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .exam-type-options {
   display: flex;
-  justify-content: center; /* Ortalamak için */
+  justify-content: center;
   gap: 20px;
-  margin-top: 20px; /* Üst boşluk eklendi */
+  margin-top: 20px;
 }
 
 .exam-type-options label {
@@ -93,15 +93,15 @@
 .radio-button {
   border: 2px solid #ff9800;
   border-radius: 15px;
-  padding: 10px 15px; /* Padding artırıldı */
-  font-size: 16px; /* Yazı tipi boyutu artırıldı */
+  padding: 10px 15px;
+  font-size: 16px;
 }
 
 .form-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  width: 100%; /* Butonları yaymak için */
+  width: 100%;
 }
 
 .cancel-button,
@@ -114,7 +114,7 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 20px 30px; /* Padding artırıldı */
+  padding: 20px 30px;
   border-radius: 60px;
   cursor: pointer;
   font-size: 16px;
@@ -224,7 +224,7 @@
 }
 
 .exam-date {
-  text-align: center; /* Tarihi ortaya hizalamak için */
+  text-align: center;
 }
 
 .details-button {
@@ -235,7 +235,7 @@
   border-radius: 60px;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 10px; /* Sağ tarafa dayalı hale getirmek için */
+  margin-left: 10px;
 }
 
 .details-button:hover {
@@ -283,8 +283,8 @@
   border-radius: 60px;
   padding: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-right: 20px; /* Sınav Tanımla butonuyla arama çubuğu arasına boşluk eklemek için */
-  width: 300px; /* Arama çubuğunun genişliğini küçültmek için */
+  margin-right: 20px;
+  width: 300px;
 }
 
 .search-box input {
@@ -292,7 +292,7 @@
   outline: none;
   font-size: 16px;
   margin-left: 10px;
-  width: 200px; /* Genişliği küçültmek için */
+  width: 200px;
 }
 
 .search-icon {
@@ -305,38 +305,36 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60vh; /* Ekranı kaplamak için yeterli yüksekliği ayarlayın */
+  height: 60vh;
   text-align: center;
   color: #666;
   margin-top: -50px;
 }
 
 .no-exams-icon {
-  width: 200px; /* İkon boyutunu ayarlayın */
+  width: 200px;
   height: 200px;
   margin-bottom: 20px;
 }
 
-/* Updated form-actions for button positioning */
 .form-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  width: 100%; /* Butonları yaymak için */
-  position: relative; /* Button konumlandırması için gerekli */
+  width: 100%;
+  position: relative;
 }
 
 .cancel-button {
   position: absolute;
-  left: 0; /* Sol üst köşeye yerleştir */
+  left: 0;
 }
 
 .save-button {
   position: absolute;
-  right: 0; /* Sağ üst köşeye yerleştir */
+  right: 0;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .video-solution-module-container {
     padding: 10px;
@@ -400,7 +398,7 @@
   }
 
   .no-exams-container {
-    height: 40vh; /* Küçük ekranlar için yüksekliği ayarlayın */
+    height: 40vh;
   }
 }
 
@@ -443,13 +441,13 @@
   }
 
   .date-picker {
-    width: 50%; /* Genişliği küçültüldü */
-    padding: 15px; /* Padding artırıldı */
+    width: 50%;
+    padding: 15px;
     border: 1px solid #ccc;
-    border-radius: 30px; /* Border radius artırıldı */
-    font-size: 18px; /* Yazı tipi boyutu artırıldı */
+    border-radius: 30px;
+    font-size: 18px;
     color: #333;
-    margin-bottom: 40px; /* Alt boşluk eklendi */
-    text-align: center; /* Tarihi ortaya hizalamak için */
+    margin-bottom: 40px;
+    text-align: center;
   }
 }

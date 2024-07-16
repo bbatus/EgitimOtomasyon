@@ -56,10 +56,10 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
       const errors = [];
       for (let i = 1; i < jsonData.length; i++) {
         const row = jsonData[i];
-        const name = row[4]; // AD*
-        const surname = row[5]; // SOYAD*
-        const tc = row[6]; // KULLANICI ADI*
-        const classroom = row[7]; // Sınıf bilgisi burada olacak (örneğin "9-A")
+        const name = row[4];
+        const surname = row[5];
+        const tc = row[6];
+        const classroom = row[7];
 
         if (name && surname && tc && classroom) {
           students.push({ name: `${name} ${surname}`, tc, classroom });

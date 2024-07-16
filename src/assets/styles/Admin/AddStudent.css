@@ -61,7 +61,6 @@
   background-color: #e68900;
 }
 
-/* Yeni eklenen stil */
 .filter-container {
   display: flex;
   align-items: center;
@@ -76,11 +75,10 @@
 }
 
 .filter-icon {
-  width: 24px; /* Icon boyutu küçültüldü */
-  height: 24px; /* Icon boyutu küçültüldü */
+  width: 24px;
+  height: 24px;
 }
 
-/* Öğrenci listesi ve başlık stili */
 .student-header {
   display: flex;
   justify-content: space-between;

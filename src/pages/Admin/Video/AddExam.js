@@ -27,7 +27,7 @@ const AddExam = ({ onSave, onCancel }) => {
     }
     onSave({
       ...examDetails,
-      date: examDetails.date.toISOString().split('T')[0] // Tarihi ISO formatına çevirme
+      date: examDetails.date.toISOString().split('T')[0]
     });
   };
 
