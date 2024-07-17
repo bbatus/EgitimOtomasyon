@@ -13,8 +13,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
   const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-    console.log("Search Term:", e.target.value); // Debug log eklendi
+    setSearchTerm(e.target.value.toLowerCase());
   };
 
   const handleDepartmentFilterChange = (e) => {
@@ -22,11 +21,10 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
   };
 
   const filteredTeachers = teachers.filter((teacher) => {
-    const teacherName = teacher.name ? teacher.name.toLowerCase() : '';
-    const teacherTc = teacher.tc ? teacher.tc : '';
-    return (teacherName.includes(searchTerm.toLowerCase()) ||
-      teacherTc.includes(searchTerm)) &&
-    (selectedDepartment ? teacher.department === selectedDepartment : true);
+    const teacherName = teacher.name?.toLowerCase() || '';
+    const teacherTc = teacher.tc || '';
+    return (teacherName.includes(searchTerm) || teacherTc.includes(searchTerm)) &&
+      (selectedDepartment ? teacher.department === selectedDepartment : true);
   });
 
   const indexOfLastTeacher = currentPage * teachersPerPage;
@@ -55,7 +53,11 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
           <div className="header-buttons">
             <button className="module-button" onClick={handleAddTeacher}>Öğretmen Ekle</button>
             <div className="filter-container">
-              <select className="filter-select" value={selectedDepartment} onChange={handleDepartmentFilterChange}>
+              <select
+                className="filter-select"
+                value={selectedDepartment}
+                onChange={handleDepartmentFilterChange}
+              >
                 <option value="">Tüm Bölümler</option>
                 {['Matematik', 'Fen Bilimleri', 'Türkçe', 'Sosyal Bilgiler', 'İngilizce'].map((dept) => (
                   <option key={dept} value={dept}>{dept}</option>

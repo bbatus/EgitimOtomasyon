@@ -2,8 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseRegistration.css';
 
-
-const CourseRegistration = ({ courses, addCourse }) => {
+const CourseRegistration = ({ courses }) => {
   const navigate = useNavigate();
 
   const tytCourses = courses.filter(course => course.courseType === 'TYT');
@@ -13,7 +12,9 @@ const CourseRegistration = ({ courses, addCourse }) => {
     <div className="course-registration-container">
       <div className="course-header">
         <h1>Dersler</h1>
-        <button className="add-course-button" onClick={() => navigate('/dashboard/registration/course/add')}>Ders Ekle +</button>
+        <button className="add-course-button" onClick={() => navigate('/dashboard/registration/course/add')}>
+          Ders Ekle +
+        </button>
       </div>
       <div className="course-group">
         <h2>TEMEL YETERLİLİK TESTİ DERSLERİ</h2>
@@ -21,7 +22,9 @@ const CourseRegistration = ({ courses, addCourse }) => {
           {tytCourses.map(course => (
             <div key={course.id} className="course-item">
               <h3>{course.courseName}</h3>
-              <button className="see-topics-button" onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}>Konuları gör</button>
+              <button className="see-topics-button" onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}>
+                Konuları gör
+              </button>
             </div>
           ))}
         </div>
@@ -32,7 +35,9 @@ const CourseRegistration = ({ courses, addCourse }) => {
           {aytCourses.map(course => (
             <div key={course.id} className="course-item">
               <h3>{course.courseName}</h3>
-              <button className="see-topics-button" onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}>Konuları gör</button>
+              <button className="see-topics-button" onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}>
+                Konuları gör
+              </button>
             </div>
           ))}
         </div>

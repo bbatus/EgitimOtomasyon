@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/RegistrationSearchBar.css';
-
 
 const RegistrationSearchBarTeacher = ({ searchTerm, onSearchChange }) => {
   return (
@@ -15,4 +15,9 @@ const RegistrationSearchBarTeacher = ({ searchTerm, onSearchChange }) => {
   );
 };
 
-export default RegistrationSearchBarTeacher;
+RegistrationSearchBarTeacher.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+};
+
+export default React.memo(RegistrationSearchBarTeacher);

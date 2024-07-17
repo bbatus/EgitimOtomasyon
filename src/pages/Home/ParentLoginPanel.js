@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import phoneIcon from '../../assets/images/phoneIcon.svg';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
+import phoneIcon from '../../assets/images/phoneIcon.svg';
 
 const ParentLoginPanel = ({ handleBackClick }) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handlePhoneNumberChange = (value) => {
+  const handlePhoneNumberChange = useCallback((value) => {
     if (value && value.length <= 16) { 
       setPhoneNumber(value);
       setValue('phoneNumber', value, { shouldValidate: true });
     }
-  };
+  }, [setValue]);
 
-  const onSubmit = (data) => {
+  const onSubmit = useCallback((data) => {
     // Form submission logic
     console.log(data);
-  };
+  }, []);
 
   return (
     <>
@@ -51,4 +52,8 @@ const ParentLoginPanel = ({ handleBackClick }) => {
   );
 };
 
-export default ParentLoginPanel;
+ParentLoginPanel.propTypes = {
+  handleBackClick: PropTypes.func.isRequired,
+};
+
+export default React.memo(ParentLoginPanel);

@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import ExamIcon from '../../../../assets/images/exam.svg'; // Güncellenmiş yol
-import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css'; // Güncellenmiş yol
+import React, { useState, useCallback, useMemo } from 'react';
+import PropTypes from 'prop-types';
+import ExamIcon from '../../../../assets/images/exam.svg';
+import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css';
 
 const ExamList = ({ exams, onDetailsClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const examsPerPage = 5;
 
-  const indexOfLastExam = currentPage * examsPerPage;
-  const indexOfFirstExam = indexOfLastExam - examsPerPage;
-  const currentExams = exams.slice(indexOfFirstExam, indexOfLastExam);
-  const totalPages = Math.ceil(exams.length / examsPerPage);
+  const indexOfLastExam = useMemo(() => currentPage * examsPerPage, [currentPage, examsPerPage]);
+  const indexOfFirstExam = useMemo(() => indexOfLastExam - examsPerPage, [indexOfLastExam, examsPerPage]);
+  const currentExams = useMemo(() => exams.slice(indexOfFirstExam, indexOfLastExam), [exams, indexOfFirstExam, indexOfLastExam]);
+  const totalPages = useMemo(() => Math.ceil(exams.length / examsPerPage), [exams.length, examsPerPage]);
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = useCallback((pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-  
+  }, []);
+
   return (
     <div className="exam-list-container">
       <div className="exam-list">
@@ -53,6 +54,15 @@ const ExamList = ({ exams, onDetailsClick }) => {
       </div>
     </div>
   );
+};
+
+ExamList.propTypes = {
+  exams: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
+  })).isRequired,
+  onDetailsClick: PropTypes.func.isRequired
 };
 
 export default ExamList;

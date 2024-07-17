@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/AddCourse.css';
 
-
 const AddCourse = ({ addCourse }) => {
   const [courseName, setCourseName] = useState('');
   const [courseType, setCourseType] = useState('TYT');
   const navigate = useNavigate();
 
   const handleAddCourse = () => {
-    if (courseName) {
-      addCourse({ courseName, courseType });
+    if (courseName.trim()) {
+      addCourse({ courseName: courseName.trim(), courseType });
       navigate('/dashboard/registration/course');
     } else {
       alert('Lütfen ders adını giriniz');
@@ -57,8 +56,8 @@ const AddCourse = ({ addCourse }) => {
         </div>
       </div>
       <div className="button-group">
-        <button className="cancel-button" onClick={handleCancel}>İptal Et</button>
-        <button className="submit-button" onClick={handleAddCourse}>Devam Et</button>
+        <button type="button" className="cancel-button" onClick={handleCancel}>İptal Et</button>
+        <button type="button" className="submit-button" onClick={handleAddCourse}>Devam Et</button>
       </div>
     </div>
   );

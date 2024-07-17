@@ -4,12 +4,12 @@ import EditIcon from '../../../../../assets/images/idIcon.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 
-
 const StudentRegistration = ({ addStudent, editStudent, students }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddOptions, setShowAddOptions] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClassroom, setSelectedClassroom] = useState('');
+
   const studentsPerPage = 5;
 
   const handleSearchChange = (e) => {
@@ -24,7 +24,7 @@ const StudentRegistration = ({ addStudent, editStudent, students }) => {
     setSelectedClassroom(e.target.value);
   };
 
-  const filteredStudents = students.filter((student) => 
+  const filteredStudents = students.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (selectedClassroom ? student.classroom === selectedClassroom : true)
   );

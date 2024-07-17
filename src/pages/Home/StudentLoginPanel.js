@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import tcIcon from '../../assets/images/idIcon.svg';
 import { validateTc } from '../../helpers/validation';
 
@@ -8,7 +9,7 @@ const StudentLoginPanel = ({ handleBackClick }) => {
 
   const tcRef = useRef(null);
 
-  const handleTcChange = (e) => {
+  const handleTcChange = useCallback((e) => {
     const value = e.target.value;
     setTc(value);
     if (value.startsWith('0')) {
@@ -19,21 +20,21 @@ const StudentLoginPanel = ({ handleBackClick }) => {
     } else {
       setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
     }
-  };
+  }, []);
 
-  const handleTcBlur = () => {
+  const handleTcBlur = useCallback(() => {
     const error = validateTc(tc);
     setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
-  };
+  }, [tc]);
 
-  const handleTcKeyPress = (e) => {
+  const handleTcKeyPress = useCallback((e) => {
     const charCode = e.which ? e.which : e.keyCode;
     if (charCode < 48 || charCode > 57) {
       e.preventDefault();
     }
-  };
+  }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = useCallback((e) => {
     e.preventDefault();
     const errors = { tc: validateTc(tc) };
     setFormErrors(errors);
@@ -43,13 +44,13 @@ const StudentLoginPanel = ({ handleBackClick }) => {
     } else {
       tcRef.current.focus();
     }
-  };
+  }, [tc]);
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = useCallback((e) => {
     if (e.key === 'Enter') {
       handleFormSubmit(e);
     }
-  };
+  }, [handleFormSubmit]);
 
   return (
     <>
@@ -82,4 +83,8 @@ const StudentLoginPanel = ({ handleBackClick }) => {
   );
 };
 
-export default StudentLoginPanel;
+StudentLoginPanel.propTypes = {
+  handleBackClick: PropTypes.func.isRequired,
+};
+
+export default React.memo(StudentLoginPanel);

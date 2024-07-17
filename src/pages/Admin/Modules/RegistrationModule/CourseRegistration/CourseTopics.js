@@ -12,14 +12,19 @@ const CourseTopics = () => {
   ]);
   const [newTopic, setNewTopic] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const topicsPerPage = 5;
   const [editingTopicId, setEditingTopicId] = useState(null);
   const [editingTopicName, setEditingTopicName] = useState('');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
+  const topicsPerPage = 5;
+
   const addTopic = () => {
-    setTopics([...topics, { id: topics.length + 1, name: newTopic }]);
-    setNewTopic('');
+    if (newTopic.trim()) {
+      setTopics([...topics, { id: topics.length + 1, name: newTopic.trim() }]);
+      setNewTopic('');
+    } else {
+      alert('Lütfen geçerli bir konu başlığı giriniz.');
+    }
   };
 
   const deleteTopic = (id) => {
@@ -37,9 +42,13 @@ const CourseTopics = () => {
   };
 
   const saveEditing = () => {
-    setTopics(topics.map(topic => (topic.id === editingTopicId ? { ...topic, name: editingTopicName } : topic)));
-    setEditingTopicId(null);
-    setEditingTopicName('');
+    if (editingTopicName.trim()) {
+      setTopics(topics.map(topic => (topic.id === editingTopicId ? { ...topic, name: editingTopicName.trim() } : topic)));
+      setEditingTopicId(null);
+      setEditingTopicName('');
+    } else {
+      alert('Lütfen geçerli bir konu başlığı giriniz.');
+    }
   };
 
   const confirmDeleteCourse = () => {

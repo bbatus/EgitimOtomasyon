@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import ExamList from './ExamList';
 import AddExam from './AddExam';
 import UploadExcel from './UploadExcel';
@@ -15,34 +15,36 @@ const VideoSolutionModule = () => {
   const [currentExam, setCurrentExam] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleAddExamClick = () => {
+  const handleAddExamClick = useCallback(() => {
     setIsAdding(true);
     setStep(1);
-  };
+  }, []);
 
-  const handleSaveExam = (examDetails) => {
+  const handleSaveExam = useCallback((examDetails) => {
     setCurrentExam(examDetails);
     setStep(2);
-  };
+  }, []);
 
-  const handleContinue = (selectedFile) => {
+  const handleContinue = useCallback((selectedFile) => {
     const newExam = {
       ...currentExam,
       status: 'Yayınlanmadı'
     };
-    setExams([newExam, ...exams]);
+    setExams((prevExams) => [newExam, ...prevExams]);
     setIsAdding(false);
-  };
+  }, [currentExam]);
 
-  const handleDetailsClick = (exam) => {
+  const handleDetailsClick = useCallback((exam) => {
     setCurrentExam(exam);
-  };
+  }, []);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+  const handleSearchChange = useCallback((e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  }, []);
 
-  const filteredExams = exams.filter(exam => exam.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredExams = useMemo(() => {
+    return exams.filter(exam => exam.title.toLowerCase().includes(searchTerm));
+  }, [exams, searchTerm]);
 
   return (
     <div className="video-solution-module-container">
@@ -72,4 +74,4 @@ const VideoSolutionModule = () => {
   );
 };
 
-export default VideoSolutionModule;
+export default React.memo(VideoSolutionModule);

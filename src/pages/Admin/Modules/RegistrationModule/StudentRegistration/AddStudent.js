@@ -34,11 +34,8 @@ const AddStudent = ({ addStudent, updateStudent }) => {
 
   const handleTcChange = (e) => {
     const value = e.target.value;
-    if (/^[0-9]*$/.test(value) && value.length <= 11) {
+    if (/^[0-9]*$/.test(value) && value.length <= 11 && value[0] !== '0') {
       setTc(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
-    }
-    if (value.length === 11 && value[0] !== '0') {
       setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
     } else {
       setFormErrors((prevErrors) => ({

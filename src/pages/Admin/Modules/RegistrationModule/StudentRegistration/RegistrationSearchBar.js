@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/RegistrationSearchBar.css';
-
 
 const RegistrationSearchBar = ({ searchTerm, onSearchChange }) => {
   return (
@@ -13,6 +13,11 @@ const RegistrationSearchBar = ({ searchTerm, onSearchChange }) => {
       />
     </div>
   );
+};
+
+RegistrationSearchBar.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
 };
 
 export default RegistrationSearchBar;

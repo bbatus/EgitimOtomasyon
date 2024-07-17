@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SearchIcon from '../../../../assets/images/search.svg';
+import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css';
+import { memo } from 'react';
 
 const SearchBar = ({ searchTerm, onSearchChange }) => {
   return (
@@ -15,4 +18,9 @@ const SearchBar = ({ searchTerm, onSearchChange }) => {
   );
 };
 
-export default SearchBar;
+SearchBar.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+};
+
+export default memo(SearchBar);

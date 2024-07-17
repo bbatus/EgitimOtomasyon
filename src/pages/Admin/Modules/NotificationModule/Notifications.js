@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import '../../../../assets/styles/Admin/Modules/NotificationModule/Notifications.css';
 import NoNotificationImage from '../../../../assets/images/no notification.svg';
 
@@ -8,43 +8,51 @@ const Notifications = () => {
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
   const [role, setRole] = useState('');
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState(() => {
+    const savedNotifications = localStorage.getItem('notifications');
+    return savedNotifications ? JSON.parse(savedNotifications) : [];
+  });
 
-  const handleSendNotificationClick = () => {
+  useEffect(() => {
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+  }, [notifications]);
+
+  const handleSendNotificationClick = useCallback(() => {
     setIsSending(true);
-  };
+  }, []);
 
-  const handleBackClick = () => {
+  const handleBackClick = useCallback(() => {
     setIsSending(false);
     setFrom('');
     setTitle('');
     setMessage('');
     setRole('');
-  };
+  }, []);
 
-  const handleFromChange = (e) => {
+  const handleFromChange = useCallback((e) => {
     setFrom(e.target.value);
-  };
+  }, []);
 
-  const handleTitleChange = (e) => {
+  const handleTitleChange = useCallback((e) => {
     setTitle(e.target.value);
-  };
+  }, []);
 
-  const handleMessageChange = (e) => {
+  const handleMessageChange = useCallback((e) => {
     setMessage(e.target.value);
-  };
+  }, []);
 
-  const handleRoleChange = (e) => {
+  const handleRoleChange = useCallback((e) => {
     setRole(e.target.value);
-  };
+  }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (!from || !title || !message || !role) {
       alert('Lütfen tüm alanları doldurun.');
       return;
     }
 
     const newNotification = {
+      id: Date.now(),
       from,
       title,
       message,
@@ -57,9 +65,9 @@ const Notifications = () => {
         minute: 'numeric',
       }),
     };
-    setNotifications([newNotification, ...notifications]);
+    setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
     handleBackClick();
-  };
+  }, [from, title, message, role, handleBackClick]);
 
   return (
     <div className="notification-container">
@@ -112,8 +120,8 @@ const Notifications = () => {
             </>
           ) : (
             <ul className="notification-list">
-              {notifications.map((notif, index) => (
-                <li key={index} className="notification-item">
+              {notifications.map((notif) => (
+                <li key={notif.id} className="notification-item">
                   <div className="notification-content">
                     <strong>{notif.from}</strong><br />
                     <strong>{notif.title}</strong>

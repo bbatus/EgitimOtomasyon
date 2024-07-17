@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import { validateUsername } from '../../helpers/validation';
@@ -13,7 +14,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
   const passwordRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleUsernameChange = (e) => {
+  const handleUsernameChange = useCallback((e) => {
     const value = e.target.value.toUpperCase();
     if (value.length <= 50) {
       setUsername(value);
@@ -23,23 +24,23 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       const error = 'Kullanıcı adı 50 karakterden fazla olamaz';
       setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
     }
-  };
+  }, []);
 
-  const handleUsernameKeyPress = (e) => {
+  const handleUsernameKeyPress = useCallback((e) => {
     const charCode = e.which ? e.which : e.keyCode;
     if (charCode >= 48 && charCode <= 57) {
       e.preventDefault();
     }
-  };
+  }, []);
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = useCallback((e) => {
     setPassword(e.target.value);
     if (e.target.value) {
       setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
     }
-  };
+  }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = useCallback((e) => {
     e.preventDefault();
     const errors = {
       username: validateUsername(username),
@@ -56,7 +57,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
         passwordRef.current.focus();
       }
     }
-  };
+  }, [username, password, navigate]);
 
   return (
     <>
@@ -110,4 +111,8 @@ const AdminLoginPanel = ({ handleBackClick }) => {
   );
 };
 
-export default AdminLoginPanel;
+AdminLoginPanel.propTypes = {
+  handleBackClick: PropTypes.func.isRequired,
+};
+
+export default React.memo(AdminLoginPanel);

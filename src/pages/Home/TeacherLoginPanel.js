@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import tcIcon from '../../assets/images/idIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import { validateTc } from '../../helpers/validation';
@@ -10,7 +11,7 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
 
   const tcRef = useRef(null);
 
-  const handleTcChange = (e) => {
+  const handleTcChange = useCallback((e) => {
     const value = e.target.value;
     setTc(value);
     if (value.length === 11) {
@@ -21,21 +22,28 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
     } else {
       setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
     }
-  };
+  }, []);
 
-  const handleTcBlur = () => {
+  const handleTcBlur = useCallback(() => {
     const error = validateTc(tc);
     setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
-  };
+  }, [tc]);
 
-  const handleTcKeyPress = (e) => {
+  const handleTcKeyPress = useCallback((e) => {
     const charCode = e.which ? e.which : e.keyCode;
     if (charCode < 48 || charCode > 57) {
       e.preventDefault();
     }
-  };
+  }, []);
 
-  const handleFormSubmit = (e) => {
+  const handlePasswordChange = useCallback((e) => {
+    setPassword(e.target.value);
+    if (e.target.value) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
+    }
+  }, []);
+
+  const handleFormSubmit = useCallback((e) => {
     e.preventDefault();
     const errors = { tc: validateTc(tc) };
     setFormErrors(errors);
@@ -49,14 +57,7 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
     if (!password) {
       setFormErrors((prevErrors) => ({ ...prevErrors, password: 'Şifre zorunludur' }));
     }
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    if (e.target.value) {
-      setFormErrors((prevErrors) => ({ ...prevErrors, password: '' }));
-    }
-  };
+  }, [tc, password]);
 
   return (
     <>
@@ -111,4 +112,8 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
   );
 };
 
-export default TeacherLoginPanel;
+TeacherLoginPanel.propTypes = {
+  handleBackClick: PropTypes.func.isRequired,
+};
+
+export default React.memo(TeacherLoginPanel);

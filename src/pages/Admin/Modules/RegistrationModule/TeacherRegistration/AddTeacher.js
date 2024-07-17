@@ -3,9 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/TeacherRegistration/AddTeacher.css';
 
 const AddTeacher = ({ addTeacher, updateTeacher }) => {
-  const [name, setName] = useState('');
-  const [tc, setTc] = useState('');
-  const [department, setDepartment] = useState('');
+  const [formValues, setFormValues] = useState({ name: '', tc: '', department: '' });
   const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,64 +14,50 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
 
   useEffect(() => {
     if (teacherToEdit) {
-      setName(teacherToEdit.name);
-      setTc(teacherToEdit.tc);
-      setDepartment(teacherToEdit.department);
+      setFormValues({ name: teacherToEdit.name, tc: teacherToEdit.tc, department: teacherToEdit.department });
     }
   }, [teacherToEdit]);
 
-  const handleNameChange = (e) => {
-    const value = e.target.value;
-    if (value.length <= 50) {
-      setName(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, name: '' }));
-    } else {
-      setFormErrors((prevErrors) => ({ ...prevErrors, name: 'Ad Soyad 50 karakterden fazla olamaz' }));
-    }
-  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
 
-  const handleTcChange = (e) => {
-    const value = e.target.value;
-    if (/^[0-9]*$/.test(value) && value.length <= 11) {
-      setTc(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
-    }
-    if (value.length === 11 && value[0] !== '0') {
-      setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
-    } else {
+    if (name === 'name' && value.length > 50) {
+      setFormErrors((prevErrors) => ({ ...prevErrors, [name]: 'Ad Soyad 50 karakterden fazla olamaz' }));
+    } else if (name === 'tc' && (!/^[0-9]*$/.test(value) || value.length > 11 || (value.length === 11 && value[0] === '0'))) {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        tc: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır'
+        [name]: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır',
       }));
+    } else {
+      setFormErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
     }
   };
 
-  const handleDepartmentChange = (e) => {
-    setDepartment(e.target.value);
-    setFormErrors((prevErrors) => ({ ...prevErrors, department: '' }));
+  const validateForm = () => {
+    const errors = {
+      name: formValues.name ? (formValues.name.length > 50 ? 'Ad Soyad 50 karakterden fazla olamaz' : '') : 'Ad Soyad boş olamaz',
+      tc: formValues.tc ? (formValues.tc.length !== 11 || formValues.tc[0] === '0' ? 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır' : '') : 'TC Kimlik No boş olamaz',
+      department: formValues.department ? '' : 'Lütfen bir bölüm seçiniz'
+    };
+    setFormErrors(errors);
+    return Object.values(errors).every((error) => error === '');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errors = {
-      name: name ? (name.length > 50 ? 'Ad Soyad 50 karakterden fazla olamaz' : '') : 'Ad Soyad boş olamaz',
-      tc: tc ? (tc.length !== 11 || tc[0] === '0' ? 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır' : '') : 'TC Kimlik No boş olamaz',
-      department: department ? '' : 'Lütfen bir bölüm seçiniz'
-    };
-    setFormErrors(errors);
-
-    if (!errors.name && !errors.tc && !errors.department) {
+    if (validateForm()) {
       if (teacherToEdit) {
-        updateTeacher({ ...teacherToEdit, name, tc, department });
+        updateTeacher({ ...teacherToEdit, ...formValues });
       } else {
-        addTeacher({ name, tc, department });
+        addTeacher(formValues);
       }
       alert('Öğretmen başarıyla kaydedildi!');
       navigate('/dashboard/registration/teacher');
     } else {
-      if (errors.name) {
+      if (formErrors.name) {
         nameRef.current.focus();
-      } else if (errors.tc) {
+      } else if (formErrors.tc) {
         tcRef.current.focus();
       }
     }
@@ -88,8 +72,9 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={handleNameChange}
+            name="name"
+            value={formValues.name}
+            onChange={handleChange}
             placeholder="Ad Soyad"
             className="input-field"
             ref={nameRef}
@@ -106,8 +91,9 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           <input
             type="text"
             id="tc"
-            value={tc}
-            onChange={handleTcChange}
+            name="tc"
+            value={formValues.tc}
+            onChange={handleChange}
             placeholder="TC Kimlik No"
             className="input-field"
             ref={tcRef}
@@ -123,8 +109,9 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           <label htmlFor="department">Bölüm</label>
           <select
             id="department"
-            value={department}
-            onChange={handleDepartmentChange}
+            name="department"
+            value={formValues.department}
+            onChange={handleChange}
             className="input-field"
           >
             <option value="">Bölüm Seçin</option>

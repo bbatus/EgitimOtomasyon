@@ -1,46 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css';
 
 const UploadExcel = ({ onContinue, onBack }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dragOver, setDragOver] = useState(false);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    handleFile(file);
-  };
-
-  const handleFile = (file) => {
+  const handleFile = useCallback((file) => {
     if (file && (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.type === 'application/vnd.ms-excel')) {
       setSelectedFile(file);
     } else {
       alert('Lütfen geçerli bir Excel dosyası yükleyin.');
     }
-  };
+  }, []);
 
-  const handleDragOver = (e) => {
+  const handleFileChange = useCallback((e) => {
+    const file = e.target.files[0];
+    handleFile(file);
+  }, [handleFile]);
+
+  const handleDragOver = useCallback((e) => {
     e.preventDefault();
     setDragOver(true);
-  };
+  }, []);
 
-  const handleDragLeave = () => {
+  const handleDragLeave = useCallback(() => {
     setDragOver(false);
-  };
+  }, []);
 
-  const handleDrop = (e) => {
+  const handleDrop = useCallback((e) => {
     e.preventDefault();
     setDragOver(false);
     const file = e.dataTransfer.files[0];
     handleFile(file);
-  };
+  }, [handleFile]);
 
-  const handleContinue = () => {
+  const handleContinue = useCallback(() => {
     if (!selectedFile) {
       alert('Lütfen bir dosya seçin.');
       return;
     }
     onContinue(selectedFile);
-  };
+  }, [selectedFile, onContinue]);
 
   return (
     <div className="upload-excel-container">
@@ -76,6 +77,11 @@ const UploadExcel = ({ onContinue, onBack }) => {
       </div>
     </div>
   );
+};
+
+UploadExcel.propTypes = {
+  onContinue: PropTypes.func.isRequired,
+  onBack: PropTypes.func.isRequired
 };
 
 export default UploadExcel;

@@ -54,20 +54,15 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
 
       const students = [];
       const errors = [];
-      for (let i = 1; i < jsonData.length; i++) {
-        const row = jsonData[i];
-        const name = row[4];
-        const surname = row[5];
-        const tc = row[6];
-        const classroom = row[7];
-
+      jsonData.slice(1).forEach((row, i) => {
+        const [name, surname, tc, classroom] = [row[4], row[5], row[6], row[7]];
         if (name && surname && tc && classroom) {
           students.push({ name: `${name} ${surname}`, tc, classroom });
         } else {
-          errors.push({ row: i + 1, data: row });
-          console.error(`Row ${i + 1} is missing data: ${row}`);
+          errors.push({ row: i + 2, data: row });
+          console.error(`Row ${i + 2} is missing data: ${row}`);
         }
-      }
+      });
 
       setErrorRows(errors);
       addStudentsFromExcel(students);
