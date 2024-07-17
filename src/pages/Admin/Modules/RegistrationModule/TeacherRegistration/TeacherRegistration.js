@@ -14,17 +14,20 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+    console.log("Search Term:", e.target.value); // Debug log eklendi
   };
 
   const handleDepartmentFilterChange = (e) => {
     setSelectedDepartment(e.target.value);
   };
 
-  const filteredTeachers = teachers.filter((teacher) =>
-    (teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.tc.includes(searchTerm)) &&
-    (selectedDepartment ? teacher.department === selectedDepartment : true)
-  );
+  const filteredTeachers = teachers.filter((teacher) => {
+    const teacherName = teacher.name ? teacher.name.toLowerCase() : '';
+    const teacherTc = teacher.tc ? teacher.tc : '';
+    return (teacherName.includes(searchTerm.toLowerCase()) ||
+      teacherTc.includes(searchTerm)) &&
+    (selectedDepartment ? teacher.department === selectedDepartment : true);
+  });
 
   const indexOfLastTeacher = currentPage * teachersPerPage;
   const indexOfFirstTeacher = indexOfLastTeacher - teachersPerPage;
