@@ -1,0 +1,171 @@
+.attendance-container {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 60px;
+    box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    margin: 40px;
+    width: 90%;
+    min-height: 650px;
+    position: relative;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+  
+  .date-time {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .class-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .class-button {
+    padding: 20px 30px;
+    margin: 5px;
+    border: none;
+    background-color: #ff9800; /* Turuncu renk */
+    color: #fff; /* Beyaz metin */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .class-button.complete {
+    background-color: #28a745; /* Yeşil renk */
+    color: #fff;
+  }
+  
+  .class-button.missed {
+    background-color: #dc3545; /* Kırmızı renk */
+    color: #fff;
+  }
+  
+  .lesson-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .attendance-summary {
+    margin-top: 40px;
+    text-align: left;
+  }
+  
+  .attendance-summary h3 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .attendance-summary ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .attendance-summary li {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .attendance-detail-container {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 60px;
+    box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    margin: 40px;
+    width: 90%;
+    min-height: 650px;
+    position: relative;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+  
+  .student-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .student-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .attendance-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .attendance-button.present {
+    background-color: #28a745; /* Yeşil renk */
+    color: white;
+  }
+  
+  .attendance-button.absent {
+    background-color: #dc3545; /* Kırmızı renk */
+    color: white;
+  }
+  
+  .attendance-button.focused {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .save-attendance-button {
+    margin-top: 20px;
+    padding: 20px 30px;
+    border: none;
+    background-color: #ff9800; /* Turuncu renk */
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-attendance-button:hover {
+    background-color: #e68900; /* Turuncu hover rengi */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .attendance-container, .attendance-detail-container {
+      width: 90%;
+      padding: 30px;
+      margin: 20px;
+    }
+  
+    .class-button, .send-notification-button, .save-attendance-button {
+      width: 90%;
+      padding: 15px 25px;
+      font-size: 16px;
+    }
+  
+    .student-list {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .send-notification-button, .attendance-button, .save-attendance-button {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+  
