@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentLesson, getLessonIndex } from '../../../../helpers/scheduleHelpers';
+import { getCurrentLesson, isWithinLessonTime, isLessonOver } from '../../../../helpers/scheduleHelpers';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css'; 
 
 const classes = ['12-A', '12-B', '12-C', '12-D', '12-E'];
@@ -17,7 +17,7 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
     };
 
     updateLesson();
-    const interval = setInterval(updateLesson, 60 * 1000); // 1 dakika
+    const interval = setInterval(updateLesson, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -30,17 +30,39 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
   }, [currentLesson.nextUpdate]);
 
   const handleClassClick = (className, lesson) => {
-    navigate(`/dashboard/attendance/${className}/${lesson}`);
+    if (isLessonOver(lesson)) {
+      alert('Bu dersin yoklama saati geçmiştir.');
+    } else {
+      navigate(`/dashboard/attendance/${className}/${lesson}`);
+    }
   };
 
   const getClassButtonClass = (className, lesson) => {
-    if (currentLesson.lesson === lesson && attendanceRecords[lesson]?.[className]) {
+    if (attendanceRecords[lesson]?.[className]) {
       return "class-button complete";
-    } else if (currentLesson.lesson !== lesson && !attendanceRecords[lesson]?.[className]) {
+    } else if (isLessonOver(lesson)) {
       return "class-button missed";
+    } else if (isWithinLessonTime(lesson)) {
+      return "class-button active";
     } else {
       return "class-button";
     }
+  };
+
+  const handleViewAbsentStudents = () => {
+    const absentStudents = [];
+
+    for (const lesson in attendanceRecords) {
+      for (const className in attendanceRecords[lesson]) {
+        attendanceRecords[lesson][className].forEach(student => {
+          if (student.present === false) {
+            absentStudents.push({ name: student.name, classroom: student.classroom, lesson });
+          }
+        });
+      }
+    }
+
+    navigate('/dashboard/absent-students', { state: { absentStudents } });
   };
 
   return (
@@ -71,6 +93,9 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
           </div>
         ))}
       </div>
+      <button className="view-absent-students-button" onClick={handleViewAbsentStudents}>
+        Yok Yazılanları Gör
+      </button>
     </div>
   );
 };

@@ -16,6 +16,7 @@ import Notifications from './Modules/NotificationModule/Notifications';
 import VideoSolutionModule from './Modules/VideoModule/VideoSolutionModule';
 import AttendanceModule from './Modules/AttendanceModule/AttendanceModule';
 import AttendanceDetail from './Modules/AttendanceModule/AttendanceDetail';
+import AbsentStudents from './Modules/AttendanceModule/AbsentStudents';
 import HomeworkTrackingModule from './Modules/HomeworkTrackingModule/HomeworkTrackingModule';
 import AccountingModule from './Modules/AccountingModule/AccountingModule';
 import RegistrationModule from './Modules/RegistrationModule/RegistrationModule';
@@ -29,7 +30,7 @@ import CourseTopics from './Modules/RegistrationModule/CourseRegistration/Course
 import AddCourse from './Modules/RegistrationModule/CourseRegistration/AddCourse';
 import '../../App.css'; // App.css dosyasını burada import edin
 
-const AdminLayout = () => {
+const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
   const [students, setStudents] = useState([
     { id: 1, name: 'Emre Demir', classroom: '12-A' },
     { id: 2, name: 'Ayşe Su', classroom: '12-A' },
@@ -71,7 +72,7 @@ const AdminLayout = () => {
     { id: 2, courseName: 'Fizik', courseType: 'AYT' },
   ]);
 
-  const [attendanceRecords, setAttendanceRecords] = useState({});
+  const [absentStudents, setAbsentStudents] = useState([]); // Yeni eklenen state
 
   const navigate = useNavigate();
 
@@ -109,7 +110,8 @@ const AdminLayout = () => {
           <Route path="notifications" element={<Notifications />} />
           <Route path="video-solution" element={<VideoSolutionModule />} />
           <Route path="attendance" element={<AttendanceModule attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} />
-          <Route path="attendance/:className" element={<AttendanceDetail students={students} attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} />
+          <Route path="attendance/:className/:lesson" element={<AttendanceDetail students={students} attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} />
+          <Route path="absent-students" element={<AbsentStudents absentStudents={absentStudents} setAbsentStudents={setAbsentStudents} />} />
           <Route path="homework-tracking" element={<HomeworkTrackingModule />} />
           <Route path="accounting" element={<AccountingModule />} />
           <Route path="registration" element={<RegistrationModule />} />

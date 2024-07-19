@@ -11,7 +11,10 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard/*" element={<AdminLayout attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} />
+        <Route 
+          path="/dashboard/*" 
+          element={<AdminLayout attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} 
+        />
       </Routes>
     </Router>
   );

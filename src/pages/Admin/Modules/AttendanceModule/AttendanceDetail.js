@@ -51,7 +51,10 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
 
   return (
     <div className="attendance-detail-container">
-      <h1>{className}</h1>
+      <button className="back-button" onClick={() => navigate('/dashboard/attendance')}>
+        Geri Dön
+      </button>
+      <h1>{className} - {lesson}</h1> {/* Ders bilgisi de gösteriliyor */}
       <div className="date-time">
         <div>{new Date().toLocaleDateString()}</div>
         <div>
