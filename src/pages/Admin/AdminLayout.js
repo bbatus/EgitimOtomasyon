@@ -7,7 +7,7 @@ import {
   addStudentsFromExcel as addStudentsFromExcelHelper,
   addTeacher as addTeacherHelper,
   updateTeacher as updateTeacherHelper,
-  addCourse as addCourseHelper
+  addCourse as addCourseHelper,
 } from '../../helpers/adminHelpers';
 import Sidebar from '../../components/Sidebar';
 import AdminDashboard from './Modules/AdminDashboard';
@@ -18,7 +18,7 @@ import AttendanceModule from './Modules/AttendanceModule/AttendanceModule';
 import AttendanceDetail from './Modules/AttendanceModule/AttendanceDetail';
 import AbsentStudents from './Modules/AttendanceModule/AbsentStudents';
 import HomeworkTrackingModule from './Modules/HomeworkTrackingModule/HomeworkTrackingModule';
-import AccountingModule from './Modules/AccountingModule/AccountingModule';
+import GuidanceModule from './Modules/GuidanceModule/GuidanceModule';
 import RegistrationModule from './Modules/RegistrationModule/RegistrationModule';
 import StudentRegistration from './Modules/RegistrationModule/StudentRegistration/StudentRegistration';
 import AddStudent from './Modules/RegistrationModule/StudentRegistration/AddStudent';
@@ -28,7 +28,7 @@ import AddTeacher from './Modules/RegistrationModule/TeacherRegistration/AddTeac
 import CourseRegistration from './Modules/RegistrationModule/CourseRegistration/CourseRegistration';
 import CourseTopics from './Modules/RegistrationModule/CourseRegistration/CourseTopics';
 import AddCourse from './Modules/RegistrationModule/CourseRegistration/AddCourse';
-import '../../App.css'; // App.css dosyasını burada import edin
+import '../../App.css'; // Importing App.css
 
 const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
   const [students, setStudents] = useState([
@@ -109,20 +109,79 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
           <Route path="adminmainpage" element={<AdminMainPage />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="video-solution" element={<VideoSolutionModule />} />
-          <Route path="attendance" element={<AttendanceModule attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} />
-          <Route path="attendance/:className/:lesson" element={<AttendanceDetail students={students} attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} />
-          <Route path="absent-students" element={<AbsentStudents absentStudents={absentStudents} setAbsentStudents={setAbsentStudents} />} />
+          <Route
+            path="attendance"
+            element={
+              <AttendanceModule
+                attendanceRecords={attendanceRecords}
+                setAttendanceRecords={setAttendanceRecords}
+              />
+            }
+          />
+          <Route
+            path="attendance/:className/:lesson"
+            element={
+              <AttendanceDetail
+                students={students}
+                attendanceRecords={attendanceRecords}
+                setAttendanceRecords={setAttendanceRecords}
+              />
+            }
+          />
+          <Route
+            path="absent-students"
+            element={
+              <AbsentStudents
+                absentStudents={absentStudents}
+                setAbsentStudents={setAbsentStudents}
+              />
+            }
+          />
           <Route path="homework-tracking" element={<HomeworkTrackingModule />} />
-          <Route path="accounting" element={<AccountingModule />} />
+          <Route path="guidance" element={<GuidanceModule />} />
           <Route path="registration" element={<RegistrationModule />} />
-          <Route path="registration/student" element={<StudentRegistration addStudent={addStudent} editStudent={(student) => navigate('/dashboard/registration/student/edit', { state: { student } })} students={students} />} />
+          <Route
+            path="registration/student"
+            element={
+              <StudentRegistration
+                addStudent={addStudent}
+                editStudent={(student) =>
+                  navigate('/dashboard/registration/student/edit', { state: { student } })
+                }
+                students={students}
+              />
+            }
+          />
           <Route path="registration/student/add" element={<AddStudent addStudent={addStudent} />} />
-          <Route path="registration/student/edit" element={<AddStudent updateStudent={updateStudent} />} />
-          <Route path="registration/student/excel" element={<AddStudentExcel addStudentsFromExcel={addStudentsFromExcel} />} />
-          <Route path="registration/teacher" element={<TeacherRegistration addTeacher={addTeacher} editTeacher={(teacher) => navigate('/dashboard/registration/teacher/edit', { state: { teacher } })} teachers={teachers} />} />
+          <Route
+            path="registration/student/edit"
+            element={<AddStudent updateStudent={updateStudent} />}
+          />
+          <Route
+            path="registration/student/excel"
+            element={<AddStudentExcel addStudentsFromExcel={addStudentsFromExcel} />}
+          />
+          <Route
+            path="registration/teacher"
+            element={
+              <TeacherRegistration
+                addTeacher={addTeacher}
+                editTeacher={(teacher) =>
+                  navigate('/dashboard/registration/teacher/edit', { state: { teacher } })
+                }
+                teachers={teachers}
+              />
+            }
+          />
           <Route path="registration/teacher/add" element={<AddTeacher addTeacher={addTeacher} />} />
-          <Route path="registration/teacher/edit" element={<AddTeacher updateTeacher={updateTeacher} />} />
-          <Route path="registration/course" element={<CourseRegistration courses={courses} addCourse={addCourse} />} />
+          <Route
+            path="registration/teacher/edit"
+            element={<AddTeacher updateTeacher={updateTeacher} />}
+          />
+          <Route
+            path="registration/course"
+            element={<CourseRegistration courses={courses} addCourse={addCourse} />}
+          />
           <Route path="registration/course/topics/:courseId" element={<CourseTopics />} />
           <Route path="registration/course/add" element={<AddCourse addCourse={addCourse} />} />
         </Routes>

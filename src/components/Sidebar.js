@@ -1,3 +1,4 @@
+// src/components/Sidebar.js
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../assets/styles/Sidebar.css';
@@ -20,37 +21,58 @@ const Sidebar = () => {
       </div>
       <ul className="sidebar-nav">
         <li>
-          <NavLink to="/dashboard/adminmainpage" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink
+            to="/dashboard/adminmainpage"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <i className="fas fa-home"></i> Anasayfa
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/notifications" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink
+            to="/dashboard/notifications"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <i className="fas fa-bell"></i> Bildirimler
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/video-solution" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink
+            to="/dashboard/video-solution"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <i className="fas fa-video"></i> Video Çözüm Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/attendance" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink
+            to="/dashboard/attendance"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <i className="fas fa-calendar-check"></i> Yoklama Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/homework-tracking" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink
+            to="/dashboard/homework-tracking"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <i className="fas fa-tasks"></i> Ödev Takip Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/accounting" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <i className="fas fa-money-bill"></i> Muhasebe Modülü
+          <NavLink
+            to="/dashboard/guidance"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            <i className="fas fa-user-friends"></i> Rehberlik Modülü
           </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/registration" className={({ isActive }) => (isActive ? 'active' : '')}>
+          <NavLink
+            to="/dashboard/registration"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             <i className="fas fa-user-plus"></i> Kayıt Modülü
           </NavLink>
         </li>
