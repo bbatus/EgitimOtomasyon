@@ -1,8 +1,11 @@
+// src/pages/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.js
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { addStudent, updateStudent } from '../../../../../api/studentApi'; // API fonksiyonlarını import edin
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 
-const AddStudent = ({ addStudent, updateStudent }) => {
+const AddStudent = () => {
   const [name, setName] = useState('');
   const [tc, setTc] = useState('');
   const [classroom, setClassroom] = useState('');
@@ -28,7 +31,10 @@ const AddStudent = ({ addStudent, updateStudent }) => {
       setName(value);
       setFormErrors((prevErrors) => ({ ...prevErrors, name: '' }));
     } else {
-      setFormErrors((prevErrors) => ({ ...prevErrors, name: 'Ad Soyad 50 karakterden fazla olamaz' }));
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        name: 'Ad Soyad 50 karakterden fazla olamaz',
+      }));
     }
   };
 
@@ -40,7 +46,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     } else {
       setFormErrors((prevErrors) => ({
         ...prevErrors,
-        tc: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır'
+        tc: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır',
       }));
     }
   };
@@ -50,23 +56,37 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     setFormErrors((prevErrors) => ({ ...prevErrors, classroom: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {
-      name: name ? (name.length > 50 ? 'Ad Soyad 50 karakterden fazla olamaz' : '') : 'Ad Soyad boş olamaz',
-      tc: tc ? (tc.length !== 11 || tc[0] === '0' ? 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır' : '') : 'TC Kimlik No boş olamaz',
-      classroom: classroom ? '' : 'Lütfen bir sınıf seçiniz'
+      name: name
+        ? name.length > 50
+          ? 'Ad Soyad 50 karakterden fazla olamaz'
+          : ''
+        : 'Ad Soyad boş olamaz',
+      tc: tc
+        ? tc.length !== 11 || tc[0] === '0'
+          ? 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır'
+          : ''
+        : 'TC Kimlik No boş olamaz',
+      classroom: classroom ? '' : 'Lütfen bir sınıf seçiniz',
     };
     setFormErrors(errors);
 
     if (!errors.name && !errors.tc && !errors.classroom) {
-      if (studentToEdit) {
-        updateStudent({ ...studentToEdit, name, tc, classroom });
-      } else {
-        addStudent({ name, tc, classroom });
+      try {
+        if (studentToEdit) {
+          // Mevcut öğrenciyi güncelleme isteği
+          await updateStudent(studentToEdit.id, { name, tc, classroom });
+        } else {
+          // Yeni öğrenci ekleme isteği
+          await addStudent({ name, tc, classroom });
+        }
+        alert('Öğrenci başarıyla kaydedildi!');
+        navigate('/dashboard/registration/student');
+      } catch (error) {
+        alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
       }
-      alert('Öğrenci başarıyla kaydedildi!');
-      navigate('/dashboard/registration/student');
     } else {
       if (errors.name) {
         nameRef.current.focus();
@@ -93,7 +113,9 @@ const AddStudent = ({ addStudent, updateStudent }) => {
           />
           {formErrors.name && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <span role="img" aria-label="warning">
+                ⚠️
+              </span>
               {formErrors.name}
             </p>
           )}
@@ -111,7 +133,9 @@ const AddStudent = ({ addStudent, updateStudent }) => {
           />
           {formErrors.tc && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <span role="img" aria-label="warning">
+                ⚠️
+              </span>
               {formErrors.tc}
             </p>
           )}
@@ -125,18 +149,41 @@ const AddStudent = ({ addStudent, updateStudent }) => {
             className="input-field"
           >
             <option value="">Sınıf Seçin</option>
-            {['9-A', '9-B', '9-C', '9-D', '10-A', '10-B', '10-C', '10-D', '11-A', '11-B', '11-C', '11-D', '12-A', '12-B', '12-C', '12-D'].map((cls) => (
-              <option key={cls} value={cls}>{cls}</option>
+            {[
+              '9-A',
+              '9-B',
+              '9-C',
+              '9-D',
+              '10-A',
+              '10-B',
+              '10-C',
+              '10-D',
+              '11-A',
+              '11-B',
+              '11-C',
+              '11-D',
+              '12-A',
+              '12-B',
+              '12-C',
+              '12-D',
+            ].map((cls) => (
+              <option key={cls} value={cls}>
+                {cls}
+              </option>
             ))}
           </select>
           {formErrors.classroom && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <span role="img" aria-label="warning">
+                ⚠️
+              </span>
               {formErrors.classroom}
             </p>
           )}
         </div>
-        <button type="submit" className="submit-button">Kaydet</button>
+        <button type="submit" className="submit-button">
+          Kaydet
+        </button>
       </form>
     </div>
   );

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
-import * as XLSX from 'xlsx';
+// src/pages/Admin/Modules/RegistrationModule/StudentRegistration/AddStudentExcel.js
 
-const AddStudentExcel = ({ addStudentsFromExcel }) => {
+import React, { useState } from 'react';
+import * as XLSX from 'xlsx';
+import { addStudent } from '../../../../../api/studentApi';
+import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
+
+const AddStudentExcel = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dragOver, setDragOver] = useState(false);
   const [uploadError, setUploadError] = useState('');
@@ -14,7 +17,12 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
   };
 
   const handleFile = (file) => {
-    if (file && (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.type === 'application/vnd.ms-excel')) {
+    if (
+      file &&
+      (file.type ===
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+        file.type === 'application/vnd.ms-excel')
+    ) {
       setSelectedFile(file);
       setUploadError('');
     } else {
@@ -38,7 +46,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
     handleFile(file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedFile) {
       setUploadError('Lütfen bir dosya seçin.');
@@ -46,7 +54,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
     }
 
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       const data = new Uint8Array(event.target.result);
       const workbook = XLSX.read(data, { type: 'array' });
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -60,12 +68,22 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
           students.push({ name: `${name} ${surname}`, tc, classroom });
         } else {
           errors.push({ row: i + 2, data: row });
-          console.error(`Row ${i + 2} is missing data: ${row}`);
+          console.error(`Satır ${i + 2} veri eksik: ${row}`);
         }
       });
 
       setErrorRows(errors);
-      addStudentsFromExcel(students);
+
+      // Öğrenci verilerini API üzerinden ekle
+      for (const student of students) {
+        try {
+          await addStudent(student);
+        } catch (error) {
+          console.error('Öğrenci ekleme hatası:', error);
+        }
+      }
+
+      alert('Öğrenciler başarıyla kaydedildi!');
     };
     reader.readAsArrayBuffer(selectedFile);
   };
@@ -88,15 +106,21 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
         />
         <label htmlFor="file-input" className="upload-label">
           <div className="upload-icon">
-            <span role="img" aria-label="upload">&#x1f4c2;</span>
+            <span role="img" aria-label="upload">
+              📂
+            </span>
           </div>
           <div className="upload-text">
-            {selectedFile ? selectedFile.name : 'Excel dosyasını buraya tıklayarak ya da sürükleyerek yükleyebilirsiniz.'}
+            {selectedFile
+              ? selectedFile.name
+              : 'Excel dosyasını buraya tıklayarak ya da sürükleyerek yükleyebilirsiniz.'}
           </div>
         </label>
       </div>
       {uploadError && <p className="error-message">{uploadError}</p>}
-      <button onClick={handleSubmit} className="submit-button">Kaydet</button>
+      <button onClick={handleSubmit} className="submit-button">
+        Kaydet
+      </button>
       {errorRows.length > 0 && (
         <div className="error-container">
           <h3>Hatalı Satırlar</h3>
