@@ -1,3 +1,4 @@
+/* Sidebar için genel stil */
 .sidebar {
   width: 350px;
   background-color: #f8f8f8;
@@ -55,6 +56,14 @@
   margin-right: 10px;
 }
 
+/* Sidebar iconları için stil */
+.sidebar-icon {
+  width: 20px; /* İkon genişliği */
+  height: 20px; /* İkon yüksekliği */
+  margin-right: 10px; /* İkon ve metin arasındaki boşluk */
+  vertical-align: middle; /* İkonun metinle ortalanması */
+}
+
 .sidebar-nav li:last-child {
   margin-top: auto;
   border-top: 1px solid #ff9800;
@@ -89,6 +98,27 @@
   color: #fff;
 }
 
+/* Responsive düzenleme */
+@media (max-width: 600px) {
+  .sidebar {
+    width: 80px; /* Küçük ekranlarda sidebar genişliği */
+  }
+
+  .sidebar-nav li a,
+  .logout-button {
+    justify-content: center; /* İkonların ortalanması */
+  }
+
+  .sidebar-nav li a span,
+  .logout-button span {
+    display: none; /* Metinleri gizle */
+  }
+
+  .sidebar-icon {
+    margin-right: 0; /* İkonları ortalamak için marjin sıfırlama */
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 200px;
@@ -116,12 +146,5 @@
 
   .logo img {
     width: 120px;
-  }
-
-  .sidebar-icon {
-    width: 0.11px;
-    height: .1px;
-    margin-right: 1px;
-    vertical-align: middle;
   }
 }
