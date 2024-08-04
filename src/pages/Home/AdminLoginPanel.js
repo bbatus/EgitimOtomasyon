@@ -106,7 +106,20 @@ const AdminLoginPanel = ({ handleBackClick }) => {
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      <p className="back-button" onClick={handleBackClick}>Seçim ekranına geri dön</p>
+      {/* Klavye desteği eklenen <p> elementi */}
+      <p
+        className="back-button"
+        onClick={handleBackClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleBackClick();
+          }
+        }}
+        tabIndex="0"  // Klavye ile odaklanabilir hale getirir
+        role="button" // Ekran okuyuculara bu elementin buton gibi davranacağını bildirir
+      >
+        Seçim ekranına geri dön
+      </p>
     </>
   );
 };

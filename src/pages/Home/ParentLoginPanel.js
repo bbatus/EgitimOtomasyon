@@ -47,7 +47,10 @@ const ParentLoginPanel = ({ handleBackClick }) => {
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      <p className="back-button" onClick={handleBackClick}>Seçim ekranına geri dön</p>
+      {/* Geri dönüş butonunu button elementi ile oluşturduk */}
+      <button className="back-button" onClick={handleBackClick}>
+        Seçim ekranına geri dön
+      </button>
     </>
   );
 };
