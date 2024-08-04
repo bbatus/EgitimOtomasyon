@@ -1,74 +1,68 @@
 .clock-component {
     background-color: #fff;
-    border-radius: 30px; /* More rounded corners */
+    border-radius: 60px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 15px 20px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 220px; /* Narrower width */
-    height: auto;
-    position: fixed; /* Fixed position for responsiveness */
-    right: 20px; /* Adjust position to the right */
-    top: 20px; /* Adjust position to the top */
-    z-index: 1000; /* Ensure it stays on top of other elements */
-    transition: all 0.3s ease-in-out; /* Smooth transitions */
-  }
-  
-  .date-time {
+    width: 250px; /* Genişliği azaltıldı */
+    position: absolute; /* Absolute konumlandırma ile sağ üst köşeye taşındı */
+    top: 20px; /* Üstten boşluk */
+    right: 20px; /* Sağdan boşluk */
+    z-index: 10; /* Diğer elemanların üzerine çıkması için z-index eklendi */
+}
+
+.date-time {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align items to the start */
-    margin-bottom: 5px;
-  }
-  
-  .icon {
-    width: 20px; /* Smaller size */
+    justify-content: center;
+    margin-bottom: 5px; /* Margin azaltıldı */
+}
+
+.icon {
+    width: 20px; /* İkon boyutu ayarlandı */
     height: 20px;
-    margin-right: 5px;
-  }
-  
-  .date-time span {
-    font-size: 14px; /* Smaller font size */
+    margin-right: 6px; /* İkonlar arası boşluk */
+}
+
+.date-time span {
+    font-size: 14px; /* Yazı boyutu küçültüldü */
     color: #4F4C4C;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .clock-component {
-      width: 180px; /* Adjust for smaller screens */
-      padding: 8px 15px;
-      right: 10px;
-      top: 10px;
+        width: 200px; /* Küçük ekranlar için genişlik ayarlandı */
+        padding: 10px 15px;
+        top: 10px;
+        right: 10px;
     }
-  
+
     .icon {
-      width: 18px;
-      height: 18px;
+        width: 18px;
+        height: 18px;
     }
-  
+
     .date-time span {
-      font-size: 12px;
+        font-size: 12px;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .clock-component {
-      width: 150px; /* Even narrower for mobile */
-      padding: 5px 10px;
-      right: 5px;
-      top: 5px;
+        width: 180px;
+        padding: 8px 12px;
     }
-  
+
     .icon {
-      width: 16px;
-      height: 16px;
+        width: 16px;
+        height: 16px;
     }
-  
+
     .date-time span {
-      font-size: 10px;
+        font-size: 10px;
     }
-  }
-  
+}
