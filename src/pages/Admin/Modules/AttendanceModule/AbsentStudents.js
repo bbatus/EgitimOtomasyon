@@ -26,9 +26,8 @@ const AbsentStudents = () => {
     navigate('/dashboard/attendance');
   };
 
-  const handleRemoveStudent = (index) => {
-    const updatedAbsentStudents = [...absentStudents];
-    updatedAbsentStudents.splice(index, 1);
+  const handleRemoveStudent = (id) => {
+    const updatedAbsentStudents = absentStudents.filter(student => student.id !== id);
     navigate('/dashboard/absent-students', { state: { absentStudents: updatedAbsentStudents } });
   };
 
@@ -41,10 +40,10 @@ const AbsentStudents = () => {
       </button>
       <div className="absent-students-list">
         {currentStudents.length > 0 ? (
-          currentStudents.map((student, index) => (
-            <div key={index} className="absent-student-item">
+          currentStudents.map((student) => (
+            <div key={student.id} className="absent-student-item">
               <span>{student.name} - {student.classroom} - {student.lesson}</span>
-              <button className="remove-button" onClick={() => handleRemoveStudent(index)}>Sil</button>
+              <button className="remove-button" onClick={() => handleRemoveStudent(student.id)}>Sil</button>
             </div>
           ))
         ) : (
@@ -54,7 +53,7 @@ const AbsentStudents = () => {
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
-            key={index}
+            key={`page-${index}`} // Key değerini daha benzersiz hale getirin
             onClick={() => paginate(index + 1)}
             className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
           >

@@ -102,6 +102,7 @@
   justify-content: space-between;
   margin-top: 20px;
   width: 100%;
+  position: relative;
 }
 
 .cancel-button,
@@ -317,13 +318,6 @@
   margin-bottom: 20px;
 }
 
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  width: 100%;
-  position: relative;
-}
 
 .cancel-button {
   position: absolute;

@@ -1,82 +1,88 @@
 .add-course-container {
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 60px;
-    box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-    margin: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    position: relative;
-  }
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 60px;
+  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  position: relative;
+}
 
-  .add-course-container h1 {
-    margin-bottom: 20px;
-  }
+.add-course-container h1 {
+  margin-bottom: 20px;
+}
 
-  .form-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
-  }
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
 
-  .form-group input {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    font-size: 18px;
-    color: #333;
-  }
+.form-group input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 18px;
+  color: #333;
+}
 
-  .radio-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
-  .radio-group label {
-    font-size: 16px;
-  }
+.radio-group label {
+  font-size: 16px;
+}
 
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.cancel-button,
+.submit-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  width: auto;
+  transition: background-color 0.3s ease; /* Animasyon eklendi */
+}
+
+.cancel-button:hover,
+.submit-button:hover {
+  background-color: #e68900;
+}
+
+.cancel-button:active,
+.submit-button:active {
+  background-color: #d57800;
+}
+
+@media (max-width: 768px) {
   .button-group {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
   }
-
-  .cancel-button,
-  .submit-button {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    width: auto;
-  }
-
-  .cancel-button:hover,
-  .submit-button:hover {
-    background-color: #e68900;
-  }
-
-  @media (max-width: 768px) {
-    .button-group {
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
+}

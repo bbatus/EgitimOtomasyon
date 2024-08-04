@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // PropTypes eklendi
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseRegistration.css';
 
 const CourseRegistration = ({ courses }) => {
   const navigate = useNavigate();
 
-  const tytCourses = courses.filter(course => course.courseType === 'TYT');
-  const aytCourses = courses.filter(course => course.courseType === 'AYT');
+  // Filtreleme fonksiyonları
+  const tytCourses = courses.filter((course) => course.courseType === 'TYT');
+  const aytCourses = courses.filter((course) => course.courseType === 'AYT');
 
   return (
     <div className="course-registration-container">
@@ -19,10 +21,13 @@ const CourseRegistration = ({ courses }) => {
       <div className="course-group">
         <h2>TEMEL YETERLİLİK TESTİ DERSLERİ</h2>
         <div className="course-list">
-          {tytCourses.map(course => (
+          {tytCourses.map((course) => (
             <div key={course.id} className="course-item">
               <h3>{course.courseName}</h3>
-              <button className="see-topics-button" onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}>
+              <button
+                className="see-topics-button"
+                onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}
+              >
                 Konuları gör
               </button>
             </div>
@@ -32,10 +37,13 @@ const CourseRegistration = ({ courses }) => {
       <div className="course-group">
         <h2>ALAN YETERLİLİK TESTİ DERSLERİ</h2>
         <div className="course-list">
-          {aytCourses.map(course => (
+          {aytCourses.map((course) => (
             <div key={course.id} className="course-item">
               <h3>{course.courseName}</h3>
-              <button className="see-topics-button" onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}>
+              <button
+                className="see-topics-button"
+                onClick={() => navigate(`/dashboard/registration/course/topics/${course.id}`)}
+              >
                 Konuları gör
               </button>
             </div>
@@ -44,6 +52,17 @@ const CourseRegistration = ({ courses }) => {
       </div>
     </div>
   );
+};
+
+// PropTypes tanımlaması
+CourseRegistration.propTypes = {
+  courses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      courseName: PropTypes.string.isRequired,
+      courseType: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default CourseRegistration;

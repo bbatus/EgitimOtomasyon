@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'; // PropTypes import edildi
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/AddCourse.css';
 
@@ -24,8 +25,9 @@ const AddCourse = ({ addCourse }) => {
     <div className="add-course-container">
       <h1>Ders Ekle</h1>
       <div className="form-group">
-        <label>Ders Adı</label>
+        <label htmlFor="courseName">Ders Adı</label>
         <input
+          id="courseName"
           type="text"
           value={courseName}
           onChange={(e) => setCourseName(e.target.value)}
@@ -35,8 +37,9 @@ const AddCourse = ({ addCourse }) => {
       <div className="form-group">
         <label>Ders Türü</label>
         <div className="radio-group">
-          <label>
+          <label htmlFor="tytRadio">
             <input
+              id="tytRadio"
               type="radio"
               value="TYT"
               checked={courseType === 'TYT'}
@@ -44,8 +47,9 @@ const AddCourse = ({ addCourse }) => {
             />
             TYT
           </label>
-          <label>
+          <label htmlFor="aytRadio">
             <input
+              id="aytRadio"
               type="radio"
               value="AYT"
               checked={courseType === 'AYT'}
@@ -56,11 +60,20 @@ const AddCourse = ({ addCourse }) => {
         </div>
       </div>
       <div className="button-group">
-        <button type="button" className="cancel-button" onClick={handleCancel}>İptal Et</button>
-        <button type="button" className="submit-button" onClick={handleAddCourse}>Devam Et</button>
+        <button type="button" className="cancel-button" onClick={handleCancel}>
+          İptal Et
+        </button>
+        <button type="button" className="submit-button" onClick={handleAddCourse}>
+          Devam Et
+        </button>
       </div>
     </div>
   );
+};
+
+// PropTypes tanımlaması
+AddCourse.propTypes = {
+  addCourse: PropTypes.func.isRequired,
 };
 
 export default AddCourse;

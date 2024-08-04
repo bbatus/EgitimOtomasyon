@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // PropTypes import edildi
 import { useNavigate } from 'react-router-dom';
 import { getCurrentLesson, isWithinLessonTime, isLessonOver } from '../../../../helpers/scheduleHelpers';
-import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css'; 
+import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
 const classes = ['12-A', '12-B', '12-C', '12-D', '12-E'];
 const lessons = ["1. Ders", "2. Ders", "3. Ders", "4. Ders", "5. Ders", "6. Ders"];
@@ -71,7 +72,7 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
       <div className="date-time">
         <div>{new Date().toLocaleDateString()}</div>
         <div>
-          {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} 
+          {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           <span> ({currentLesson.lesson})</span>
         </div>
       </div>
@@ -98,6 +99,23 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
       </button>
     </div>
   );
+};
+
+// PropTypes tanımlaması
+AttendanceModule.propTypes = {
+  attendanceRecords: PropTypes.objectOf(
+    PropTypes.objectOf(
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+          classroom: PropTypes.string.isRequired,
+          present: PropTypes.bool.isRequired,
+        })
+      )
+    )
+  ).isRequired,
+  setAttendanceRecords: PropTypes.func.isRequired,
 };
 
 export default AttendanceModule;
