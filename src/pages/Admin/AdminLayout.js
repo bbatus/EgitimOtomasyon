@@ -1,5 +1,6 @@
 // src/pages/Admin/AdminLayout.js
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types'; // PropTypes import edildi
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import {
   addStudent as addStudentHelper,
@@ -196,6 +197,12 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
       </div>
     </div>
   );
+};
+
+// PropTypes tanımlaması
+AdminLayout.propTypes = {
+  attendanceRecords: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setAttendanceRecords: PropTypes.func.isRequired,
 };
 
 export default AdminLayout;

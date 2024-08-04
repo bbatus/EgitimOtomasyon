@@ -20,11 +20,13 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img
-          src="https://app.refkolej.com/RefLogo.svg"
-          alt="Ref Kolej"
+        <button
           onClick={() => navigate('/dashboard')}
-        />
+          className="logo-button"
+          aria-label="Ref Kolej Dashboard"
+        >
+          <img src="https://app.refkolej.com/RefLogo.svg" alt="Ref Kolej" />
+        </button>
       </div>
       <ul className="sidebar-nav">
         <li>

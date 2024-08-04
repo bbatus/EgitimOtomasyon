@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // PropTypes import edildi
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCurrentLesson } from '../../../../helpers/scheduleHelpers';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
@@ -7,7 +8,7 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
   const { className, lesson } = useParams(); // Ders parametresini de alıyoruz.
   const navigate = useNavigate();
   const [attendance, setAttendance] = useState(
-    students.filter(student => student.classroom === className).map(student => ({ ...student, present: null }))
+    students.filter((student) => student.classroom === className).map((student) => ({ ...student, present: null }))
   );
   const [currentLesson, setCurrentLesson] = useState(getCurrentLesson());
 
@@ -58,7 +59,7 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
       <div className="date-time">
         <div>{new Date().toLocaleDateString()}</div>
         <div>
-          {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} 
+          {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           <span> ({currentLesson.lesson})</span>
         </div>
       </div>
@@ -86,6 +87,19 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
       </button>
     </div>
   );
+};
+
+// PropTypes tanımlaması
+AttendanceDetail.propTypes = {
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      classroom: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  attendanceRecords: PropTypes.object.isRequired,
+  setAttendanceRecords: PropTypes.func.isRequired,
 };
 
 export default AttendanceDetail;
