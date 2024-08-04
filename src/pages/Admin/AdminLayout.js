@@ -10,6 +10,7 @@ import {
   addCourse as addCourseHelper,
 } from '../../helpers/adminHelpers';
 import Sidebar from '../../components/Sidebar';
+import ClockComponent from '../../components/ClockComponent'; // Import ClockComponent
 import AdminDashboard from './Modules/AdminDashboard';
 import AdminMainPage from './Modules/AdminMainPage';
 import Notifications from './Modules/NotificationModule/Notifications';
@@ -84,9 +85,12 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     updateStudentHelper(updatedStudent, setStudents);
   }, []);
 
-  const addStudentsFromExcel = useCallback((students) => {
-    addStudentsFromExcelHelper(students, setStudents, navigate);
-  }, [navigate]);
+  const addStudentsFromExcel = useCallback(
+    (students) => {
+      addStudentsFromExcelHelper(students, setStudents, navigate);
+    },
+    [navigate]
+  );
 
   const addTeacher = useCallback((newTeacher) => {
     addTeacherHelper(newTeacher, setTeachers);
@@ -104,6 +108,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     <div className="admin-layout">
       <Sidebar />
       <div className="content">
+        <ClockComponent /> {/* ClockComponent added here */}
         <Routes>
           <Route path="/" element={<AdminDashboard />} />
           <Route path="adminmainpage" element={<AdminMainPage />} />
@@ -152,7 +157,10 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
               />
             }
           />
-          <Route path="registration/student/add" element={<AddStudent addStudent={addStudent} />} />
+          <Route
+            path="registration/student/add"
+            element={<AddStudent addStudent={addStudent} />}
+          />
           <Route
             path="registration/student/edit"
             element={<AddStudent updateStudent={updateStudent} />}
