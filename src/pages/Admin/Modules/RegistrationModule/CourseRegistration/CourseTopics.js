@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics.css';
+import saveIcon from '../../../../../assets/images/pencil.svg';
+import cancelIcon from '../../../../../assets/images/exit.svg';
+import editIcon from '../../../../../assets/images/filter.svg';
+import deleteIcon from '../../../../../assets/images/delete.svg';
 
 const CourseTopics = () => {
   const [topics, setTopics] = useState([
@@ -28,7 +32,7 @@ const CourseTopics = () => {
   };
 
   const deleteTopic = (id) => {
-    setTopics(topics.filter(topic => topic.id !== id));
+    setTopics(topics.filter((topic) => topic.id !== id));
   };
 
   const startEditing = (id, name) => {
@@ -43,7 +47,11 @@ const CourseTopics = () => {
 
   const saveEditing = () => {
     if (editingTopicName.trim()) {
-      setTopics(topics.map(topic => (topic.id === editingTopicId ? { ...topic, name: editingTopicName.trim() } : topic)));
+      setTopics(
+        topics.map((topic) =>
+          topic.id === editingTopicId ? { ...topic, name: editingTopicName.trim() } : topic
+        )
+      );
       setEditingTopicId(null);
       setEditingTopicName('');
     } else {
@@ -95,19 +103,22 @@ const CourseTopics = () => {
                 {editingTopicId === topic.id ? (
                   <>
                     <button className="save-button" onClick={saveEditing}>
-                      <span role="img" aria-label="save">💾</span>
+                      <img src={saveIcon} alt="Save" className="icon" />
                     </button>
                     <button className="cancel-button" onClick={cancelEditing}>
-                      <span role="img" aria-label="cancel">❌</span>
+                      <img src={cancelIcon} alt="Cancel" className="icon" />
                     </button>
                   </>
                 ) : (
                   <>
-                    <button className="edit-button" onClick={() => startEditing(topic.id, topic.name)}>
-                      <span role="img" aria-label="edit">✏️</span>
+                    <button
+                      className="edit-button"
+                      onClick={() => startEditing(topic.id, topic.name)}
+                    >
+                      <img src={editIcon} alt="Edit" className="icon" />
                     </button>
                     <button className="delete-button" onClick={() => deleteTopic(topic.id)}>
-                      <span role="img" aria-label="delete">🗑️</span>
+                      <img src={deleteIcon} alt="Delete" className="icon" />
                     </button>
                   </>
                 )}
@@ -117,7 +128,12 @@ const CourseTopics = () => {
         </tbody>
       </table>
       <div className="pagination">
-        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Önceki</button>
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Önceki
+        </button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index}
@@ -127,11 +143,19 @@ const CourseTopics = () => {
             {index + 1}
           </button>
         ))}
-        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Sonraki</button>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Sonraki
+        </button>
       </div>
       <div className="delete-course">
-        <button className="delete-course-button" onClick={() => setShowDeleteConfirmation(true)}>
-          <span role="img" aria-label="delete course">Dersi Sil 🗑️</span>
+        <button
+          className="delete-course-button"
+          onClick={() => setShowDeleteConfirmation(true)}
+        >
+          <img src={deleteIcon} alt="Delete Course" className="icon" />
         </button>
       </div>
       {showDeleteConfirmation && (
@@ -149,7 +173,9 @@ const CourseTopics = () => {
           value={newTopic}
           onChange={(e) => setNewTopic(e.target.value)}
         />
-        <button className="add-button" onClick={addTopic}>Ekle</button>
+        <button className="add-button" onClick={addTopic}>
+          Ekle
+        </button>
       </div>
     </div>
   );

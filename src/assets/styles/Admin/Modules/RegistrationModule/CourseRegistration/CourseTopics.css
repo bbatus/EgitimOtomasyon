@@ -56,6 +56,13 @@
   background-color: #e68900;
 }
 
+.icon {
+  width: 20px; /* İkon genişliği */
+  height: 20px; /* İkon yüksekliği */
+  vertical-align: middle; /* Orta hizalama */
+  margin-right: 5px; /* İkona sağdan boşluk ekleme */
+}
+
 .pagination {
   display: flex;
   justify-content: center;

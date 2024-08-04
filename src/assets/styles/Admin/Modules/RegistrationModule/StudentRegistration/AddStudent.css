@@ -45,6 +45,14 @@
 .error-message {
   color: red;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.error-message img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 .submit-button {
@@ -55,6 +63,7 @@
   border-radius: 60px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
@@ -102,7 +111,8 @@
   margin-bottom: 10px;
 }
 
-.edit-button, .delete-button {
+.edit-button,
+.delete-button {
   background-color: #ff9800;
   color: white;
   border: none;
@@ -111,9 +121,16 @@
   cursor: pointer;
   font-size: 16px;
   margin-left: 10px;
+  transition: background-color 0.3s ease;
 }
 
-.edit-button img, .delete-button img {
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #e68900;
+}
+
+.edit-button img,
+.delete-button img {
   width: 20px;
   height: 20px;
 }
@@ -134,6 +151,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .pagination button.active {
@@ -178,4 +196,65 @@
 .confirm-delete-modal p {
   font-size: 18px;
   margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .input-field {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .submit-button {
+    padding: 15px 25px;
+    font-size: 14px;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .pagination button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-field {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .edit-button,
+  .delete-button {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .pagination button {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  .confirm-delete-modal {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .confirm-delete-modal p {
+    font-size: 16px;
+  }
+
+  .confirm-delete-modal button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
 }

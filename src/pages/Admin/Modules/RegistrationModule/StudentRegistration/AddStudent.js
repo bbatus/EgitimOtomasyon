@@ -1,9 +1,8 @@
-// src/pages/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.js
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { addStudent, updateStudent } from '../../../../../api/studentApi'; // API fonksiyonlarını import edin
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
+import warningIcon from '../../../../../assets/images/delete.svg';
 
 const AddStudent = () => {
   const [name, setName] = useState('');
@@ -25,75 +24,87 @@ const AddStudent = () => {
     }
   }, [studentToEdit]);
 
+  const validateName = (name) => {
+    if (!name) return 'Ad Soyad boş olamaz';
+    if (name.length > 50) return 'Ad Soyad 50 karakterden fazla olamaz';
+    return '';
+  };
+
+  const validateTc = (tc) => {
+    if (!tc) return 'TC Kimlik No boş olamaz';
+    if (tc.length !== 11 || tc[0] === '0') {
+      return 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır';
+    }
+    return '';
+  };
+
+  const validateClassroom = (classroom) => {
+    return classroom ? '' : 'Lütfen bir sınıf seçiniz';
+  };
+
   const handleNameChange = (e) => {
     const value = e.target.value;
-    if (value.length <= 50) {
-      setName(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, name: '' }));
-    } else {
-      setFormErrors((prevErrors) => ({
-        ...prevErrors,
-        name: 'Ad Soyad 50 karakterden fazla olamaz',
-      }));
-    }
+    setName(value);
+    const error = validateName(value);
+    setFormErrors((prevErrors) => ({ ...prevErrors, name: error }));
   };
 
   const handleTcChange = (e) => {
     const value = e.target.value;
-    if (/^[0-9]*$/.test(value) && value.length <= 11 && value[0] !== '0') {
-      setTc(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
-    } else {
-      setFormErrors((prevErrors) => ({
-        ...prevErrors,
-        tc: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır',
-      }));
-    }
+    setTc(value);
+    const error = validateTc(value);
+    setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
   };
 
   const handleClassroomChange = (e) => {
-    setClassroom(e.target.value);
-    setFormErrors((prevErrors) => ({ ...prevErrors, classroom: '' }));
+    const value = e.target.value;
+    setClassroom(value);
+    const error = validateClassroom(value);
+    setFormErrors((prevErrors) => ({ ...prevErrors, classroom: error }));
+  };
+
+  const submitStudentData = async (studentData) => {
+    try {
+      if (studentToEdit) {
+        await updateStudent(studentToEdit.id, studentData);
+      } else {
+        await addStudent(studentData);
+      }
+      alert('Öğrenci başarıyla kaydedildi!');
+      navigate('/dashboard/registration/student');
+    } catch (error) {
+      alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = {
-      name: name
-        ? name.length > 50
-          ? 'Ad Soyad 50 karakterden fazla olamaz'
-          : ''
-        : 'Ad Soyad boş olamaz',
-      tc: tc
-        ? tc.length !== 11 || tc[0] === '0'
-          ? 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır'
-          : ''
-        : 'TC Kimlik No boş olamaz',
-      classroom: classroom ? '' : 'Lütfen bir sınıf seçiniz',
-    };
+
+    const nameError = validateName(name);
+    const tcError = validateTc(tc);
+    const classroomError = validateClassroom(classroom);
+
+    // Önce hataları kontrol et ve setFormErrors fonksiyonunu çağır
+    const errors = { name: nameError, tc: tcError, classroom: classroomError };
     setFormErrors(errors);
 
-    if (!errors.name && !errors.tc && !errors.classroom) {
-      try {
-        if (studentToEdit) {
-          // Mevcut öğrenciyi güncelleme isteği
-          await updateStudent(studentToEdit.id, { name, tc, classroom });
-        } else {
-          // Yeni öğrenci ekleme isteği
-          await addStudent({ name, tc, classroom });
-        }
-        alert('Öğrenci başarıyla kaydedildi!');
-        navigate('/dashboard/registration/student');
-      } catch (error) {
-        alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
-      }
-    } else {
-      if (errors.name) {
-        nameRef.current.focus();
-      } else if (errors.tc) {
-        tcRef.current.focus();
-      }
+    // Hata varsa, ilgili inputa odaklan
+    if (nameError) {
+      nameRef.current.focus();
+      return; // Diğer işlemleri durdur
     }
+
+    if (tcError) {
+      tcRef.current.focus();
+      return; // Diğer işlemleri durdur
+    }
+
+    if (classroomError) {
+      return; // Eğer classroom hatası varsa bir işlem yapma
+    }
+
+    // Eğer hata yoksa öğrenci verisini gönder
+    await submitStudentData({ name, tc, classroom });
   };
 
   return (
@@ -113,9 +124,7 @@ const AddStudent = () => {
           />
           {formErrors.name && (
             <p className="error-message">
-              <span role="img" aria-label="warning">
-                ⚠️
-              </span>
+              <img src={warningIcon} alt="Uyarı" />
               {formErrors.name}
             </p>
           )}
@@ -133,9 +142,7 @@ const AddStudent = () => {
           />
           {formErrors.tc && (
             <p className="error-message">
-              <span role="img" aria-label="warning">
-                ⚠️
-              </span>
+              <img src={warningIcon} alt="Uyarı" />
               {formErrors.tc}
             </p>
           )}
@@ -174,9 +181,7 @@ const AddStudent = () => {
           </select>
           {formErrors.classroom && (
             <p className="error-message">
-              <span role="img" aria-label="warning">
-                ⚠️
-              </span>
+              <img src={warningIcon} alt="Uyarı" />
               {formErrors.classroom}
             </p>
           )}

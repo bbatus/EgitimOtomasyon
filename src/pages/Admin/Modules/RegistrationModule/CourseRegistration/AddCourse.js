@@ -34,8 +34,8 @@ const AddCourse = ({ addCourse }) => {
           placeholder="Ders adı giriniz..."
         />
       </div>
-      <div className="form-group">
-        <label>Ders Türü</label>
+      <fieldset className="form-group">
+        <legend>Ders Türü</legend>
         <div className="radio-group">
           <label htmlFor="tytRadio">
             <input
@@ -44,7 +44,7 @@ const AddCourse = ({ addCourse }) => {
               value="TYT"
               checked={courseType === 'TYT'}
               onChange={(e) => setCourseType(e.target.value)}
-            />
+            />{' '}
             TYT
           </label>
           <label htmlFor="aytRadio">
@@ -54,11 +54,11 @@ const AddCourse = ({ addCourse }) => {
               value="AYT"
               checked={courseType === 'AYT'}
               onChange={(e) => setCourseType(e.target.value)}
-            />
+            />{' '}
             AYT
           </label>
         </div>
-      </div>
+      </fieldset>
       <div className="button-group">
         <button type="button" className="cancel-button" onClick={handleCancel}>
           İptal Et
