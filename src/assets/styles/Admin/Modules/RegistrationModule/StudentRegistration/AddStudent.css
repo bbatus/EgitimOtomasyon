@@ -102,7 +102,7 @@
   margin-bottom: 10px;
 }
 
-.edit-button {
+.edit-button, .delete-button {
   background-color: #ff9800;
   color: white;
   border: none;
@@ -110,9 +110,10 @@
   border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
+  margin-left: 10px;
 }
 
-.edit-button img {
+.edit-button img, .delete-button img {
   width: 20px;
   height: 20px;
 }
@@ -142,4 +143,39 @@
 .pagination button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.confirm-delete-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirm-delete-modal button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-delete-modal button:hover {
+  background-color: #e68900;
+}
+
+.confirm-delete-modal p {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
