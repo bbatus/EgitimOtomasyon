@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import tcIcon from '../../assets/images/idIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
+import warningIcon from '../../assets/images/delete.svg'; // Added warning icon import
 import { validateTc } from '../../helpers/validation';
 
 const TeacherLoginPanel = ({ handleBackClick }) => {
@@ -79,7 +80,7 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.tc && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Warning" className="warning-icon" />
               {formErrors.tc}
             </p>
           )}
@@ -96,7 +97,7 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.password && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Warning" className="warning-icon" />
               {formErrors.password}
             </p>
           )}
@@ -107,7 +108,6 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      {/* Geri dönüş butonunu button elementi ile oluşturduk */}
       <button className="back-button" onClick={handleBackClick}>
         Seçim ekranına geri dön
       </button>

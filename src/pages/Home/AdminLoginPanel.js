@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
+import warningIcon from '../../assets/images/delete.svg'; // Yeni ikon
 import { validateUsername } from '../../helpers/validation';
 
 const AdminLoginPanel = ({ handleBackClick }) => {
@@ -40,24 +41,25 @@ const AdminLoginPanel = ({ handleBackClick }) => {
     }
   }, []);
 
-  const handleFormSubmit = useCallback((e) => {
-    e.preventDefault();
-    const errors = {
-      username: validateUsername(username),
-      password: password ? '' : 'Şifre alanı boş olamaz'
-    };
-    setFormErrors(errors);
+  const handleFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const errors = {
+        username: validateUsername(username),
+        password: password ? '' : 'Şifre alanı boş olamaz',
+      };
+      setFormErrors(errors);
 
-    if (!errors.username && !errors.password) {
-      navigate('/dashboard');
-    } else {
-      if (errors.username) {
+      if (!errors.username && !errors.password) {
+        navigate('/dashboard');
+      } else if (errors.username) { // else if kullanımı
         usernameRef.current.focus();
       } else if (errors.password) {
         passwordRef.current.focus();
       }
-    }
-  }, [username, password, navigate]);
+    },
+    [username, password, navigate]
+  );
 
   return (
     <>
@@ -77,7 +79,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.username && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" />
               {formErrors.username}
             </p>
           )}
@@ -95,19 +97,18 @@ const AdminLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.password && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" />
               {formErrors.password}
             </p>
           )}
         </div>
         <label className="remember-me">
-          <input type="checkbox" />
+          <input type="checkbox" style={{ marginRight: '8px' }} />
           Beni Hatırla
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      {/* Klavye desteği eklenen <p> elementi */}
-      <p
+      <button
         className="back-button"
         onClick={handleBackClick}
         onKeyDown={(e) => {
@@ -115,11 +116,9 @@ const AdminLoginPanel = ({ handleBackClick }) => {
             handleBackClick();
           }
         }}
-        tabIndex="0"  // Klavye ile odaklanabilir hale getirir
-        role="button" // Ekran okuyuculara bu elementin buton gibi davranacağını bildirir
       >
         Seçim ekranına geri dön
-      </p>
+      </button>
     </>
   );
 };

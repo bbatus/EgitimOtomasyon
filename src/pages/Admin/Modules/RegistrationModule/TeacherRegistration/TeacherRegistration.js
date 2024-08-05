@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'; // PropTypes'ı ekledik
 import RegistrationSearchBarTeacher from './RegistrationSearchBarTeacher';
 import EditIcon from '../../../../../assets/images/idIcon.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
@@ -23,8 +24,10 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
   const filteredTeachers = teachers.filter((teacher) => {
     const teacherName = teacher.name?.toLowerCase() || '';
     const teacherTc = teacher.tc || '';
-    return (teacherName.includes(searchTerm) || teacherTc.includes(searchTerm)) &&
-      (selectedDepartment ? teacher.department === selectedDepartment : true);
+    return (
+      (teacherName.includes(searchTerm) || teacherTc.includes(searchTerm)) &&
+      (selectedDepartment ? teacher.department === selectedDepartment : true)
+    );
   });
 
   const indexOfLastTeacher = currentPage * teachersPerPage;
@@ -51,7 +54,9 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
         <div className="teacher-header">
           <h2>Öğretmenler</h2>
           <div className="header-buttons">
-            <button className="module-button" onClick={handleAddTeacher}>Öğretmen Ekle</button>
+            <button className="module-button" onClick={handleAddTeacher}>
+              Öğretmen Ekle
+            </button>
             <div className="filter-container">
               <select
                 className="filter-select"
@@ -59,8 +64,16 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
                 onChange={handleDepartmentFilterChange}
               >
                 <option value="">Tüm Bölümler</option>
-                {['Matematik', 'Fen Bilimleri', 'Türkçe', 'Sosyal Bilgiler', 'İngilizce'].map((dept) => (
-                  <option key={dept} value={dept}>{dept}</option>
+                {[
+                  'Matematik',
+                  'Fen Bilimleri',
+                  'Türkçe',
+                  'Sosyal Bilgiler',
+                  'İngilizce',
+                ].map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
                 ))}
               </select>
               <img src={FilterIcon} alt="Filter" className="filter-icon" />
@@ -68,20 +81,31 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
           </div>
         </div>
         <div className="search-container">
-          <RegistrationSearchBarTeacher searchTerm={searchTerm} onSearchChange={handleSearchChange} />
+          <RegistrationSearchBarTeacher
+            searchTerm={searchTerm}
+            onSearchChange={handleSearchChange}
+          />
         </div>
         <div className="teacher-list">
           {currentTeachers.map((teacher) => (
             <div key={teacher.id} className="teacher-item">
               <span>{teacher.name}</span>
-              <button className="edit-button" onClick={() => handleEditTeacher(teacher)}>
+              <button
+                className="edit-button"
+                onClick={() => handleEditTeacher(teacher)}
+              >
                 <img src={EditIcon} alt="Edit" />
               </button>
             </div>
           ))}
         </div>
         <div className="pagination">
-          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Önceki</button>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Önceki
+          </button>
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
@@ -91,11 +115,30 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
               {index + 1}
             </button>
           ))}
-          <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Sonraki</button>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Sonraki
+          </button>
         </div>
       </div>
     </div>
   );
+};
+
+// PropTypes tanımları
+TeacherRegistration.propTypes = {
+  addTeacher: PropTypes.func.isRequired,
+  editTeacher: PropTypes.func.isRequired,
+  teachers: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      department: PropTypes.string.isRequired,
+      tc: PropTypes.string, // Zorunlu değilse opsiyonel bırakabilirsiniz
+    })
+  ).isRequired,
 };
 
 export default TeacherRegistration;

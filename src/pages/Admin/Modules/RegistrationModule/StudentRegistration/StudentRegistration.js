@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'; // PropTypes'ı içe aktarın
 import RegistrationSearchBar from './RegistrationSearchBar';
 import EditIcon from '../../../../../assets/images/idIcon.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
@@ -92,6 +93,20 @@ const StudentRegistration = ({ addStudent, editStudent, students }) => {
       </div>
     </div>
   );
+};
+
+// PropTypes tanımları
+StudentRegistration.propTypes = {
+  addStudent: PropTypes.func.isRequired,
+  editStudent: PropTypes.func.isRequired,
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      classroom: PropTypes.string.isRequired,
+      tc: PropTypes.string, // Eğer tc zorunlu değilse bu şekilde bırakabilirsiniz
+    })
+  ).isRequired,
 };
 
 export default StudentRegistration;

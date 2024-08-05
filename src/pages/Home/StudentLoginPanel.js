@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import tcIcon from '../../assets/images/idIcon.svg';
+import warningIcon from '../../assets/images/delete.svg'; // Yeni ikon ekleniyor
 import { validateTc } from '../../helpers/validation';
 
 const StudentLoginPanel = ({ handleBackClick }) => {
@@ -46,16 +47,10 @@ const StudentLoginPanel = ({ handleBackClick }) => {
     }
   }, [tc]);
 
-  const handleKeyPress = useCallback((e) => {
-    if (e.key === 'Enter') {
-      handleFormSubmit(e);
-    }
-  }, [handleFormSubmit]);
-
   return (
     <>
       <h3>Giriş Yap</h3>
-      <form className="login-form" onSubmit={handleFormSubmit} onKeyPress={handleKeyPress}>
+      <form className="login-form" onSubmit={handleFormSubmit}>
         <div className="input-container">
           <div className="input-with-icon">
             <img src={tcIcon} alt="TC" className="input-icon" />
@@ -70,15 +65,19 @@ const StudentLoginPanel = ({ handleBackClick }) => {
               ref={tcRef}
             />
           </div>
-          {formErrors.tc && <p className="error-message">{formErrors.tc}</p>}
+          {formErrors.tc && (
+            <p className="error-message">
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkonu ekledik */}
+              {formErrors.tc}
+            </p>
+          )}
         </div>
         <label className="remember-me">
-          <input type="checkbox" />
+          <input type="checkbox" style={{ marginRight: '8px' }} /> {/* Checkbox ve metin arasında boşluk */}
           Beni Hatırla
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      {/* Geri dönüş butonunu button elementi ile oluşturduk */}
       <button className="back-button" onClick={handleBackClick}>
         Seçim ekranına geri dön
       </button>

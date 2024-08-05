@@ -1,5 +1,3 @@
-// src/pages/Admin/Modules/RegistrationModule/StudentRegistration/AddStudentExcel.js
-
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { addStudent } from '../../../../../api/studentApi';

@@ -10,7 +10,7 @@ const ParentLoginPanel = ({ handleBackClick }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handlePhoneNumberChange = useCallback((value) => {
-    if (value && value.length <= 16) { 
+    if (value && value.length <= 16) {
       setPhoneNumber(value);
       setValue('phoneNumber', value, { shouldValidate: true });
     }
@@ -42,7 +42,7 @@ const ParentLoginPanel = ({ handleBackClick }) => {
           {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
         </div>
         <label className="remember-me">
-          <input type="checkbox" />
+          <input type="checkbox" style={{ marginRight: '8px' }} />
           Beni Hatırla
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>

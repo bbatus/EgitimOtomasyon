@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { addStudent, updateStudent } from '../../../../../api/studentApi'; // API fonksiyonlarını import edin
+import { addStudent, updateStudent } from '../../../../../api/studentApi';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import warningIcon from '../../../../../assets/images/delete.svg';
 
@@ -84,26 +84,23 @@ const AddStudent = () => {
     const tcError = validateTc(tc);
     const classroomError = validateClassroom(classroom);
 
-    // Önce hataları kontrol et ve setFormErrors fonksiyonunu çağır
     const errors = { name: nameError, tc: tcError, classroom: classroomError };
     setFormErrors(errors);
 
-    // Hata varsa, ilgili inputa odaklan
     if (nameError) {
       nameRef.current.focus();
-      return; // Diğer işlemleri durdur
+      return;
     }
 
     if (tcError) {
       tcRef.current.focus();
-      return; // Diğer işlemleri durdur
+      return;
     }
 
     if (classroomError) {
-      return; // Eğer classroom hatası varsa bir işlem yapma
+      return;
     }
 
-    // Eğer hata yoksa öğrenci verisini gönder
     await submitStudentData({ name, tc, classroom });
   };
 
