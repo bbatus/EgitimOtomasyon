@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react'; // memo ile birlikte tek bir import
 import PropTypes from 'prop-types';
 import SearchIcon from '../../../../assets/images/search.svg';
 import '../../../../assets/styles/Admin/Modules/VideoModule/VideoSolutionModule.css';
-import { memo } from 'react';
 
 const SearchBar = ({ searchTerm, onSearchChange }) => {
   return (

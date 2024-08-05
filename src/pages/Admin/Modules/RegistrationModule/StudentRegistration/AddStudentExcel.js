@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { addStudent } from '../../../../../api/studentApi';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
+import excelIcon from '../../../../../assets/images/excel.svg';
 
 const AddStudentExcel = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -94,6 +95,8 @@ const AddStudentExcel = () => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
+        role="button" // Erişilebilirlik için role eklenmiştir
+        tabIndex={0} // Klavye erişilebilirliği için tabindex eklenmiştir
       >
         <input
           type="file"
@@ -104,9 +107,7 @@ const AddStudentExcel = () => {
         />
         <label htmlFor="file-input" className="upload-label">
           <div className="upload-icon">
-            <span role="img" aria-label="upload">
-              📂
-            </span>
+            <img src={excelIcon} alt="Upload" />
           </div>
           <div className="upload-text">
             {selectedFile
@@ -122,8 +123,8 @@ const AddStudentExcel = () => {
       {errorRows.length > 0 && (
         <div className="error-container">
           <h3>Hatalı Satırlar</h3>
-          {errorRows.map((error, index) => (
-            <p key={index}>
+          {errorRows.map((error) => (
+            <p key={error.row}> {/* Array index yerine row numarası kullanılıyor */}
               Satır {error.row}: {JSON.stringify(error.data)}
             </p>
           ))}

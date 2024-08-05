@@ -198,6 +198,12 @@
   margin-bottom: 10px;
 }
 
+/* Excel Icon Styling */
+.upload-icon img {
+  width: 40px; /* İkonun genişliği */
+  height: 40px; /* İkonun yüksekliği */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .input-field {
@@ -219,6 +225,11 @@
   .pagination button {
     padding: 4px 8px;
     font-size: 12px;
+  }
+
+  .upload-icon img {
+    width: 35px; /* İkonun genişliği */
+    height: 35px; /* İkonun yüksekliği */
   }
 }
 
@@ -256,5 +267,10 @@
   .confirm-delete-modal button {
     padding: 8px 15px;
     font-size: 14px;
+  }
+
+  .upload-icon img {
+    width: 30px; /* İkonun genişliği */
+    height: 30px; /* İkonun yüksekliği */
   }
 }

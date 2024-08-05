@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types'; // PropTypes eklendi
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/TeacherRegistration/AddTeacher.css';
+import warningIcon from '../../../../../assets/images/delete.svg'; // Warning icon import edildi
 
 const AddTeacher = ({ addTeacher, updateTeacher }) => {
   const [formValues, setFormValues] = useState({ name: '', tc: '', department: '' });
@@ -22,22 +24,33 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
 
-    if (name === 'name' && value.length > 50) {
-      setFormErrors((prevErrors) => ({ ...prevErrors, [name]: 'Ad Soyad 50 karakterden fazla olamaz' }));
-    } else if (name === 'tc' && (!/^[0-9]*$/.test(value) || value.length > 11 || (value.length === 11 && value[0] === '0'))) {
-      setFormErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır',
-      }));
-    } else {
-      setFormErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+    // Ad Soyad doğrulama
+    if (name === 'name') {
+      if (value.length > 50) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, [name]: 'Ad Soyad 50 karakterden fazla olamaz' }));
+      } else {
+        setFormErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+      }
+    }
+
+    // TC Kimlik No doğrulama
+    if (name === 'tc') {
+      const isValidTc = /^\d{11}$/.test(value) && value[0] !== '0';
+      if (!isValidTc && value.length > 0) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır',
+        }));
+      } else {
+        setFormErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+      }
     }
   };
 
   const validateForm = () => {
     const errors = {
       name: formValues.name ? (formValues.name.length > 50 ? 'Ad Soyad 50 karakterden fazla olamaz' : '') : 'Ad Soyad boş olamaz',
-      tc: formValues.tc ? (formValues.tc.length !== 11 || formValues.tc[0] === '0' ? 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır' : '') : 'TC Kimlik No boş olamaz',
+      tc: formValues.tc ? (/^\d{11}$/.test(formValues.tc) && formValues.tc[0] !== '0' ? '' : 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır') : 'TC Kimlik No boş olamaz',
       department: formValues.department ? '' : 'Lütfen bir bölüm seçiniz'
     };
     setFormErrors(errors);
@@ -81,7 +94,7 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           />
           {formErrors.name && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkon eklendi */}
               {formErrors.name}
             </p>
           )}
@@ -100,7 +113,7 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           />
           {formErrors.tc && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkon eklendi */}
               {formErrors.tc}
             </p>
           )}
@@ -121,7 +134,7 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           </select>
           {formErrors.department && (
             <p className="error-message">
-              <span role="img" aria-label="warning">⚠️</span>
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkon eklendi */}
               {formErrors.department}
             </p>
           )}
@@ -130,6 +143,12 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
       </form>
     </div>
   );
+};
+
+// PropTypes validasyonu eklendi
+AddTeacher.propTypes = {
+  addTeacher: PropTypes.func.isRequired,
+  updateTeacher: PropTypes.func.isRequired,
 };
 
 export default AddTeacher;

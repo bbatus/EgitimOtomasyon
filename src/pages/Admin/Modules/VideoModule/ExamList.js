@@ -19,8 +19,8 @@ const ExamList = ({ exams, onDetailsClick }) => {
   return (
     <div className="exam-list-container">
       <div className="exam-list">
-        {currentExams.map((exam, index) => (
-          <div key={index} className="exam-item">
+        {currentExams.map((exam) => (
+          <div key={exam.id} className="exam-item">
             <img src={ExamIcon} alt="Exam" className="exam-image" />
             <div className="exam-details">
               <div className="exam-header">
@@ -43,7 +43,7 @@ const ExamList = ({ exams, onDetailsClick }) => {
         <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Önceki</button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
-            key={index}
+            key={`page-${index + 1}`}
             onClick={() => handlePageChange(index + 1)}
             className={index + 1 === currentPage ? 'active' : ''}
           >
@@ -58,6 +58,7 @@ const ExamList = ({ exams, onDetailsClick }) => {
 
 ExamList.propTypes = {
   exams: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,  // Burada id'nin kullanılacağından emin olun
     title: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired

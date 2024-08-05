@@ -34,8 +34,9 @@ const AddExam = ({ onSave, onCancel }) => {
 
   const examTypeOptions = useMemo(() => (
     <>
-      <label className="radio-button">
+      <label htmlFor="tyt" className="radio-button">
         <input
+          id="tyt"
           type="radio"
           name="type"
           value="TYT"
@@ -44,8 +45,9 @@ const AddExam = ({ onSave, onCancel }) => {
         />
         TYT
       </label>
-      <label className="radio-button">
+      <label htmlFor="ayt" className="radio-button">
         <input
+          id="ayt"
           type="radio"
           name="type"
           value="AYT"
@@ -60,9 +62,10 @@ const AddExam = ({ onSave, onCancel }) => {
   return (
     <div className="add-exam-container">
       <div className="form-group">
-        <label>Sınav Adı</label>
+        <label htmlFor="title">Sınav Adı</label>
         <input
           type="text"
+          id="title"
           name="title"
           value={examDetails.title}
           onChange={handleExamDetailChange}
@@ -70,8 +73,9 @@ const AddExam = ({ onSave, onCancel }) => {
         />
       </div>
       <div className="form-group">
-        <label>Sınav Tarihi</label>
+        <label htmlFor="date">Sınav Tarihi</label>
         <DatePicker
+          id="date"
           selected={examDetails.date}
           onChange={handleDateChange}
           dateFormat="yyyy/MM/dd"
