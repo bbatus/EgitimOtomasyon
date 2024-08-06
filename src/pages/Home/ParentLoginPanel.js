@@ -41,10 +41,10 @@ const ParentLoginPanel = ({ handleBackClick }) => {
           </div>
           {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
         </div>
-        <label className="remember-me">
-          <input type="checkbox" style={{ marginRight: '8px' }} />
-          Beni Hatırla
-        </label>
+        <div className="remember-me">
+          <input type="checkbox" id="rememberMe" />
+          <label htmlFor="rememberMe" style={{ marginLeft: '8px' }}>Beni Hatırla</label>
+        </div>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
       {/* Geri dönüş butonunu button elementi ile oluşturduk */}

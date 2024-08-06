@@ -52,7 +52,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
 
       if (!errors.username && !errors.password) {
         navigate('/dashboard');
-      } else if (errors.username) { // else if kullanımı
+      } else if (errors.username) {
         usernameRef.current.focus();
       } else if (errors.password) {
         passwordRef.current.focus();

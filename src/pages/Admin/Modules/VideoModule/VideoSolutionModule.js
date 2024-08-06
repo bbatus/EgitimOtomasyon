@@ -48,13 +48,13 @@ const VideoSolutionModule = () => {
 
   return (
     <div className="video-solution-module-container">
-      {isAdding ? (
-        step === 1 ? (
-          <AddExam onSave={handleSaveExam} onCancel={() => setIsAdding(false)} />
-        ) : (
-          <UploadExcel onContinue={handleContinue} onBack={() => setStep(1)} />
-        )
-      ) : (
+      {isAdding && step === 1 && (
+        <AddExam onSave={handleSaveExam} onCancel={() => setIsAdding(false)} />
+      )}
+      {isAdding && step === 2 && (
+        <UploadExcel onContinue={handleContinue} onBack={() => setStep(1)} />
+      )}
+      {!isAdding && (
         <>
           <div className="search-filter-container">
             <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />

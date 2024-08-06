@@ -103,7 +103,7 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
           )}
         </div>
         <label className="remember-me">
-          <input type="checkbox" />
+          <input type="checkbox" style={{ marginRight: '8px' }} />
           Beni Hatırla
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>

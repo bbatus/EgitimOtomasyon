@@ -34,7 +34,7 @@ const AddExam = ({ onSave, onCancel }) => {
 
   const examTypeOptions = useMemo(() => (
     <>
-      <label htmlFor="tyt" className="radio-button">
+      <label htmlFor="tyt" className="radio-button" style={{ marginRight: '10px' }}>  {/* Boşluk için stil eklendi */}
         <input
           id="tyt"
           type="radio"
@@ -45,7 +45,7 @@ const AddExam = ({ onSave, onCancel }) => {
         />
         TYT
       </label>
-      <label htmlFor="ayt" className="radio-button">
+      <label htmlFor="ayt" className="radio-button" style={{ marginLeft: '10px' }}>  {/* Boşluk için stil eklendi */}
         <input
           id="ayt"
           type="radio"

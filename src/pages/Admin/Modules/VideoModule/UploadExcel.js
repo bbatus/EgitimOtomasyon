@@ -62,13 +62,12 @@ const UploadExcel = ({ onContinue, onBack }) => {
         tıklayabilirsiniz. Kendiniz cevap anahtarı oluşturmak için bu adımı
         atlayabilirsiniz.
       </div>
-      <div
+      <button
         className={`upload-area ${dragOver ? 'drag-over' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        tabIndex="0"
-        role="button"
+        onClick={() => document.getElementById('file-input').click()} // Dosya seçiciye tıklama
       >
         <input
           type="file"
@@ -77,17 +76,15 @@ const UploadExcel = ({ onContinue, onBack }) => {
           style={{ display: 'none' }}
           id="file-input"
         />
-        <label htmlFor="file-input" className="upload-label">
-          <div className="upload-icon">
-            <img src={ExcelIcon} alt="Excel Icon" /> {/* Updated img tag */}
-          </div>
-          <div className="upload-text">
-            {selectedFile
-              ? selectedFile.name
-              : 'Excel tipinde olan cevap anahtarını buraya tıklayarak ya da sürükleyerek yükleyebilirsiniz.'}
-          </div>
-        </label>
-      </div>
+        <div className="upload-icon">
+          <img src={ExcelIcon} alt="Excel Icon" />
+        </div>
+        <div className="upload-text">
+          {selectedFile
+            ? selectedFile.name
+            : 'Excel tipinde olan cevap anahtarını buraya tıklayarak ya da sürükleyerek yükleyebilirsiniz.'}
+        </div>
+      </button>
       <div className="form-actions">
         <button onClick={onBack} className="back-button">
           Geri Dön

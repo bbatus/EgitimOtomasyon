@@ -90,13 +90,11 @@ const AddStudentExcel = () => {
   return (
     <div className="add-student-container">
       <h2>Excel ile Öğrenci Ekle</h2>
-      <div
+      <button
         className={`upload-area ${dragOver ? 'drag-over' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        role="button" // Erişilebilirlik için role eklenmiştir
-        tabIndex={0} // Klavye erişilebilirliği için tabindex eklenmiştir
       >
         <input
           type="file"
@@ -115,7 +113,7 @@ const AddStudentExcel = () => {
               : 'Excel dosyasını buraya tıklayarak ya da sürükleyerek yükleyebilirsiniz.'}
           </div>
         </label>
-      </div>
+      </button>
       {uploadError && <p className="error-message">{uploadError}</p>}
       <button onClick={handleSubmit} className="submit-button">
         Kaydet

@@ -48,11 +48,29 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
   };
 
   const validateForm = () => {
-    const errors = {
-      name: formValues.name ? (formValues.name.length > 50 ? 'Ad Soyad 50 karakterden fazla olamaz' : '') : 'Ad Soyad boş olamaz',
-      tc: formValues.tc ? (/^\d{11}$/.test(formValues.tc) && formValues.tc[0] !== '0' ? '' : 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır') : 'TC Kimlik No boş olamaz',
-      department: formValues.department ? '' : 'Lütfen bir bölüm seçiniz'
-    };
+    const errors = {};
+
+    // Ad Soyad doğrulama
+    if (!formValues.name) {
+      errors.name = 'Ad Soyad boş olamaz';
+    } else if (formValues.name.length > 50) {
+      errors.name = 'Ad Soyad 50 karakterden fazla olamaz';
+    } else {
+      errors.name = '';
+    }
+
+    // TC Kimlik No doğrulama
+    if (!formValues.tc) {
+      errors.tc = 'TC Kimlik No boş olamaz';
+    } else if (!/^\d{11}$/.test(formValues.tc) || formValues.tc[0] === '0') {
+      errors.tc = 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır';
+    } else {
+      errors.tc = '';
+    }
+
+    // Bölüm doğrulama
+    errors.department = formValues.department ? '' : 'Lütfen bir bölüm seçiniz';
+
     setFormErrors(errors);
     return Object.values(errors).every((error) => error === '');
   };
@@ -72,6 +90,9 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
         nameRef.current.focus();
       } else if (formErrors.tc) {
         tcRef.current.focus();
+      } else {
+        // Diğer hataları kontrol etme
+        console.log('Diğer hatalar:', formErrors);
       }
     }
   };
