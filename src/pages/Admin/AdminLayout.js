@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types'; // PropTypes import edildi
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
-import ClockComponent from '../../components/ClockComponent'; // Import ClockComponent
+import Header from '../../components/Header'; // Header Component'i import edin
 import AdminDashboard from './Modules/AdminDashboard';
 import AdminMainPage from './Modules/AdminMainPage';
 import Notifications from './Modules/NotificationModule/Notifications';
@@ -115,7 +115,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     <div className="admin-layout">
       <Sidebar />
       <div className="content">
-        <ClockComponent /> {/* ClockComponent added here */}
+        <Header username="Admin" /> {/* Header component added with username prop */}
         <Routes>
           <Route path="/" element={<AdminDashboard />} />
           <Route path="adminmainpage" element={<AdminMainPage />} />

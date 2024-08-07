@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react'; // useEffect kaldırıldı
 import '../../../../assets/styles/Admin/Modules/NotificationModule/Notifications.css';
 import NoNotificationImage from '../../../../assets/images/no notification.svg';
 
@@ -9,19 +9,14 @@ const Notifications = () => {
   const [message, setMessage] = useState('');
   const [role, setRole] = useState('');
   const [classSelection, setClassSelection] = useState(''); // Sınıf seçimi için yeni state
-  const [notifications, setNotifications] = useState(() => {
-    const savedNotifications = localStorage.getItem('notifications');
-    return savedNotifications ? JSON.parse(savedNotifications) : [];
-  });
+  const [notifications, setNotifications] = useState([]); // localStorage kullanımı kaldırıldı
 
-  useEffect(() => {
-    localStorage.setItem('notifications', JSON.stringify(notifications));
-  }, [notifications]);
-
+  // Bildirim gönderme butonuna tıklandığında formu açar
   const handleSendNotificationClick = useCallback(() => {
     setIsSending(true);
   }, []);
 
+  // Geri butonuna tıklandığında formu kapatır ve alanları sıfırlar
   const handleBackClick = useCallback(() => {
     setIsSending(false);
     setFrom('');
@@ -57,6 +52,7 @@ const Notifications = () => {
       return;
     }
 
+    // Yeni bildirim objesi oluşturulur
     const newNotification = {
       id: Date.now(),
       from,
@@ -72,10 +68,15 @@ const Notifications = () => {
         minute: 'numeric',
       }),
     };
+
+    // Yeni bildirim state'e eklenir
     setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
+
+    // Alanları sıfırlar ve formu kapatır
     handleBackClick();
   }, [from, title, message, role, classSelection, handleBackClick]);
 
+  // Öğrenci veya veli rolüne göre sınıf seçeneklerini döndürür
   const renderClassOptions = () => {
     if (role === 'Öğrenci') {
       return (
@@ -110,7 +111,8 @@ const Notifications = () => {
           <option value="9. Sınıf Velileri">9. Sınıf Velileri</option>
           <option value="10. Sınıf Velileri">10. Sınıf Velileri</option>
           <option value="11. Sınıf Velileri">11. Sınıf Velileri</option>
-          <option value="12. Sınıf Velileri">12. Sınıf Velileri</option></select>
+          <option value="12. Sınıf Velileri">12. Sınıf Velileri</option>
+        </select>
       );
     }
     return null; // Eğer Öğrenci veya Veli seçilmediyse, seçim kutusu gösterme

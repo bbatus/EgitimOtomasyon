@@ -1,0 +1,87 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px; /* Düzenli padding */
+    background-color: #fff;
+    box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3); /* Notification stiline uygun gölge efekti */
+    border-radius: 60px; /* Notification stiline uygun köşe yuvarlama */
+    margin: 20px 40px; /* Notification stiline uygun marjlar */
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .user-greeting {
+    font-size: 18px; /* Notification stiline uygun font boyutu */
+    font-weight: bold;
+    color: #4F4C4C; /* Notification stiline uygun renk */
+  }
+  
+  .date-time {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  .date-time span {
+    font-size: 16px; /* Notification stiline uygun font boyutu */
+    color: #666;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 30px; /* Notification stiline uygun padding */
+      margin: 20px;
+    }
+  
+    .user-info {
+      margin-bottom: 10px;
+    }
+  
+    .user-greeting {
+      font-size: 16px; /* Notification stiline uygun font boyutu */
+    }
+  
+    .date-time span {
+      font-size: 14px; /* Notification stiline uygun font boyutu */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .user-icon {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .icon {
+      width: 18px;
+      height: 18px;
+    }
+  
+    .user-greeting {
+      font-size: 14px; /* Notification stiline uygun font boyutu */
+    }
+  
+    .date-time span {
+      font-size: 12px; /* Notification stiline uygun font boyutu */
+    }
+  }
+  

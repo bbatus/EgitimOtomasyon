@@ -1,3 +1,4 @@
+// src/components/AdminLoginPanel.js
 import React, { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -51,6 +52,8 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       setFormErrors(errors);
 
       if (!errors.username && !errors.password) {
+        // Kullanıcı adı 'localStorage'a kaydediliyor
+        localStorage.setItem('username', username);
         navigate('/dashboard');
       } else if (errors.username) {
         usernameRef.current.focus();

@@ -12,7 +12,6 @@ const RegistrationModule = () => {
         <button className="module-button" onClick={() => navigate('/dashboard/registration/student')}>Öğrenci Ekle</button>
         <button className="module-button" onClick={() => navigate('/dashboard/registration/teacher')}>Öğretmen Ekle</button>
         <button className="module-button" onClick={() => navigate('/dashboard/registration/course')}>Ders Ekle</button>
-        <button className="module-button" onClick={() => console.log('TestButton clicked')}>TestButton</button>
       </div>
     </div>
   );
