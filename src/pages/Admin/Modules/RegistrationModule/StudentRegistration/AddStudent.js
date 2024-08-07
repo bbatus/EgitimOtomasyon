@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { addStudent, updateStudent } from '../../../../../api/studentApi';
+import PropTypes from 'prop-types'; // Import PropTypes
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import warningIcon from '../../../../../assets/images/delete.svg';
 
-const AddStudent = () => {
+const AddStudent = ({ addStudent, updateStudent }) => {
   const [name, setName] = useState('');
   const [tc, setTc] = useState('');
   const [classroom, setClassroom] = useState('');
@@ -15,6 +15,7 @@ const AddStudent = () => {
 
   const nameRef = useRef(null);
   const tcRef = useRef(null);
+  const classRef = useRef(null); // Sınıf seçiminde odaklanma için referans ekledik.
 
   useEffect(() => {
     if (studentToEdit) {
@@ -63,30 +64,19 @@ const AddStudent = () => {
     setFormErrors((prevErrors) => ({ ...prevErrors, classroom: error }));
   };
 
-  const submitStudentData = async (studentData) => {
-    try {
-      if (studentToEdit) {
-        await updateStudent(studentToEdit.id, studentData);
-      } else {
-        await addStudent(studentData);
-      }
-      alert('Öğrenci başarıyla kaydedildi!');
-      navigate('/dashboard/registration/student');
-    } catch (error) {
-      alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Her bir alan için ayrı ayrı validasyon yapıyoruz.
     const nameError = validateName(name);
     const tcError = validateTc(tc);
     const classroomError = validateClassroom(classroom);
 
+    // Hataları set ediyoruz
     const errors = { name: nameError, tc: tcError, classroom: classroomError };
     setFormErrors(errors);
 
+    // Eğer bir hata varsa, ilgili input'a odaklanıyoruz.
     if (nameError) {
       nameRef.current.focus();
       return;
@@ -98,10 +88,23 @@ const AddStudent = () => {
     }
 
     if (classroomError) {
+      classRef.current.focus(); // Sınıf hatasında odağı sınıf dropdown'una veriyoruz.
       return;
     }
 
-    await submitStudentData({ name, tc, classroom });
+    const studentData = { name, tc, classroom };
+
+    try {
+      if (studentToEdit) {
+        updateStudent({ ...studentToEdit, ...studentData });
+      } else {
+        addStudent(studentData);
+      }
+      alert('Öğrenci başarıyla kaydedildi!');
+      navigate('/dashboard/registration/student');
+    } catch (error) {
+      alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
+    }
   };
 
   return (
@@ -151,6 +154,7 @@ const AddStudent = () => {
             value={classroom}
             onChange={handleClassroomChange}
             className="input-field"
+            ref={classRef} // Sınıf dropdown referansı
           >
             <option value="">Sınıf Seçin</option>
             {[
@@ -189,6 +193,11 @@ const AddStudent = () => {
       </form>
     </div>
   );
+};
+
+AddStudent.propTypes = {
+  addStudent: PropTypes.func.isRequired,
+  updateStudent: PropTypes.func.isRequired,
 };
 
 export default AddStudent;

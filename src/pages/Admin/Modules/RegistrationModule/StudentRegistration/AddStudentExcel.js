@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
-import { addStudent } from '../../../../../api/studentApi';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import excelIcon from '../../../../../assets/images/excel.svg';
 
-const AddStudentExcel = () => {
+const AddStudentExcel = ({ addStudentsFromExcel }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dragOver, setDragOver] = useState(false);
   const [uploadError, setUploadError] = useState('');
@@ -62,9 +61,17 @@ const AddStudentExcel = () => {
       const students = [];
       const errors = [];
       jsonData.slice(1).forEach((row, i) => {
-        const [name, surname, tc, classroom] = [row[4], row[5], row[6], row[7]];
-        if (name && surname && tc && classroom) {
-          students.push({ name: `${name} ${surname}`, tc, classroom });
+        const name = row[4];
+        const surname = row[5];
+        const tc = row[6];
+        const classroom = row[7] || 'Belirtilmedi'; // Sınıf belirtilmediyse 'Belirtilmedi' olarak alalım.
+
+        if (name || surname || tc) { // Bilgilerin en az bir tanesi varsa kaydediyoruz
+          students.push({ 
+            name: `${name || ''} ${surname || ''}`, 
+            tc: tc || 'Belirtilmedi', 
+            classroom 
+          });
         } else {
           errors.push({ row: i + 2, data: row });
           console.error(`Satır ${i + 2} veri eksik: ${row}`);
@@ -73,16 +80,14 @@ const AddStudentExcel = () => {
 
       setErrorRows(errors);
 
-      // Öğrenci verilerini API üzerinden ekle
-      for (const student of students) {
-        try {
-          await addStudent(student);
-        } catch (error) {
-          console.error('Öğrenci ekleme hatası:', error);
-        }
+      // Öğrenci verilerini state'e ekle
+      try {
+        addStudentsFromExcel(students);
+        alert('Öğrenciler başarıyla kaydedildi!');
+      } catch (error) {
+        console.error('Öğrenci ekleme hatası:', error);
+        alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
       }
-
-      alert('Öğrenciler başarıyla kaydedildi!');
     };
     reader.readAsArrayBuffer(selectedFile);
   };

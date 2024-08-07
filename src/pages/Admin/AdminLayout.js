@@ -1,15 +1,6 @@
-// src/pages/Admin/AdminLayout.js
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types'; // PropTypes import edildi
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import {
-  addStudent as addStudentHelper,
-  updateStudent as updateStudentHelper,
-  addStudentsFromExcel as addStudentsFromExcelHelper,
-  addTeacher as addTeacherHelper,
-  updateTeacher as updateTeacherHelper,
-  addCourse as addCourseHelper,
-} from '../../helpers/adminHelpers';
 import Sidebar from '../../components/Sidebar';
 import ClockComponent from '../../components/ClockComponent'; // Import ClockComponent
 import AdminDashboard from './Modules/AdminDashboard';
@@ -79,30 +70,45 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
   const navigate = useNavigate();
 
   const addStudent = useCallback((newStudent) => {
-    addStudentHelper(newStudent, setStudents);
+    setStudents((prevStudents) => [...prevStudents, { id: Date.now(), ...newStudent }]);
   }, []);
 
   const updateStudent = useCallback((updatedStudent) => {
-    updateStudentHelper(updatedStudent, setStudents);
+    setStudents((prevStudents) =>
+      prevStudents.map((student) =>
+        student.id === updatedStudent.id ? updatedStudent : student
+      )
+    );
+  }, []);
+
+  const deleteStudent = useCallback((studentId) => {
+    setStudents((prevStudents) =>
+      prevStudents.filter((student) => student.id !== studentId)
+    );
   }, []);
 
   const addStudentsFromExcel = useCallback(
     (students) => {
-      addStudentsFromExcelHelper(students, setStudents, navigate);
+      setStudents((prevStudents) => [...prevStudents, ...students]);
+      navigate('/dashboard/registration/student');
     },
     [navigate]
   );
 
   const addTeacher = useCallback((newTeacher) => {
-    addTeacherHelper(newTeacher, setTeachers);
+    setTeachers((prevTeachers) => [...prevTeachers, { id: Date.now(), ...newTeacher }]);
   }, []);
 
   const updateTeacher = useCallback((updatedTeacher) => {
-    updateTeacherHelper(updatedTeacher, setTeachers);
+    setTeachers((prevTeachers) =>
+      prevTeachers.map((teacher) =>
+        teacher.id === updatedTeacher.id ? updatedTeacher : teacher
+      )
+    );
   }, []);
 
   const addCourse = useCallback((newCourse) => {
-    addCourseHelper(newCourse, setCourses);
+    setCourses((prevCourses) => [...prevCourses, { id: Date.now(), ...newCourse }]);
   }, []);
 
   return (
@@ -154,17 +160,18 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
                 editStudent={(student) =>
                   navigate('/dashboard/registration/student/edit', { state: { student } })
                 }
+                deleteStudent={deleteStudent} // deleteStudent fonksiyonu geçildi
                 students={students}
               />
             }
           />
           <Route
             path="registration/student/add"
-            element={<AddStudent addStudent={addStudent} />}
+            element={<AddStudent addStudent={addStudent} updateStudent={updateStudent} />} // Pass updateStudent
           />
           <Route
             path="registration/student/edit"
-            element={<AddStudent updateStudent={updateStudent} />}
+            element={<AddStudent addStudent={addStudent} updateStudent={updateStudent} />} // Pass updateStudent
           />
           <Route
             path="registration/student/excel"
@@ -182,7 +189,10 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
               />
             }
           />
-          <Route path="registration/teacher/add" element={<AddTeacher addTeacher={addTeacher} />} />
+          <Route
+            path="registration/teacher/add"
+            element={<AddTeacher addTeacher={addTeacher} />}
+          />
           <Route
             path="registration/teacher/edit"
             element={<AddTeacher updateTeacher={updateTeacher} />}
@@ -201,7 +211,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
 
 // PropTypes tanımlaması
 AdminLayout.propTypes = {
-  attendanceRecords: PropTypes.arrayOf(PropTypes.object).isRequired,
+  attendanceRecords: PropTypes.object.isRequired,
   setAttendanceRecords: PropTypes.func.isRequired,
 };
 

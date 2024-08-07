@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'; // PropTypes'ı içe aktarın
 import RegistrationSearchBar from './RegistrationSearchBar';
 import EditIcon from '../../../../../assets/images/idIcon.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
+import DeleteIcon from '../../../../../assets/images/delete.svg'; // Silme ikonu ekliyoruz
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 
-const StudentRegistration = ({ addStudent, editStudent, students }) => {
+const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students }) => { // deleteStudent prop olarak alıyoruz
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddOptions, setShowAddOptions] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,15 @@ const StudentRegistration = ({ addStudent, editStudent, students }) => {
 
   const handleClassroomFilterChange = (e) => {
     setSelectedClassroom(e.target.value);
+  };
+
+  const handleDeleteClick = (student) => {
+    // Kullanıcıdan onay alıyoruz
+    const confirmed = window.confirm(`Öğrenci ${student.name} silmek istediğinize emin misiniz?`);
+    if (confirmed) {
+      deleteStudent(student.id); // Öğrenciyi sil
+      alert('Öğrenci başarıyla silindi!');
+    }
   };
 
   const filteredStudents = students.filter((student) =>
@@ -74,6 +84,9 @@ const StudentRegistration = ({ addStudent, editStudent, students }) => {
               <button className="edit-button" onClick={() => editStudent(student)}>
                 <img src={EditIcon} alt="Edit" />
               </button>
+              <button className="delete-button" onClick={() => handleDeleteClick(student)}>
+                <img src={DeleteIcon} alt="Delete" />
+              </button>
             </div>
           ))}
         </div>
@@ -99,6 +112,7 @@ const StudentRegistration = ({ addStudent, editStudent, students }) => {
 StudentRegistration.propTypes = {
   addStudent: PropTypes.func.isRequired,
   editStudent: PropTypes.func.isRequired,
+  deleteStudent: PropTypes.func.isRequired, // deleteStudent fonksiyonunun gerekliliği belirtiliyor
   students: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
