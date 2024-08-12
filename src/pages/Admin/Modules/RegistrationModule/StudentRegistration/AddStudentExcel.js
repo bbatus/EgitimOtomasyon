@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
+import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import excelIcon from '../../../../../assets/images/excel.svg';
 
@@ -8,6 +9,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
   const [dragOver, setDragOver] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [errorRows, setErrorRows] = useState([]);
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -92,6 +94,10 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
     reader.readAsArrayBuffer(selectedFile);
   };
 
+  const handleBackClick = () => {
+    navigate('/dashboard/registration/student'); // Geri butonuna basıldığında öğrenci kayıt sayfasına yönlendir
+  };
+
   return (
     <div className="add-student-container">
       <h2>Excel ile Öğrenci Ekle</h2>
@@ -122,6 +128,9 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
       {uploadError && <p className="error-message">{uploadError}</p>}
       <button onClick={handleSubmit} className="submit-button">
         Kaydet
+      </button>
+      <button type="button" className="back-button" onClick={handleBackClick}>
+        Geri Dön
       </button>
       {errorRows.length > 0 && (
         <div className="error-container">

@@ -97,6 +97,10 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
     }
   };
 
+  const handleBackClick = () => {
+    navigate('/dashboard/registration/teacher'); // Geri butonuna basıldığında öğretmen kayıt sayfasına yönlendir
+  };
+
   return (
     <div className="add-teacher-container">
       <h2>Öğretmen {teacherToEdit ? 'Düzenle' : 'Ekle'}</h2>
@@ -160,7 +164,10 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
             </p>
           )}
         </div>
-        <button type="submit" className="submit-button">Kaydet</button>
+        <div className="button-container">
+          <button type="submit" className="submit-button">Kaydet</button>
+          <button type="button" className="back-button" onClick={handleBackClick}>Geri Dön</button>
+        </div>
       </form>
     </div>
   );

@@ -107,6 +107,12 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     );
   }, []);
 
+  const deleteTeacher = useCallback((teacherId) => {
+    setTeachers((prevTeachers) =>
+      prevTeachers.filter((teacher) => teacher.id !== teacherId)
+    );
+  }, []);
+
   const addCourse = useCallback((newCourse) => {
     setCourses((prevCourses) => [...prevCourses, { id: Date.now(), ...newCourse }]);
   }, []);
@@ -160,18 +166,18 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
                 editStudent={(student) =>
                   navigate('/dashboard/registration/student/edit', { state: { student } })
                 }
-                deleteStudent={deleteStudent} // deleteStudent fonksiyonu geçildi
+                deleteStudent={deleteStudent}
                 students={students}
               />
             }
           />
           <Route
             path="registration/student/add"
-            element={<AddStudent addStudent={addStudent} updateStudent={updateStudent} />} // Pass updateStudent
+            element={<AddStudent addStudent={addStudent} updateStudent={updateStudent} />}
           />
           <Route
             path="registration/student/edit"
-            element={<AddStudent addStudent={addStudent} updateStudent={updateStudent} />} // Pass updateStudent
+            element={<AddStudent addStudent={addStudent} updateStudent={updateStudent} />}
           />
           <Route
             path="registration/student/excel"
@@ -185,6 +191,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
                 editTeacher={(teacher) =>
                   navigate('/dashboard/registration/teacher/edit', { state: { teacher } })
                 }
+                deleteTeacher={deleteTeacher} // deleteTeacher fonksiyonu eklendi
                 teachers={teachers}
               />
             }

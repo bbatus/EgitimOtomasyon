@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; // PropTypes'ı içe aktarın
 import RegistrationSearchBar from './RegistrationSearchBar';
-import EditIcon from '../../../../../assets/images/idIcon.svg';
+import EditIcon from '../../../../../assets/images/pencil.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
 import DeleteIcon from '../../../../../assets/images/delete.svg'; // Silme ikonu ekliyoruz
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';

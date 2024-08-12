@@ -107,6 +107,10 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     }
   };
 
+  const handleBackClick = () => {
+    navigate('/dashboard/registration/student'); // Geri butonuna basıldığında öğrenci kayıt sayfasına yönlendir
+  };
+
   return (
     <div className="add-student-container">
       <h2>Öğrenci {studentToEdit ? 'Düzenle' : 'Ekle'}</h2>
@@ -187,9 +191,14 @@ const AddStudent = ({ addStudent, updateStudent }) => {
             </p>
           )}
         </div>
-        <button type="submit" className="submit-button">
-          Kaydet
-        </button>
+        <div className="button-container">
+          <button type="submit" className="submit-button">
+            Kaydet
+          </button>
+          <button type="button" className="back-button" onClick={handleBackClick}>
+            Geri Dön
+          </button>
+        </div>
       </form>
     </div>
   );

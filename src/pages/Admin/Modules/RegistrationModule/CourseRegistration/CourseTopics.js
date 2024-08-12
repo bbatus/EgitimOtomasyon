@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics.css';
-import saveIcon from '../../../../../assets/images/pencil.svg';
-import cancelIcon from '../../../../../assets/images/exit.svg';
 import editIcon from '../../../../../assets/images/filter.svg';
 import deleteIcon from '../../../../../assets/images/delete.svg';
 
@@ -19,6 +18,7 @@ const CourseTopics = () => {
   const [editingTopicId, setEditingTopicId] = useState(null);
   const [editingTopicName, setEditingTopicName] = useState('');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   const topicsPerPage = 5;
 
@@ -40,11 +40,6 @@ const CourseTopics = () => {
     setEditingTopicName(name);
   };
 
-  const cancelEditing = () => {
-    setEditingTopicId(null);
-    setEditingTopicName('');
-  };
-
   const saveEditing = () => {
     if (editingTopicName.trim()) {
       setTopics(
@@ -56,6 +51,12 @@ const CourseTopics = () => {
       setEditingTopicName('');
     } else {
       alert('Lütfen geçerli bir konu başlığı giriniz.');
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      saveEditing(); // Enter tuşuna basıldığında düzenlemeyi kaydet
     }
   };
 
@@ -72,6 +73,10 @@ const CourseTopics = () => {
   const indexOfFirstTopic = indexOfLastTopic - topicsPerPage;
   const currentTopics = topics.slice(indexOfFirstTopic, indexOfLastTopic);
   const totalPages = Math.ceil(topics.length / topicsPerPage);
+
+  const handleBackClick = () => {
+    navigate('/dashboard/registration/course'); // Geri butonuna basıldığında ders kayıt sayfasına yönlendir
+  };
 
   return (
     <div className="course-topics-container">
@@ -94,6 +99,8 @@ const CourseTopics = () => {
                     type="text"
                     value={editingTopicName}
                     onChange={(e) => setEditingTopicName(e.target.value)}
+                    onKeyPress={handleKeyPress} // Enter tuşunu yakalamak için ekledik
+                    autoFocus
                   />
                 ) : (
                   topic.name
@@ -101,14 +108,7 @@ const CourseTopics = () => {
               </td>
               <td>
                 {editingTopicId === topic.id ? (
-                  <>
-                    <button className="save-button" onClick={saveEditing}>
-                      <img src={saveIcon} alt="Save" className="icon" />
-                    </button>
-                    <button className="cancel-button" onClick={cancelEditing}>
-                      <img src={cancelIcon} alt="Cancel" className="icon" />
-                    </button>
-                  </>
+                  null
                 ) : (
                   <>
                     <button
@@ -177,6 +177,9 @@ const CourseTopics = () => {
           Ekle
         </button>
       </div>
+      <button type="button" className="back-button" onClick={handleBackClick}>
+        Geri Dön
+      </button>
     </div>
   );
 };

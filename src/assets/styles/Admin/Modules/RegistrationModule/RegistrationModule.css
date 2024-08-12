@@ -53,9 +53,9 @@
 }
 
 .edit-button {
-  background-color: #ff9800;
-  color: white;
-  border: none;
+  background-color: #fff !important;
+  color: #ff9800 !important;
+  border: 2px solid #ff9800 !important;
   padding: 10px 20px;
   border-radius: 30px;
   cursor: pointer;
@@ -63,6 +63,20 @@
 }
 
 .edit-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.delete-button {
+  background-color: #dc3545 !important;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-button img {
   width: 20px;
   height: 20px;
 }
@@ -78,13 +92,13 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 20px 30px; /* Eski boyutlar geri getirildi */
+  padding: 20px 30px;
   border-radius: 60px;
   cursor: pointer;
-  font-size: 16px; /* Eski font boyutu */
+  font-size: 16px;
   margin-bottom: 10px;
   align-self: center;
-  width: 250px; /* Eski genişlik */
+  width: 250px;
   text-align: center;
 }
 
@@ -187,6 +201,7 @@
   gap: 20px; /* Butonlar arasındaki boşluk */
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   .registration-module-container {
     padding: 20px;

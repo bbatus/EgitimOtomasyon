@@ -3,11 +3,14 @@
   background-color: #fff;
   border-radius: 60px;
   box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-  margin: 40px;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
+  max-width: 1000px; /* Maksimum genişlik eklendi */
+  box-sizing: border-box; /* İçeriğin genişlik hesabına padding'i dahil eder */
+  position: relative;
 }
 
 .course-topics-container h1 {
@@ -42,6 +45,9 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .delete-button,
@@ -125,7 +131,8 @@
 }
 
 .add-topic input {
-  width: 300px;
+  width: 100%;
+  max-width: 400px; /* Maksimum genişlik eklendi */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 30px;
@@ -158,6 +165,8 @@
   padding: 20px;
   text-align: center;
   z-index: 1000;
+  width: 90%; /* Genişlik ayarlandı */
+  max-width: 400px; /* Maksimum genişlik eklendi */
 }
 
 .confirmation-modal p {
@@ -182,8 +191,9 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .add-topic input {
-    width: 100%;
+  .course-topics-container {
+    width: 95%;
+    padding: 20px;
   }
 
   .topics-table th,
@@ -196,9 +206,27 @@
     flex-direction: column;
     gap: 5px;
   }
+
+  .add-button,
+  .delete-course-button,
+  .edit-button,
+  .delete-button,
+  .pagination button,
+  .save-button,
+  .cancel-button,
+  .confirmation-modal button {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
+  .course-topics-container {
+    width: 100%;
+    padding: 10px;
+  }
+
   .add-topic input {
     width: 100%;
     padding: 5px;
@@ -215,6 +243,7 @@
   .confirmation-modal button {
     padding: 5px 10px;
     font-size: 12px;
+    width: 100%;
   }
 
   .confirmation-modal {

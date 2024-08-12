@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'; // PropTypes'ı ekledik
 import RegistrationSearchBarTeacher from './RegistrationSearchBarTeacher';
-import EditIcon from '../../../../../assets/images/idIcon.svg';
+import EditIcon from '../../../../../assets/images/pencil.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
+import DeleteIcon from '../../../../../assets/images/delete.svg'; // Silme ikonu ekliyoruz
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 import { useNavigate } from 'react-router-dom';
 
-const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
+const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers }) => { // deleteTeacher prop olarak alıyoruz
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,6 +20,15 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
 
   const handleDepartmentFilterChange = (e) => {
     setSelectedDepartment(e.target.value);
+  };
+
+  const handleDeleteClick = (teacher) => {
+    // Kullanıcıdan onay alıyoruz
+    const confirmed = window.confirm(`Öğretmen ${teacher.name} silmek istediğinize emin misiniz?`);
+    if (confirmed) {
+      deleteTeacher(teacher.id); // Öğretmeni sil
+      alert('Öğretmen başarıyla silindi!');
+    }
   };
 
   const filteredTeachers = teachers.filter((teacher) => {
@@ -96,6 +106,9 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
               >
                 <img src={EditIcon} alt="Edit" />
               </button>
+              <button className="delete-button" onClick={() => handleDeleteClick(teacher)}>
+                <img src={DeleteIcon} alt="Delete" />
+              </button>
             </div>
           ))}
         </div>
@@ -131,6 +144,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, teachers }) => {
 TeacherRegistration.propTypes = {
   addTeacher: PropTypes.func.isRequired,
   editTeacher: PropTypes.func.isRequired,
+  deleteTeacher: PropTypes.func.isRequired, // deleteTeacher fonksiyonunun gerekliliği belirtiliyor
   teachers: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
