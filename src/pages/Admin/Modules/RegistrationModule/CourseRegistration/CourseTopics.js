@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics.css';
-import editIcon from '../../../../../assets/images/filter.svg';
+import editIcon from '../../../../../assets/images/pencil.svg';
 import deleteIcon from '../../../../../assets/images/delete.svg';
 
 const CourseTopics = () => {
