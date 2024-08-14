@@ -1,11 +1,80 @@
-/* src/assets/styles/AdminDashboard.css */
-.admin-dashboard {
-    display: flex;
+/* Admin Dashboard Container */
+.admin-dashboard-container {
+  background-color: #fff;
+  border-radius: 60px;
+  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  min-height: 550px;
+  position: relative;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.dashboard-message {
+  font-size: 24px;
+  color: #4F4C4C;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.dashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.dashboard-button {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 18px;
+  width: 70%;
+  text-align: center;
+}
+
+.dashboard-button:hover {
+  background-color: #e68900;
+  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-dashboard-container {
+    width: 90%;
+    padding: 30px;
+    margin: 20px;
   }
-  
-  .dashboard-content {
-    margin-left: 250px;
-    padding: 20px;
+
+  .dashboard-message {
+    font-size: 22px;
+  }
+
+  .dashboard-button {
+    font-size: 16px;
+    padding: 15px 25px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-message {
+    font-size: 20px;
+  }
+
+  .dashboard-button {
+    font-size: 14px;
+    padding: 10px 20px;
     width: 100%;
   }
-  
+}

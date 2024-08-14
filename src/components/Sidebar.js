@@ -49,11 +49,11 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to="/dashboard/video-solution"
+            to="/dashboard/registration"
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
-            <img src={videoSolutionIcon} alt="Video Solution Icon" className="sidebar-icon" />
-            <span>Video Çözüm Modülü</span>
+            <img src={registrationIcon} alt="Registration Icon" className="sidebar-icon" />
+            <span>Kayıt Modülü</span>
           </NavLink>
         </li>
         <li>
@@ -67,11 +67,11 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to="/dashboard/homework-tracking"
+            to="/dashboard/video-solution"
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
-            <img src={homeworkIcon} alt="Homework Icon" className="sidebar-icon" />
-            <span>Ödev Takip Modülü</span>
+            <img src={videoSolutionIcon} alt="Video Solution Icon" className="sidebar-icon" />
+            <span>Video Çözüm Modülü</span>
           </NavLink>
         </li>
         <li>
@@ -85,11 +85,11 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to="/dashboard/registration"
+            to="/dashboard/homework-tracking"
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
-            <img src={registrationIcon} alt="Registration Icon" className="sidebar-icon" />
-            <span>Kayıt Modülü</span>
+            <img src={homeworkIcon} alt="Homework Icon" className="sidebar-icon" />
+            <span>Ödev Takip Modülü</span>
           </NavLink>
         </li>
         <li>

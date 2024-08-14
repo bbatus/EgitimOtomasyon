@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types'; // PropTypes import edildi
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentLesson, isWithinLessonTime, isLessonOver } from '../../../../helpers/scheduleHelpers';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
-const classes = ['12-A', '12-B', '12-C', '12-D', '12-E'];
-const lessons = ["1. Ders", "2. Ders", "3. Ders", "4. Ders", "5. Ders", "6. Ders"];
+const gradeLevels = ['9', '10', '11', '12'];
+const sections = ['A', 'B', 'C', 'D', 'E'];
+const lessons = ["1. Ders", "2. Ders", "3. Ders", "4. Ders", "5. Ders", "6. Ders"];  // Bu satırı ekledik
 
 const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
   const [currentLesson, setCurrentLesson] = useState(getCurrentLesson());
+  const [selectedGrade, setSelectedGrade] = useState('12');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,6 +68,8 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
     navigate('/dashboard/absent-students', { state: { absentStudents } });
   };
 
+  const selectedClasses = sections.map(section => `${selectedGrade}-${section}`);
+
   return (
     <div className="attendance-container">
       <h1>Sınıf Seçin</h1>
@@ -76,12 +80,21 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
           <span> ({currentLesson.lesson})</span>
         </div>
       </div>
+
+      <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)}>
+        {gradeLevels.map(grade => (
+          <option key={grade} value={grade}>
+            {grade}. Sınıf
+          </option>
+        ))}
+      </select>
+
       <div className="attendance-summary">
         {lessons.map((lesson) => (
           <div key={lesson}>
             <h3>{lesson}</h3>
             <div className="lesson-row">
-              {classes.map((className) => (
+              {selectedClasses.map((className) => (
                 <button
                   key={`${lesson}-${className}`}
                   className={getClassButtonClass(className, lesson)}

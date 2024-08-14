@@ -1,10 +1,9 @@
-// src/components/AdminLoginPanel.js
 import React, { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
-import warningIcon from '../../assets/images/delete.svg'; // Yeni ikon
+import warningIcon from '../../assets/images/delete.svg';
 import { validateUsername } from '../../helpers/validation';
 
 const AdminLoginPanel = ({ handleBackClick }) => {
@@ -23,15 +22,8 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       const error = validateUsername(value);
       setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
     } else {
-      const error = 'Kullanıcı adı 50 karakterden fazla olamaz';
+      const error = 'Kullanıcı adı 50 haneden fazla olamaz';
       setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
-    }
-  }, []);
-
-  const handleUsernameKeyPress = useCallback((e) => {
-    const charCode = e.which ? e.which : e.keyCode;
-    if (charCode >= 48 && charCode <= 57) {
-      e.preventDefault();
     }
   }, []);
 
@@ -43,7 +35,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
   }, []);
 
   const handleFormSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
       const errors = {
         username: validateUsername(username),
@@ -52,9 +44,12 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       setFormErrors(errors);
 
       if (!errors.username && !errors.password) {
-        // Kullanıcı adı 'localStorage'a kaydediliyor
-        localStorage.setItem('username', username);
-        navigate('/dashboard');
+        try {
+          // Doğrudan dashboard'a yönlendirme yapıyoruz
+          navigate('/dashboard');
+        } catch (error) {
+          alert(error);
+        }
       } else if (errors.username) {
         usernameRef.current.focus();
       } else if (errors.password) {
@@ -76,7 +71,6 @@ const AdminLoginPanel = ({ handleBackClick }) => {
               placeholder="Kullanıcı Adı"
               value={username}
               onChange={handleUsernameChange}
-              onKeyPress={handleUsernameKeyPress}
               ref={usernameRef}
             />
           </div>

@@ -1,4 +1,4 @@
-/* src/pages/Admin/Modules/AttendanceModule/AttendanceModule.css */
+/* Attendance Module Styles */
 .attendance-container {
   text-align: center;
   background-color: #fff;
@@ -155,6 +155,54 @@
   margin-bottom: 20px;
 }
 
+/* Dropdown Menu Styles */
+.select-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #ff9800;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  outline: none;
+}
+
+select:hover {
+  background-color: #e68900;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+select:focus {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+select option {
+  background-color: white;
+  color: black;
+}
+
+/* Dropdown Arrow Styles */
+select::-ms-expand {
+  display: none;
+}
+
+.select-container::after {
+  content: "▼";
+  font-size: 18px;
+  color: white;
+  position: relative;
+  right: 30px;
+  pointer-events: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .attendance-container, .attendance-detail-container {
@@ -172,12 +220,32 @@
   .student-list {
     width: 90%;
   }
+
+  select {
+    width: 90%;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+
+  .select-container::after {
+    right: 20px;
+  }
 }
 
 @media (max-width: 480px) {
   .save-attendance-button, .attendance-button {
     padding: 10px 20px;
     font-size: 14px;
+  }
+
+  select {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .select-container::after {
+    right: 15px;
   }
 }
 

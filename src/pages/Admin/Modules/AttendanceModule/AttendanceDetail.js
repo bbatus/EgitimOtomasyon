@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types'; // PropTypes import edildi
+import PropTypes from 'prop-types';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCurrentLesson } from '../../../../helpers/scheduleHelpers';
+import { sendAttendanceData } from '../../../../api/attendance'; // API çağrısı için gerekli fonksiyon
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
 const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords }) => {
-  const { className, lesson } = useParams(); // Ders parametresini de alıyoruz.
+  const { className, lesson } = useParams();
   const navigate = useNavigate();
   const [attendance, setAttendance] = useState(
-    students.filter((student) => student.classroom === className).map((student) => ({ ...student, present: null }))
+    students.filter(student => student.classroom === className).map(student => ({
+      studentId: student.id,
+      lessonId: lesson,
+      lessonTime: new Date().toLocaleTimeString(),
+      present: null
+    }))
   );
   const [currentLesson, setCurrentLesson] = useState(getCurrentLesson());
 
@@ -19,7 +25,7 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
     };
 
     updateLesson();
-    const interval = setInterval(updateLesson, 60 * 1000); // 1 dakika
+    const interval = setInterval(updateLesson, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -32,22 +38,27 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
   }, [currentLesson.nextUpdate]);
 
   const handleToggleAttendance = (id, present) => {
-    setAttendance((prevAttendance) =>
-      prevAttendance.map((student) =>
-        student.id === id ? { ...student, present } : student
+    setAttendance(prevAttendance =>
+      prevAttendance.map(student =>
+        student.studentId === id ? { ...student, present } : student
       )
     );
   };
 
-  const handleSaveAttendance = () => {
-    const updatedRecords = { ...attendanceRecords };
-    if (!updatedRecords[lesson]) {
-      updatedRecords[lesson] = {};
+  const handleSaveAttendance = async () => {
+    try {
+      await sendAttendanceData(attendance);
+      alert('Yoklama başarıyla kaydedildi!');
+      const updatedRecords = { ...attendanceRecords };
+      if (!updatedRecords[lesson]) {
+        updatedRecords[lesson] = {};
+      }
+      updatedRecords[lesson][className] = attendance;
+      setAttendanceRecords(updatedRecords);
+      navigate('/dashboard/attendance');
+    } catch (error) {
+      alert('Yoklama kaydedilirken bir hata oluştu.');
     }
-    updatedRecords[lesson][className] = attendance;
-    setAttendanceRecords(updatedRecords);
-    alert('Yoklama kaydedildi!');
-    navigate('/dashboard/attendance');
   };
 
   return (
@@ -55,7 +66,7 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
       <button className="back-button" onClick={() => navigate('/dashboard/attendance')}>
         Geri Dön
       </button>
-      <h1>{className} - {lesson}</h1> {/* Ders bilgisi de gösteriliyor */}
+      <h1>{className} - {lesson}</h1>
       <div className="date-time">
         <div>{new Date().toLocaleDateString()}</div>
         <div>
@@ -65,17 +76,17 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
       </div>
       <div className="student-list">
         {attendance.map((student) => (
-          <div key={student.id} className="student-item">
+          <div key={student.studentId} className="student-item">
             <span>{student.name}</span>
             <button
               className={`attendance-button ${student.present === true ? 'present' : ''}`}
-              onClick={() => handleToggleAttendance(student.id, true)}
+              onClick={() => handleToggleAttendance(student.studentId, true)}
             >
               Var
             </button>
             <button
               className={`attendance-button ${student.present === false ? 'absent' : ''}`}
-              onClick={() => handleToggleAttendance(student.id, false)}
+              onClick={() => handleToggleAttendance(student.studentId, false)}
             >
               Yok
             </button>

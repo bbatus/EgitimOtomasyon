@@ -1,14 +1,12 @@
-/* src/App.css */
-
 body {
   margin: 0;
-  font-family: 'Nunito', sans-serif; /* Fontu Nunito olarak değiştirildi */
+  font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-  font-family: 'Nunito', sans-serif; /* Fontu Nunito olarak değiştirildi */
+  font-family: 'Nunito', sans-serif;
 }
 
 .App {
@@ -18,12 +16,14 @@ body {
 
 .logo-container {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 5%;
+  left: 5%;
+  width: 10%;
+  max-width: 150px;
 }
 
 .logo-image {
-  width: 160px;
+  width: 100%;
   height: auto;
 }
 
@@ -31,9 +31,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 0 5%;
   background-color: #f0f0f0;
-  padding: 0 20px;
 }
 
 .image-container {
@@ -54,49 +54,35 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
-  width: 400px;
-  min-height: 500px;
-  margin-left: 0;
-  margin-right: 100px;
-}
-
-.login-panel h2 {
-  margin-bottom: 20px;
-  color: #3b3b3b;
-  font-size: 36px;
-  font-weight: 700;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 40px; /* Daha fazla padding ekleyerek içeriği genişletiyoruz */
+  border-radius: 60px; /* Daha yuvarlak kenarlar için */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Gölgeyi biraz daha hafifletiyoruz */
+  width: 100%;
+  max-width: 500px; /* Daha geniş ekranlarda panel genişliğini artırıyoruz */
+  margin: 0 auto; /* Ortalamak için margin ayarı */
 }
 
 .login-button {
-  width: 300px;
-  padding: 20px;
+  width: 100%; /* Butonun panel genişliğine uyumlu olması için */
+  padding: 15px 20px; /* Buton içeriğini artırmak için padding ayarı */
   margin: 10px 0;
   border: 2px solid #ff9800;
   border-radius: 45px;
   background-color: transparent;
   color: #3b3b3b;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center; /* Buton içeriğini ortalamak için ayarlandı */
   transition: background-color 0.3s, border-color 0.3s;
 }
 
 .login-button img {
-  width: 48px;
-  height: 48px;
-  margin-right: 20px;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
 }
 
 .login-button:hover {
@@ -104,65 +90,100 @@ body {
   border-color: #e68900;
 }
 
-@media (max-width: 768px) {
-  .homepage {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .image-container {
-    margin-bottom: 20px;
+/* Mobil cihazlar için (iPhone, Android) */
+@media (max-width: 600px) {
+  .logo-container {
+    top: 2%;
+    left: 2%;
+    width: 20%;
+    max-width: 100px;
   }
 
   .login-panel {
-    margin-left: 0;
-    width: 100%;
-    max-width: 400px;
+    padding: 30px;
+    max-width: 90%;
   }
 
   .login-button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-panel {
-    padding: 20px;
-  }
-
-  .login-button {
+    font-size: 1.2rem;
     padding: 10px;
-    font-size: 16px;
   }
 
   .login-button img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+/* Tabletler için (iPad, Android tabletler) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .logo-container {
+    width: 15%;
+    max-width: 120px;
   }
 
-  .login-panel h2 {
-    font-size: 20px;
+  .login-panel {
+    padding: 40px;
+    max-width: 85%;
   }
 
-  .error-message {
-    color: red;
-    display: flex;
-    align-items: center;
-    margin-top: 2px;
-    font-size: 2px;
-  }
-  
-  .error-icon {
-    width: 2px;
-    height: 2px;
-    margin-right: 5px;
+  .login-button {
+    font-size: 1.4rem;
+    padding: 12px;
   }
 
-  .input-with-icon .PhoneInputInput {
-    width: 100%;
-    border: none;
-    outline: none;
-    padding-left: 10px;
+  .login-button img {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 0.75rem;
+  }
+}
+
+/* Laptop ve küçük monitörler için (13 inch - 21 inch) */
+@media (min-width: 901px) and (max-width: 1440px) {
+  .logo-container {
+    width: 10%;
+    max-width: 150px;
+  }
+
+  .login-panel {
+    padding: 40px;
+    max-width: 500px; /* Sabit genişlik */
+  }
+
+  .login-button {
+    font-size: 1.6rem;
+    padding: 14px;
+  }
+
+  .login-button img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+  }
+}
+
+/* Büyük monitörler ve akıllı tahtalar için (24 inch ve üzeri) */
+@media (min-width: 1441px) {
+  .logo-container {
+    width: 8%;
+    max-width: 150px;
+  }
+
+  .login-panel {
+    padding: 50px;
+    max-width: 600px; /* Daha geniş ekranlarda daha büyük panel */
+  }
+
+  .login-button {
+    font-size: 1.8rem;
+    padding: 16px;
+  }
+
+  .login-button img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
   }
 }

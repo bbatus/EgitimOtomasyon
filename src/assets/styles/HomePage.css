@@ -1,3 +1,4 @@
+/* Login ve genel form elementlerinin özel stilleri */
 .login-panel h3 {
   margin-bottom: 20px;
   color: #3b3b3b;
@@ -49,14 +50,15 @@
   margin-right: 10px;
 }
 
+/* Specific submit button styles */
 .submit-button {
-  width: 100%;
-  padding: 10px;
+  width: 80%;
+  padding: 10px 5%;
   border: none;
   border-radius: 5px;
   background-color: #ff9800;
   color: #fff;
-  font-size: 16px;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
@@ -65,12 +67,105 @@
 }
 
 .back-button {
-  margin-top: 20px;
   color: #ff9800;
   cursor: pointer;
   text-decoration: underline;
+  align-self: flex-start;
+  padding-top: 0; /* padding-top'u sıfırlıyoruz */
+  margin-top: 10px; /* Biraz margin veriyoruz, responsive olması için */
+  display: inline-block; /* Butonun display özelliğini ayarlıyoruz */
 }
 
 .back-button:hover {
   color: #e68900;
+}
+
+/* Logo specific styles */
+.logo img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Mobil cihazlar için (iPhone, Android) */
+@media (max-width: 600px) {
+  .login-panel h3 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .submit-button {
+    font-size: 1.2rem;
+    padding: 8px 4%;
+  }
+
+  .back-button {
+    font-size: 1.2rem;
+    margin-top: 5px; /* Mobilde biraz daha az margin */
+  }
+
+  .logo img {
+    max-width: 100px;
+  }
+}
+
+/* Tabletler için (iPad, Android tabletler) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .login-panel h3 {
+    font-size: 20px;
+  }
+
+  .submit-button {
+    font-size: 1.4rem;
+    padding: 9px 4.5%;
+  }
+
+  .back-button {
+    font-size: 1.4rem;
+  }
+
+  .logo img {
+    max-width: 110px;
+  }
+}
+
+/* Laptop ve küçük monitörler için (13 inch - 21 inch) */
+@media (min-width: 901px) and (max-width: 1440px) {
+  .login-panel h3 {
+    font-size: 22px;
+  }
+
+  .submit-button {
+    font-size: 1.6rem;
+    padding: 10px 5%;
+  }
+
+  .back-button {
+    font-size: 1.6rem;
+  }
+
+  .logo img {
+    max-width: 120px;
+  }
+}
+
+/* Büyük monitörler ve akıllı tahtalar için (24 inch ve üzeri) */
+@media (min-width: 1441px) {
+  .login-panel h3 {
+    font-size: 26px;
+  }
+
+  .submit-button {
+    font-size: 2rem;
+    padding: 12px 6%;
+  }
+
+  .back-button {
+    font-size: 2rem;
+  }
+
+  .logo img {
+    max-width: 150px;
+  }
 }

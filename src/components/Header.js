@@ -18,7 +18,7 @@ const Header = () => {
     <div className="header-container">
       <div className="user-info">
         <img src={defaultUserIcon} alt="User" className="user-icon" />
-        <span className="user-greeting">Hoşgeldiniz, {username}</span>
+        <span className="user-greeting">Hoş geldiniz, {username}</span>
       </div>
       <div className="date-time">
         <img src={calendarIcon} alt="Calendar Icon" className="icon" />
