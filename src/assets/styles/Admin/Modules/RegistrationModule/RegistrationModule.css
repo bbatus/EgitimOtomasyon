@@ -1,17 +1,17 @@
 .registration-module-container {
   background-color: #fff;
-  border-radius: 60px;
-  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-  padding: 40px;
-  margin: 40px;
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
+  padding: 2.5rem; /* Padding'i rem ile ayarladık */
+  margin: 2.5rem; /* Margin'i rem ile ayarladık */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
-  min-height: 400px;
+  min-height: 50vh; /* Min yüksekliği vh ile ayarladık */
   position: relative;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 80vh; /* Maksimum yüksekliği vh ile ayarladık */
 }
 
 .student-registration-container {
@@ -23,22 +23,23 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .student-header h2 {
   margin: 0;
+  font-size: 1.5rem; /* Font boyutunu rem ile ayarladık */
 }
 
 .search-container {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .student-list {
-  margin-top: 20px;
+  margin-top: 1.25rem; /* Margin'i rem ile ayarladık */
   width: 100%;
 }
 
@@ -47,38 +48,44 @@
   justify-content: space-between;
   align-items: center;
   background-color: #f8f8f8;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
+  border-radius: 0.625rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
 }
 
 .edit-button {
   background-color: #fff !important;
   color: #ff9800 !important;
-  border: 2px solid #ff9800 !important;
-  padding: 10px 20px;
-  border-radius: 30px;
+  border: 0.125rem solid #ff9800 !important; /* Border'ı rem ile ayarladık */
+  padding: 0.9375rem 1.875rem; /* Padding'i rem ile büyüttük */
+  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.125rem; /* Font boyutunu rem ile büyüttük */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover efekti eklendi */
 }
 
-.edit-button img {
-  width: 20px;
-  height: 20px;
+.edit-button:hover {
+  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
 }
 
 .delete-button {
   background-color: #dc3545 !important;
   color: white !important;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 0.9375rem 1.875rem; /* Padding'i rem ile büyüttük */
+  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.125rem; /* Font boyutunu rem ile büyüttük */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover efekti eklendi */
 }
 
+.delete-button:hover {
+  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
+}
+
+.edit-button img,
 .delete-button img {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem; /* İkon genişliğini rem ile ayarladık */
+  height: 1.25rem; /* İkon yüksekliğini rem ile ayarladık */
 }
 
 .add-student-button-container {
@@ -92,43 +99,46 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 20px 30px;
-  border-radius: 60px;
+  padding: 1.5rem 2rem; /* Padding'i rem ile büyüttük */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 1.25rem; /* Font boyutunu rem ile büyüttük */
+  margin-bottom: 1rem; /* Margin'i rem ile büyüttük */
   align-self: center;
-  width: 250px;
+  width: 100%;
+  max-width: 15.625rem; /* Maksimum genişlik eklendi */
   text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover efekti eklendi */
 }
 
 .module-button:hover {
   background-color: #e68900;
+  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
 }
 
 .add-options {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 0.625rem; /* Aradaki boşluğu rem ile ayarladık */
+  margin-top: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .pagination button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
+  border-radius: 0.3125rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
 }
 
 .pagination button.active {
@@ -140,57 +150,23 @@
   cursor: not-allowed;
 }
 
-.registration-module-container h1 {
-  margin-bottom: 20px;
-}
-
-.registration-module-container .module-button {
-  align-self: flex-end;
-}
-
-.registration-module-container .search-box {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.registration-module-container .search-box input {
-  width: 300px;
-}
-
-.notification-container .send-notification-button {
-  background-color: #ff9800;
-  color: white;
-  border: none;
-  padding: 20px 30px;
-  border-radius: 60px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 10px;
-  align-self: flex-end;
-}
-
-.notification-container .send-notification-button:hover {
-  background-color: #e68900;
-}
-
 .registration-search-box {
   display: flex;
   align-items: center;
   background-color: #fff;
-  border-radius: 60px;
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-right: 20px;
-  width: 300px;
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 1rem; /* Padding'i rem ile ayarladık */
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
+  margin-right: 1.25rem; /* Margin'i rem ile ayarladık */
+  width: 100%;
+  max-width: 18.75rem; /* Maksimum genişlik eklendi */
 }
 
 .registration-search-box input {
   border: none;
   outline: none;
-  font-size: 16px;
-  margin-left: 10px;
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  margin-left: 0.625rem; /* Margin'i rem ile ayarladık */
   width: 100%;
 }
 
@@ -198,14 +174,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* Butonlar arasındaki boşluk */
+  gap: 1.25rem; /* Butonlar arasındaki boşluğu rem ile ayarladık */
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .registration-module-container {
-    padding: 20px;
-    margin: 20px;
+    padding: 1.25rem; /* Padding'i rem ile ayarladık */
+    margin: 1.25rem; /* Margin'i rem ile ayarladık */
   }
 
   .student-header {
@@ -219,44 +195,44 @@
 
   .module-button {
     width: 100%;
-    padding: 15px 20px;
-    font-size: 14px;
+    padding: 0.9375rem 1.25rem; /* Padding'i rem ile ayarladık */
+    font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
   }
 
   .pagination button {
-    padding: 5px 7px;
-    font-size: 12px;
+    padding: 0.3125rem 0.4375rem; /* Padding'i rem ile ayarladık */
+    font-size: 0.75rem; /* Font boyutunu rem ile ayarladık */
   }
 }
 
 @media (max-width: 480px) {
   .registration-module-container {
-    padding: 10px;
-    margin: 10px;
+    padding: 0.625rem; /* Padding'i rem ile ayarladık */
+    margin: 0.625rem; /* Margin'i rem ile ayarladık */
   }
 
   .student-header h2 {
-    font-size: 18px;
+    font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
   }
 
   .module-button {
-    padding: 10px 15px;
-    font-size: 12px;
+    padding: 0.75rem 1.25rem; /* Padding'i rem ile büyüttük */
+    font-size: 0.875rem; /* Font boyutunu rem ile büyüttük */
   }
 
   .student-item {
-    padding: 10px;
+    padding: 0.625rem; /* Padding'i rem ile ayarladık */
   }
 
   .pagination button {
-    padding: 3px 5px;
-    font-size: 10px;
+    padding: 0.1875rem 0.3125rem; /* Padding'i rem ile ayarladık */
+    font-size: 0.625rem; /* Font boyutunu rem ile ayarladık */
   }
 
   .registration-search-box {
-    padding: 10px;
+    padding: 0.625rem; /* Padding'i rem ile ayarladık */
     width: 100%;
     margin-right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
   }
 }

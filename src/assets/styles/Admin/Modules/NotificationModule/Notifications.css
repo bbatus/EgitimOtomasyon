@@ -1,28 +1,29 @@
 .notification-container {
   background-color: #fff;
-  border-radius: 60px;
-  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-  padding: 40px;
-  margin: 40px; /* margin-top: 120px; - Bunu kaldırıyoruz */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
+  padding: 2.5rem; /* Padding'i rem ile ayarladık */
+  margin: 2.5rem; /* Margin değerlerini rem ile ayarladık */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
-  min-height: 550px;
+  min-height: 50vh; /* Minimum yükseklik olarak vh kullandık */
   position: relative;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 80vh; /* Maksimum yükseklik olarak vh kullandık */
 }
 
 .notification-message {
-  font-size: 18px;
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
   color: #4F4C4C;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
   text-align: center;
 }
 
 .notification-image {
-  width: 200px;
+  width: 100%; /* Genişliği yüzde ile belirledik */
+  max-width: 12.5rem; /* Maksimum genişliği rem ile ayarladık */
   height: auto;
 }
 
@@ -30,12 +31,12 @@
   background-color: #ff9800;
   color: #fff;
   border: none;
-  padding: 20px 30px;
-  border-radius: 60px;
+  padding: 1.25rem 1.875rem; /* Padding'i rem ile ayarladık */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
   align-self: flex-end;
 }
 
@@ -48,47 +49,50 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 2.5rem; /* Margin'i rem ile ayarladık */
 }
 
 .input-field {
-  width: 70%;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 60px;
+  width: 100%; /* Genişliği yüzde ile belirledik */
+  max-width: 70%; /* Maksimum genişliği yüzde ile belirledik */
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  padding: 0.625rem; /* Padding'i rem ile ayarladık */
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  border: 0.0625rem solid #ccc; /* Sınırı rem ile belirledik */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
 }
 
 .textbox {
-  width: 70%;
-  height: 250px;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  width: 100%; /* Genişliği yüzde ile belirledik */
+  max-width: 70%; /* Maksimum genişliği yüzde ile belirledik */
+  height: 15.625rem; /* Yüksekliği rem ile belirledik */
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  padding: 0.625rem; /* Padding'i rem ile ayarladık */
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  border: 0.0625rem solid #ccc; /* Sınırı rem ile belirledik */
+  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
   resize: none;
 }
 
 .dropdown {
-  width: 200px;
-  margin-right: 10px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 60px;
+  width: 100%; /* Genişliği yüzde ile belirledik */
+  max-width: 12.5rem; /* Maksimum genişliği rem ile ayarladık */
+  margin-right: 0.625rem; /* Margin'i rem ile ayarladık */
+  padding: 0.625rem; /* Padding'i rem ile ayarladık */
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  border: 0.0625rem solid #ccc; /* Sınırı rem ile belirledik */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
 }
 
 .back-button, .submit-button {
   background-color: #ff9800;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 60px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 18px;
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
 }
 
 .back-button:hover, .submit-button:hover {
@@ -98,8 +102,9 @@
 .top-controls {
   display: flex;
   justify-content: flex-end;
-  width: 70%;
-  margin-bottom: 20px;
+  width: 100%; /* Genişliği yüzde ile belirledik */
+  max-width: 70%; /* Maksimum genişliği yüzde ile belirledik */
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .top-controls .submit-button {
@@ -108,8 +113,8 @@
 
 .top-controls .back-button {
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 3.125rem; /* Yüksekliği rem ile ayarladık */
+  left: 3.125rem; /* Genişliği rem ile ayarladık */
 }
 
 .notification-list {
@@ -120,10 +125,10 @@
 
 .notification-item {
   background-color: #4F4C4C;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 60px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem; /* Padding'i rem ile ayarladık */
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
   display: flex;
   align-items: center;
   color: white;
@@ -137,12 +142,12 @@
 }
 
 .notification-preview {
-  font-size: 16px;
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
   color: white;
 }
 
 .notification-date {
-  font-size: 16px;
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
   color: white;
   position: absolute;
   top: 50%;
@@ -154,11 +159,11 @@
   background-color: #ff9800;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 60px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 20px;
+  margin-left: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .expand-button:hover {
@@ -168,8 +173,8 @@
 @media (max-width: 768px) {
   .notification-container {
     width: 90%;
-    padding: 30px;
-    margin: 20px;
+    padding: 1.875rem; /* Padding'i rem ile ayarladık */
+    margin: 1.25rem; /* Margin'i rem ile ayarladık */
   }
 
   .input-field, .textbox {
@@ -183,26 +188,26 @@
   }
 
   .top-controls .submit-button {
-    margin-top: 10px;
+    margin-top: 0.625rem; /* Margin'i rem ile ayarladık */
     width: 100%;
   }
 
   .dropdown {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
   }
 }
 
 @media (max-width: 480px) {
   .send-notification-button {
-    top: 10px;
-    right: 10px;
-    padding: 5px 10px;
-    font-size: 16px;
+    top: 0.625rem; /* Top yüksekliğini rem ile ayarladık */
+    right: 0.625rem; /* Right yüksekliğini rem ile ayarladık */
+    padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
+    font-size: 1rem; /* Font boyutunu rem ile ayarladık */
   }
 
   .back-button, .submit-button {
-    padding: 5px 10px;
-    font-size: 16px;
+    padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
+    font-size: 1rem; /* Font boyutunu rem ile ayarladık */
   }
 }

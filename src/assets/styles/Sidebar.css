@@ -1,6 +1,6 @@
 /* Sidebar için genel stil */
 .sidebar {
-  width: 350px;
+  width: 20%; /* Genişliği yüzdelik olarak ayarladık */
   background-color: #f8f8f8;
   height: 100vh;
   position: fixed;
@@ -9,13 +9,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 20px;
+  padding-top: 2rem; /* Piksel yerine rem kullanarak esneklik sağladık */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s;
 }
 
 .logo {
-  margin: 20px 0 20px 40px;
+  margin: 1.25rem 0 1.25rem 2.5rem; /* Margin değerlerini rem olarak ayarladık */
 }
 
 .logo-button {
@@ -26,7 +26,8 @@
 }
 
 .logo img {
-  width: 160px;
+  width: 100%; /* Genişliği yüzde ile belirledik */
+  max-width: 10rem; /* Maksimum genişliği rem ile ayarladık */
   height: auto;
 }
 
@@ -44,10 +45,10 @@
 .logout-button {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  padding: 1rem; /* Padding'i rem ile ayarladık */
   color: #3b3b3b;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -59,29 +60,29 @@
 
 .sidebar-nav li a i,
 .logout-button i {
-  margin-right: 10px;
+  margin-right: 0.625rem; /* Marjin değerini rem olarak ayarladık */
 }
 
 /* Sidebar iconları için stil */
 .sidebar-icon {
-  width: 20px; /* İkon genişliği */
-  height: 20px; /* İkon yüksekliği */
-  margin-right: 10px; /* İkon ve metin arasındaki boşluk */
+  width: 1.25rem; /* İkon genişliği rem olarak ayarlandı */
+  height: 1.25rem; /* İkon yüksekliği rem olarak ayarlandı */
+  margin-right: 0.625rem; /* İkon ve metin arasındaki boşluk rem olarak ayarlandı */
   vertical-align: middle; /* İkonun metinle ortalanması */
 }
 
 .sidebar-nav li:last-child {
   margin-top: auto;
-  border-top: 1px solid #ff9800;
+  border-top: 0.0625rem solid #ff9800; /* Piksel yerine rem kullanıldı */
 }
 
 .sidebar-nav li:nth-child(2) {
-  border-bottom: 1px solid #ff9800;
+  border-bottom: 0.0625rem solid #ff9800; /* Piksel yerine rem kullanıldı */
 }
 
 .content {
-  margin-left: 350px;
-  padding: 20px;
+  margin-left: 20%; /* Margin sol kısmını yüzde olarak ayarladık */
+  padding: 2rem; /* Padding'i rem ile ayarladık */
   transition: margin-left 0.3s;
 }
 
@@ -93,7 +94,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 15px 20px;
+  padding: 1rem;
   text-align: left;
   width: 100%;
   transition: background-color 0.3s, color 0.3s;
@@ -105,9 +106,23 @@
 }
 
 /* Responsive düzenleme */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 15%; /* Orta ekranlar için genişliği yüzdelik ayarladık */
+  }
+
+  .content {
+    margin-left: 15%;
+  }
+}
+
 @media (max-width: 600px) {
   .sidebar {
-    width: 80px; /* Küçük ekranlarda sidebar genişliği */
+    width: 10%; /* Küçük ekranlarda sidebar genişliği yüzde olarak ayarlandı */
+  }
+
+  .content {
+    margin-left: 10%;
   }
 
   .sidebar-nav li a,
@@ -125,32 +140,22 @@
   }
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
-
-  .content {
-    margin-left: 200px;
-  }
-}
-
 @media (max-width: 480px) {
   .sidebar {
-    width: 150px;
+    width: 25%; /* Çok küçük ekranlar için sidebar genişliği */
   }
 
   .content {
-    margin-left: 150px;
+    margin-left: 25%;
   }
 
   .sidebar-nav li a,
   .logout-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 0.625rem; /* Padding'i küçülttük */
+    font-size: 1rem; /* Font boyutunu küçülttük */
   }
 
   .logo img {
-    width: 120px;
+    max-width: 7.5rem; /* Logo genişliğini küçülttük */
   }
 }

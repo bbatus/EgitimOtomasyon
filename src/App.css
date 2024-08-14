@@ -66,12 +66,12 @@ body {
   width: 100%; /* Butonun panel genişliğine uyumlu olması için */
   padding: 15px 20px; /* Buton içeriğini artırmak için padding ayarı */
   margin: 10px 0;
-  border: 2px solid #ff9800;
+  border: 6px solid #ff9800;
   border-radius: 45px;
   background-color: transparent;
   color: #3b3b3b;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 1000;
   cursor: pointer;
   display: flex;
   align-items: center;

@@ -1,13 +1,12 @@
-// src/components/Header.js
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../assets/styles/Header.css'; // Import the CSS file for styling
-import calendarIcon from '../assets/images/calendar.svg'; // Calendar icon
-import timerIcon from '../assets/images/timer.svg'; // Timer icon
-import defaultUserIcon from '../assets/images/personIcon.svg'; // Default user icon
+import '../assets/styles/Header.css'; // Stil dosyasını içe aktarıyoruz
+import calendarIcon from '../assets/images/calendar.svg'; // Takvim ikonu
+import timerIcon from '../assets/images/timer.svg'; // Zamanlayıcı ikonu
+import defaultUserIcon from '../assets/images/personIcon.svg'; // Varsayılan kullanıcı ikonu
 
 const Header = () => {
-  const username = localStorage.getItem('username') || 'Misafir'; // Kullanıcı adını localStorage'dan al
+  const username = localStorage.getItem('username') || 'Misafir'; // Kullanıcı adını localStorage'dan alıyoruz
   const currentTime = new Date().toLocaleTimeString([], {
     hour: '2-digit',
     minute: '2-digit',

@@ -1,9 +1,9 @@
 .add-course-container {
-  padding: 40px;
+  padding: 2.5rem; /* Padding'i rem ile ayarladık */
   background-color: #fff;
-  border-radius: 60px;
-  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-  margin: 40px;
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
+  margin: 2.5rem; /* Margin'i rem ile ayarladık */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,11 +12,11 @@
 }
 
 .add-course-container h1 {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,34 +24,35 @@
 
 .form-group label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
   text-align: center;
 }
 
 .form-group input {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-  font-size: 18px;
+  max-width: 70%; /* Maksimum genişlik olarak yüzde kullandık */
+  padding: 0.9375rem; /* Padding'i rem ile ayarladık */
+  border: 0.0625rem solid #ccc; /* Border'ı rem ile ayarladık */
+  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
   color: #333;
 }
 
 .radio-group {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 1.25rem; /* Gap'i rem ile ayarladık */
 }
 
 .radio-group label {
-  font-size: 16px;
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
 }
 
 .button-group {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem; /* Gap'i rem ile ayarladık */
   justify-content: flex-end;
   width: 100%;
 }
@@ -61,12 +62,12 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
+  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  transition: background-color 0.3s ease;
   width: auto;
-  transition: background-color 0.3s ease; /* Animasyon eklendi */
 }
 
 .cancel-button:hover,
@@ -83,6 +84,6 @@
   .button-group {
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem; /* Gap'i rem ile ayarladık */
   }
 }

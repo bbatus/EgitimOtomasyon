@@ -3,22 +3,22 @@
   background-color: #fff;
   border-radius: 60px;
   box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-  padding: 40px;
-  margin: 40px;
+  padding: 5%; /* Yüzdelik padding kullanarak esneklik sağladık */
+  margin: 5%; /* Yüzdelik margin kullanarak esneklik sağladık */
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
-  min-height: 550px;
+  width: 80%;
+  min-height: 50vh; /* Minimum yüksekliği viewport'un yüzdesi olarak ayarladık */
   position: relative;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 80vh; /* Maksimum yüksekliği viewport'un yüzdesi olarak ayarladık */
 }
 
 .dashboard-message {
-  font-size: 24px;
+  font-size: 1.5rem; /* Piksel yerine rem kullanarak esnek hale getirdik */
   color: #4F4C4C;
-  margin-bottom: 30px;
+  margin-bottom: 2rem; /* Margin'i rem ile belirleyerek esnek hale getirdik */
   text-align: center;
 }
 
@@ -27,19 +27,19 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 20px;
+  gap: 1.5rem; /* Aralarındaki boşluğu rem ile ayarladık */
 }
 
 .dashboard-button {
   background-color: #ff9800;
   color: #fff;
   border: none;
-  padding: 20px 30px;
+  padding: 1rem 2rem; /* Padding'i rem ile ayarladık */
   border-radius: 60px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: 18px;
-  width: 70%;
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  width: 70%; /* Buton genişliğini yüzdelik dilimle belirledik */
   text-align: center;
 }
 
@@ -52,29 +52,205 @@
 @media (max-width: 768px) {
   .admin-dashboard-container {
     width: 90%;
-    padding: 30px;
-    margin: 20px;
+    padding: 4%;
+    margin: 3%;
   }
 
   .dashboard-message {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 
   .dashboard-button {
-    font-size: 16px;
-    padding: 15px 25px;
-    width: 90%;
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+    width: 90%; /* Buton genişliğini daha esnek hale getirdik */
   }
 }
 
 @media (max-width: 480px) {
+  .admin-dashboard-container {
+    padding: 3%;
+    margin: 2%;
+  }
+
   .dashboard-message {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .dashboard-button {
-    font-size: 14px;
-    padding: 10px 20px;
-    width: 100%;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    width: 100%; /* Buton genişliğini tamamen esnek yaptık */
+  }
+}
+
+/* Login ve genel form elementlerinin özel stilleri */
+.login-panel h3 {
+  margin-bottom: 1.25rem; /* Margin'i rem ile belirleyerek esnek hale getirdik */
+  color: #3b3b3b;
+  font-size: 1.25rem; /* Font boyutunu rem ile ayarladık */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; /* Margin'i rem ile belirledik */
+  width: 100%;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.625rem; /* Padding'i rem ile belirledik */
+}
+
+.input-with-icon .input-icon {
+  width: 1.5rem; /* Icon boyutunu rem ile ayarladık */
+  height: 1.5rem;
+  margin-right: 0.625rem; /* Margin'i rem ile belirledik */
+}
+
+.input-with-icon input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.login-form .remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem; /* Margin'i rem ile belirledik */
+}
+
+.login-form .remember-me input[type="checkbox"] {
+  margin-right: 0.625rem; /* Margin'i rem ile belirledik */
+}
+
+/* Specific submit button styles */
+.submit-button {
+  width: 80%;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile belirledik */
+  border: none;
+  border-radius: 60px;
+  background-color: #ff9800;
+  color: #fff;
+  font-size: 1.25rem; /* Font boyutunu rem ile belirledik */
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #e68900;
+}
+
+.back-button {
+  color: #ff9800;
+  cursor: pointer;
+  text-decoration: underline;
+  align-self: flex-start;
+  margin-top: 0.625rem; /* Margin'i rem ile belirledik */
+  display: inline-block;
+}
+
+.back-button:hover {
+  color: #e68900;
+}
+
+/* Logo specific styles */
+.logo img {
+  width: 100%;
+  max-width: 7.5rem; /* Max genişliği rem ile belirledik */
+  height: auto;
+  margin-bottom: 1.25rem; /* Margin'i rem ile belirledik */
+}
+
+/* Mobil cihazlar için (iPhone, Android) */
+@media (max-width: 600px) {
+  .login-panel h3 {
+    font-size: 1.125rem; /* Font boyutunu mobil için ayarladık */
+    text-align: center;
+  }
+
+  .submit-button {
+    font-size: 1rem; /* Font boyutunu mobil için ayarladık */
+    padding: 0.5rem 1rem;
+  }
+
+  .back-button {
+    font-size: 1rem; /* Font boyutunu mobil için ayarladık */
+    margin-top: 0.375rem; /* Margin'i mobil için ayarladık */
+  }
+
+  .logo img {
+    max-width: 6.25rem; /* Max genişliği mobil için ayarladık */
+  }
+}
+
+/* Tabletler için (iPad, Android tabletler) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .login-panel h3 {
+    font-size: 1.25rem;
+  }
+
+  .submit-button {
+    font-size: 1.125rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .back-button {
+    font-size: 1.125rem;
+  }
+
+  .logo img {
+    max-width: 6.875rem;
+  }
+}
+
+/* Laptop ve küçük monitörler için (13 inch - 21 inch) */
+@media (min-width: 901px) and (max-width: 1440px) {
+  .login-panel h3 {
+    font-size: 1.375rem;
+  }
+
+  .submit-button {
+    font-size: 1.375rem;
+    padding: 0.875rem 1.75rem;
+  }
+
+  .back-button {
+    font-size: 1.375rem;
+  }
+
+  .logo img {
+    max-width: 7.5rem;
+  }
+}
+
+/* Büyük monitörler ve akıllı tahtalar için (24 inch ve üzeri) */
+@media (min-width: 1441px) {
+  .login-panel h3 {
+    font-size: 1.625rem;
+  }
+
+  .submit-button {
+    font-size: 1.625rem;
+    padding: 1rem 2rem;
+  }
+
+  .back-button {
+    font-size: 1.625rem;
+  }
+
+  .logo img {
+    max-width: 9.375rem;
   }
 }

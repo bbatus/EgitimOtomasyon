@@ -1,33 +1,35 @@
 .course-topics-container {
-  padding: 40px;
+  padding: 5%; /* Padding'i yüzde olarak belirledik */
   background-color: #fff;
-  border-radius: 60px;
-  box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3);
-  margin: 40px auto;
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
+  margin: 5% auto; /* Margin'i yüzde olarak belirledik */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
-  max-width: 1000px; /* Maksimum genişlik eklendi */
+  max-width: 62.5rem; /* Maksimum genişliği rem ile belirledik */
   box-sizing: border-box; /* İçeriğin genişlik hesabına padding'i dahil eder */
   position: relative;
 }
 
 .course-topics-container h1 {
-  margin-bottom: 20px;
+  margin-bottom: 2rem; /* Margin'i rem ile belirledik */
+  font-size: 1.5rem; /* Font boyutunu rem ile belirledik */
 }
 
 .topics-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 2rem; /* Margin'i rem ile belirledik */
 }
 
 .topics-table th,
 .topics-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  border: 0.0625rem solid #ddd; /* Border'ı rem ile belirledik */
+  padding: 0.5rem; /* Padding'i rem ile belirledik */
   text-align: center;
+  font-size: 1rem; /* Font boyutunu rem ile belirledik */
 }
 
 .topics-table th {
@@ -41,10 +43,10 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 0.625rem; /* Padding'i rem ile belirledik */
+  border-radius: 0.3125rem; /* Köşe yuvarlamayı rem ile belirledik */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -52,7 +54,7 @@
 
 .delete-button,
 .cancel-button {
-  margin-left: 5px;
+  margin-left: 0.3125rem; /* Margin'i rem ile belirledik */
 }
 
 .edit-button:hover,
@@ -63,28 +65,28 @@
 }
 
 .icon {
-  width: 20px; /* İkon genişliği */
-  height: 20px; /* İkon yüksekliği */
-  vertical-align: middle; /* Orta hizalama */
-  margin-right: 5px; /* İkona sağdan boşluk ekleme */
+  width: 1.25rem; /* İkon genişliği rem ile ayarlandı */
+  height: 1.25rem; /* İkon yüksekliği rem ile ayarlandı */
+  vertical-align: middle;
+  margin-right: 0.3125rem; /* Margin'i rem ile belirledik */
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.625rem; /* Gap'i rem ile belirledik */
+  margin-bottom: 2rem; /* Margin'i rem ile belirledik */
 }
 
 .pagination button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 0.3125rem 0.625rem; /* Padding'i rem ile belirledik */
+  border-radius: 0.3125rem; /* Köşe yuvarlamayı rem ile belirledik */
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
 }
 
 .pagination button.active {
@@ -101,17 +103,17 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 2rem; /* Margin'i rem ile belirledik */
 }
 
 .delete-course-button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 60px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile belirledik */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem; /* Font boyutunu rem ile belirledik */
 }
 
 .delete-course-button:hover {
@@ -126,28 +128,28 @@
 }
 
 .add-topic p {
-  margin-bottom: 10px;
-  font-size: 18px;
+  margin-bottom: 0.625rem; /* Margin'i rem ile belirledik */
+  font-size: 1.125rem; /* Font boyutunu rem ile belirledik */
 }
 
 .add-topic input {
   width: 100%;
-  max-width: 400px; /* Maksimum genişlik eklendi */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-  margin-bottom: 10px;
-  font-size: 16px;
+  max-width: 25rem; /* Maksimum genişliği rem ile belirledik */
+  padding: 0.625rem; /* Padding'i rem ile belirledik */
+  border: 0.0625rem solid #ccc; /* Border'ı rem ile belirledik */
+  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile belirledik */
+  margin-bottom: 0.625rem; /* Margin'i rem ile belirledik */
+  font-size: 1rem; /* Font boyutunu rem ile belirledik */
 }
 
 .add-button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 60px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile belirledik */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem; /* Font boyutunu rem ile belirledik */
 }
 
 .add-button:hover {
@@ -160,29 +162,29 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile belirledik */
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
+  padding: 1.25rem; /* Padding'i rem ile belirledik */
   text-align: center;
   z-index: 1000;
-  width: 90%; /* Genişlik ayarlandı */
-  max-width: 400px; /* Maksimum genişlik eklendi */
+  width: 90%;
+  max-width: 25rem; /* Maksimum genişliği rem ile belirledik */
 }
 
 .confirmation-modal p {
-  margin-bottom: 20px;
-  font-size: 18px;
+  margin-bottom: 1.25rem; /* Margin'i rem ile belirledik */
+  font-size: 1.125rem; /* Font boyutunu rem ile belirledik */
 }
 
 .confirmation-modal button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 0.625rem 1.25rem; /* Padding'i rem ile belirledik */
+  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile belirledik */
   cursor: pointer;
-  font-size: 16px;
-  margin: 0 10px;
+  font-size: 1rem; /* Font boyutunu rem ile belirledik */
+  margin: 0 0.625rem; /* Margin'i rem ile belirledik */
 }
 
 .confirmation-modal button:hover {
@@ -193,18 +195,18 @@
 @media (max-width: 768px) {
   .course-topics-container {
     width: 95%;
-    padding: 20px;
+    padding: 4%; /* Padding'i yüzde ile belirledik */
   }
 
   .topics-table th,
   .topics-table td {
-    padding: 5px;
-    font-size: 12px;
+    padding: 0.3125rem; /* Padding'i rem ile belirledik */
+    font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
   }
 
   .pagination {
     flex-direction: column;
-    gap: 5px;
+    gap: 0.3125rem; /* Gap'i rem ile belirledik */
   }
 
   .add-button,
@@ -215,8 +217,8 @@
   .save-button,
   .cancel-button,
   .confirmation-modal button {
-    padding: 10px;
-    font-size: 14px;
+    padding: 0.625rem; /* Padding'i rem ile belirledik */
+    font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
     width: 100%;
   }
 }
@@ -224,13 +226,13 @@
 @media (max-width: 480px) {
   .course-topics-container {
     width: 100%;
-    padding: 10px;
+    padding: 3%; /* Padding'i yüzde ile belirledik */
   }
 
   .add-topic input {
     width: 100%;
-    padding: 5px;
-    font-size: 14px;
+    padding: 0.3125rem; /* Padding'i rem ile belirledik */
+    font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
   }
 
   .add-button,
@@ -241,22 +243,22 @@
   .save-button,
   .cancel-button,
   .confirmation-modal button {
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 0.3125rem 0.625rem; /* Padding'i rem ile belirledik */
+    font-size: 0.75rem; /* Font boyutunu rem ile belirledik */
     width: 100%;
   }
 
   .confirmation-modal {
     width: 90%;
-    padding: 10px;
+    padding: 0.625rem; /* Padding'i rem ile belirledik */
   }
 
   .confirmation-modal p {
-    font-size: 16px;
+    font-size: 1rem; /* Font boyutunu rem ile belirledik */
   }
 
   .confirmation-modal button {
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 0.3125rem 0.625rem; /* Padding'i rem ile belirledik */
+    font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
   }
 }

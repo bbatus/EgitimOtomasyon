@@ -1,87 +1,86 @@
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px; /* Düzenli padding */
-    background-color: #fff;
-    box-shadow: 0 2px 90px rgba(0, 0, 0, 0.3); /* Notification stiline uygun gölge efekti */
-    border-radius: 60px; /* Notification stiline uygun köşe yuvarlama */
-    margin: 20px 40px; /* Notification stiline uygun marjlar */
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-  
-  .user-greeting {
-    font-size: 18px; /* Notification stiline uygun font boyutu */
-    font-weight: bold;
-    color: #4F4C4C; /* Notification stiline uygun renk */
-  }
-  
-  .date-time {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-  }
-  
-  .date-time span {
-    font-size: 16px; /* Notification stiline uygun font boyutu */
-    color: #666;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem; /* Padding'i rem ile ayarladık */
+  background-color: #fff;
+  box-shadow: 0 2px 5rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  margin: 1.25rem 2.5rem; /* Marjin değerlerini rem olarak belirledik */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  width: 2.5rem; /* İkon genişliğini rem ile ayarladık */
+  height: 2.5rem; /* İkon yüksekliğini rem ile ayarladık */
+  margin-right: 0.625rem; /* Marjin sağa rem ile ayarlandı */
+  border-radius: 50%;
+}
+
+.user-greeting {
+  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-weight: bold;
+  color: #4F4C4C;
+}
+
+.date-time {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 1.25rem; /* İkon genişliği rem ile ayarlandı */
+  height: 1.25rem; /* İkon yüksekliği rem ile ayarlandı */
+  margin-right: 0.3125rem; /* Marjin sağa rem ile ayarlandı */
+}
+
+.date-time span {
+  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  color: #666;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header-container {
       flex-direction: column;
       align-items: flex-start;
-      padding: 30px; /* Notification stiline uygun padding */
-      margin: 20px;
-    }
-  
-    .user-info {
-      margin-bottom: 10px;
-    }
-  
-    .user-greeting {
-      font-size: 16px; /* Notification stiline uygun font boyutu */
-    }
-  
-    .date-time span {
-      font-size: 14px; /* Notification stiline uygun font boyutu */
-    }
+      padding: 2rem; /* Padding'i rem ile ayarladık */
+      margin: 1.25rem; /* Marjin değerlerini rem olarak belirledik */
   }
-  
-  @media (max-width: 480px) {
-    .user-icon {
-      width: 35px;
-      height: 35px;
-    }
-  
-    .icon {
-      width: 18px;
-      height: 18px;
-    }
-  
-    .user-greeting {
-      font-size: 14px; /* Notification stiline uygun font boyutu */
-    }
-  
-    .date-time span {
-      font-size: 12px; /* Notification stiline uygun font boyutu */
-    }
+
+  .user-info {
+      margin-bottom: 0.625rem; /* Marjin alt rem ile ayarlandı */
   }
-  
+
+  .user-greeting {
+      font-size: 1rem; /* Font boyutunu rem ile küçülttük */
+  }
+
+  .date-time span {
+      font-size: 0.875rem; /* Font boyutunu rem ile küçülttük */
+  }
+}
+
+@media (max-width: 480px) {
+  .user-icon {
+      width: 2.1875rem; /* İkon genişliğini rem ile ayarladık */
+      height: 2.1875rem; /* İkon yüksekliğini rem ile ayarladık */
+  }
+
+  .icon {
+      width: 1.125rem; /* İkon genişliğini rem ile ayarladık */
+      height: 1.125rem; /* İkon yüksekliğini rem ile ayarladık */
+  }
+
+  .user-greeting {
+      font-size: 0.875rem; /* Font boyutunu rem ile küçülttük */
+  }
+
+  .date-time span {
+      font-size: 0.75rem; /* Font boyutunu rem ile küçülttük */
+  }
+}

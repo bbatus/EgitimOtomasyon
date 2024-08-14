@@ -45,6 +45,9 @@ const AdminLoginPanel = ({ handleBackClick }) => {
 
       if (!errors.username && !errors.password) {
         try {
+          // Kullanıcı adını localStorage'a kaydediyoruz
+          localStorage.setItem('username', username);
+
           // Doğrudan dashboard'a yönlendirme yapıyoruz
           navigate('/dashboard');
         } catch (error) {
