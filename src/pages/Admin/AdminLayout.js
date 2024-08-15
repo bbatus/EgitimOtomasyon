@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types'; // PropTypes import edildi
+import PropTypes from 'prop-types';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar';
-import Header from '../../components/Header'; // Header Component'i import edin
+import Header from '../../components/Header';
 import AdminDashboard from './Modules/AdminDashboard';
 import AdminMainPage from './Modules/AdminMainPage';
 import Notifications from './Modules/NotificationModule/Notifications';
@@ -21,7 +21,7 @@ import AddTeacher from './Modules/RegistrationModule/TeacherRegistration/AddTeac
 import CourseRegistration from './Modules/RegistrationModule/CourseRegistration/CourseRegistration';
 import CourseTopics from './Modules/RegistrationModule/CourseRegistration/CourseTopics';
 import AddCourse from './Modules/RegistrationModule/CourseRegistration/AddCourse';
-import '../../App.css'; // Importing App.css
+import '../../App.css';
 
 const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
   const [students, setStudents] = useState([
@@ -117,6 +117,10 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     setCourses((prevCourses) => [...prevCourses, { id: Date.now(), ...newCourse }]);
   }, []);
 
+  const deleteCourse = useCallback((courseId) => {
+    setCourses((prevCourses) => prevCourses.filter((course) => course.id !== courseId));
+  }, []);
+
   return (
     <div className="admin-layout">
       <Sidebar />
@@ -208,8 +212,14 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
             path="registration/course"
             element={<CourseRegistration courses={courses} addCourse={addCourse} />}
           />
-          <Route path="registration/course/topics/:courseId" element={<CourseTopics />} />
-          <Route path="registration/course/add" element={<AddCourse addCourse={addCourse} />} />
+          <Route
+            path="registration/course/topics/:courseId"
+            element={<CourseTopics courses={courses} deleteCourse={deleteCourse} />}
+          />
+          <Route
+            path="registration/course/add"
+            element={<AddCourse addCourse={addCourse} />}
+          />
         </Routes>
       </div>
     </div>

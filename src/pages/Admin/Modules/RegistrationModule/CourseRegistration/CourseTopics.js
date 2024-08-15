@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics.css';
 import editIcon from '../../../../../assets/images/pencil.svg';
 import deleteIcon from '../../../../../assets/images/delete.svg';
 
-const CourseTopics = () => {
+const CourseTopics = ({ courses, deleteCourse }) => {
   const [topics, setTopics] = useState([
     { id: 1, name: 'Sözcükte Anlam' },
     { id: 2, name: 'Cümlede Anlam' },
@@ -19,6 +20,7 @@ const CourseTopics = () => {
   const [editingTopicName, setEditingTopicName] = useState('');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const navigate = useNavigate();
+  const { courseId } = useParams();
 
   const topicsPerPage = 5;
 
@@ -61,8 +63,9 @@ const CourseTopics = () => {
   };
 
   const confirmDeleteCourse = () => {
+    deleteCourse(parseInt(courseId)); // Ders silme işlemi, ID'nin tam sayı olduğundan emin olduk
     setShowDeleteConfirmation(false);
-    alert('Ders silindi.');
+    navigate('/dashboard/registration/course'); // Dersler sayfasına yönlendir
   };
 
   const handlePageChange = (pageNumber) => {
@@ -166,7 +169,7 @@ const CourseTopics = () => {
         </div>
       )}
       <div className="add-topic">
-        <p>DERS: TYT-Türkçe</p>
+        <p>DERS: {courses.find(course => course.id === parseInt(courseId))?.courseName || 'Ders Bulunamadı'}</p>
         <input
           type="text"
           placeholder="Konu giriniz..."
@@ -182,6 +185,17 @@ const CourseTopics = () => {
       </button>
     </div>
   );
+};
+
+CourseTopics.propTypes = {
+  courses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      courseName: PropTypes.string.isRequired,
+      courseType: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  deleteCourse: PropTypes.func.isRequired,
 };
 
 export default CourseTopics;

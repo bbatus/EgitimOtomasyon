@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid'; // UUID modülünü içe aktarıyoruz
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import excelIcon from '../../../../../assets/images/excel.svg';
 
@@ -68,8 +69,9 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
         const tc = row[6];
         const classroom = row[7] || 'Belirtilmedi'; // Sınıf belirtilmediyse 'Belirtilmedi' olarak alalım.
 
-        if (name || surname || tc) { // Bilgilerin en az bir tanesi varsa kaydediyoruz
+        if (name || surname || tc) {
           students.push({ 
+            id: uuidv4(), // Benzersiz kimlik oluşturuyoruz
             name: `${name || ''} ${surname || ''}`, 
             tc: tc || 'Belirtilmedi', 
             classroom 
@@ -136,7 +138,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
         <div className="error-container">
           <h3>Hatalı Satırlar</h3>
           {errorRows.map((error) => (
-            <p key={error.row}> {/* Array index yerine row numarası kullanılıyor */}
+            <p key={error.row}>
               Satır {error.row}: {JSON.stringify(error.data)}
             </p>
           ))}
