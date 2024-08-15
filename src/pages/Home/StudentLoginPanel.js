@@ -1,7 +1,8 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';  // useNavigate eklendi
 import PropTypes from 'prop-types';
 import tcIcon from '../../assets/images/idIcon.svg';
-import warningIcon from '../../assets/images/delete.svg'; // Yeni ikon ekleniyor
+import warningIcon from '../../assets/images/delete.svg'; 
 import { validateTc } from '../../helpers/validation';
 
 const StudentLoginPanel = ({ handleBackClick }) => {
@@ -9,6 +10,7 @@ const StudentLoginPanel = ({ handleBackClick }) => {
   const [tc, setTc] = useState('');
 
   const tcRef = useRef(null);
+  const navigate = useNavigate();  // useNavigate hook'u tanımlandı
 
   const handleTcChange = useCallback((e) => {
     const value = e.target.value;
@@ -41,11 +43,12 @@ const StudentLoginPanel = ({ handleBackClick }) => {
     setFormErrors(errors);
 
     if (!errors.tc) {
-      // Form submission logic
+      // Başarılı giriş sonrası yönlendirme
+      navigate('/student/dashboard', { replace: true }); // Öğrenciyi /student/dashboard sayfasına yönlendiriyoruz
     } else {
       tcRef.current.focus();
     }
-  }, [tc]);
+  }, [tc, navigate]);  // navigate bağımlılık olarak eklendi
 
   return (
     <>
@@ -67,13 +70,13 @@ const StudentLoginPanel = ({ handleBackClick }) => {
           </div>
           {formErrors.tc && (
             <p className="error-message">
-              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkonu ekledik */}
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> 
               {formErrors.tc}
             </p>
           )}
         </div>
         <label className="remember-me">
-          <input type="checkbox" style={{ marginRight: '8px' }} /> {/* Checkbox ve metin arasında boşluk */}
+          <input type="checkbox" style={{ marginRight: '8px' }} /> 
           Beni Hatırla
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
