@@ -1,17 +1,17 @@
 .registration-module-container {
   background-color: #fff;
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
-  padding: 2.5rem; /* Padding'i rem ile ayarladık */
-  margin: 2.5rem; /* Margin'i rem ile ayarladık */
+  border-radius: 3.75rem;
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
+  margin: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90%;
-  min-height: 50vh; /* Min yüksekliği vh ile ayarladık */
+  min-height: 50vh;
   position: relative;
   overflow-y: auto;
-  max-height: 80vh; /* Maksimum yüksekliği vh ile ayarladık */
+  max-height: 80vh;
 }
 
 .student-registration-container {
@@ -23,23 +23,23 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 1.25rem;
 }
 
 .student-header h2 {
   margin: 0;
-  font-size: 1.5rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.5rem;
 }
 
 .search-container {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 1.25rem;
 }
 
 .student-list {
-  margin-top: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-top: 1.25rem;
   width: 100%;
 }
 
@@ -48,44 +48,44 @@
   justify-content: space-between;
   align-items: center;
   background-color: #f8f8f8;
-  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
-  border-radius: 0.625rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  margin-bottom: 0.625rem;
 }
 
 .edit-button {
   background-color: #fff !important;
   color: #ff9800 !important;
-  border: 0.125rem solid #ff9800 !important; /* Border'ı rem ile ayarladık */
-  padding: 0.9375rem 1.875rem; /* Padding'i rem ile büyüttük */
-  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  border: 0.125rem solid #ff9800 !important;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 1.875rem;
   cursor: pointer;
-  font-size: 1.125rem; /* Font boyutunu rem ile büyüttük */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover efekti eklendi */
+  font-size: 1.125rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .edit-button:hover {
-  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
+  transform: scale(1.05);
 }
 
 .delete-button {
   background-color: #dc3545 !important;
   color: white !important;
-  padding: 0.9375rem 1.875rem; /* Padding'i rem ile büyüttük */
-  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 0.9375rem 1.875rem;
+  border-radius: 1.875rem;
   cursor: pointer;
-  font-size: 1.125rem; /* Font boyutunu rem ile büyüttük */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover efekti eklendi */
+  font-size: 1.125rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .delete-button:hover {
-  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
+  transform: scale(1.05);
 }
 
 .edit-button img,
 .delete-button img {
-  width: 1.25rem; /* İkon genişliğini rem ile ayarladık */
-  height: 1.25rem; /* İkon yüksekliğini rem ile ayarladık */
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .add-student-button-container {
@@ -99,46 +99,46 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 1.5rem 2rem; /* Padding'i rem ile büyüttük */
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 1.5rem 2rem;
+  border-radius: 3.75rem;
   cursor: pointer;
-  font-size: 1.25rem; /* Font boyutunu rem ile büyüttük */
-  margin-bottom: 1rem; /* Margin'i rem ile büyüttük */
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
   align-self: center;
   width: 100%;
-  max-width: 15.625rem; /* Maksimum genişlik eklendi */
+  max-width: 15.625rem;
   text-align: center;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Hover efekti eklendi */
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .module-button:hover {
   background-color: #e68900;
-  transform: scale(1.05); /* Butonun üzerine gelince büyüme efekti */
+  transform: scale(1.05);
 }
 
 .add-options {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 1.25rem;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem; /* Aradaki boşluğu rem ile ayarladık */
-  margin-top: 1.25rem; /* Margin'i rem ile ayarladık */
+  gap: 0.625rem;
+  margin-top: 1.25rem;
 }
 
 .pagination button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
-  border-radius: 0.3125rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.3125rem;
   cursor: pointer;
-  font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 0.875rem;
 }
 
 .pagination button.active {
@@ -154,19 +154,19 @@
   display: flex;
   align-items: center;
   background-color: #fff;
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  padding: 1rem; /* Padding'i rem ile ayarladık */
-  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
-  margin-right: 1.25rem; /* Margin'i rem ile ayarladık */
+  border-radius: 3.75rem;
+  padding: 1rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+  margin-right: 1.25rem;
   width: 100%;
-  max-width: 18.75rem; /* Maksimum genişlik eklendi */
+  max-width: 18.75rem;
 }
 
 .registration-search-box input {
   border: none;
   outline: none;
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
-  margin-left: 0.625rem; /* Margin'i rem ile ayarladık */
+  font-size: 1rem;
+  margin-left: 0.625rem;
   width: 100%;
 }
 
@@ -174,14 +174,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem; /* Butonlar arasındaki boşluğu rem ile ayarladık */
+  gap: 1.25rem;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .registration-module-container {
-    padding: 1.25rem; /* Padding'i rem ile ayarladık */
-    margin: 1.25rem; /* Margin'i rem ile ayarladık */
+    padding: 1.25rem;
+    margin: 1.25rem;
   }
 
   .student-header {
@@ -195,44 +194,44 @@
 
   .module-button {
     width: 100%;
-    padding: 0.9375rem 1.25rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
+    padding: 0.9375rem 1.25rem;
+    font-size: 0.875rem;
   }
 
   .pagination button {
-    padding: 0.3125rem 0.4375rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.75rem; /* Font boyutunu rem ile ayarladık */
+    padding: 0.3125rem 0.4375rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
   .registration-module-container {
-    padding: 0.625rem; /* Padding'i rem ile ayarladık */
-    margin: 0.625rem; /* Margin'i rem ile ayarladık */
+    padding: 0.625rem;
+    margin: 0.625rem;
   }
 
   .student-header h2 {
-    font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+    font-size: 1.125rem;
   }
 
   .module-button {
-    padding: 0.75rem 1.25rem; /* Padding'i rem ile büyüttük */
-    font-size: 0.875rem; /* Font boyutunu rem ile büyüttük */
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
   }
 
   .student-item {
-    padding: 0.625rem; /* Padding'i rem ile ayarladık */
+    padding: 0.625rem;
   }
 
   .pagination button {
-    padding: 0.1875rem 0.3125rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.625rem; /* Font boyutunu rem ile ayarladık */
+    padding: 0.1875rem 0.3125rem;
+    font-size: 0.625rem;
   }
 
   .registration-search-box {
-    padding: 0.625rem; /* Padding'i rem ile ayarladık */
+    padding: 0.625rem;
     width: 100%;
     margin-right: 0;
-    margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
+    margin-bottom: 0.625rem;
   }
 }

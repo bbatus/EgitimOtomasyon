@@ -5,6 +5,10 @@
   box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
   margin: 2.5rem;
   min-height: 60vh;
+  position: relative;
+  width: 100%;
+  max-width: 90%;
+  overflow-y: auto;
 }
 
 .exam-header {
@@ -285,7 +289,8 @@
   padding: 0.9375rem;
   box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   margin-right: 1.25rem;
-  width: 18.75rem;
+  width: 100%;
+  max-width: 18.75rem;
 }
 
 .search-box input {
@@ -328,7 +333,6 @@
   right: 0;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .video-solution-module-container {
     padding: 1.25rem;
@@ -388,6 +392,11 @@
 }
 
 @media (max-width: 480px) {
+  .video-solution-module-container {
+    padding: 0.625rem;
+    margin: 0.625rem;
+  }
+
   .add-exam-button,
   .details-button,
   .cancel-button,
@@ -413,6 +422,12 @@
   .pagination button {
     padding: 0.3125rem 0.4375rem;
     font-size: 0.625rem;
+  }
+
+  .search-box {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.625rem;
   }
 
   .no-exams-icon {

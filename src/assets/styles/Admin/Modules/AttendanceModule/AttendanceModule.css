@@ -1,43 +1,42 @@
-/* Attendance Module Styles */
 .attendance-container, .attendance-detail-container, .absent-students-container {
   text-align: center;
   background-color: #fff;
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
-  padding: 2.5rem; /* Padding'i rem ile ayarladık */
-  margin: 2.5rem; /* Margin'i rem ile ayarladık */
+  border-radius: 3.75rem;
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
+  padding: 2.5rem;
+  margin: 2.5rem;
   width: 90%;
-  min-height: 60vh; /* Minimum yükseklik olarak vh kullandık */
+  min-height: 60vh;
   position: relative;
   overflow-y: auto;
-  max-height: 80vh; /* Maksimum yükseklik olarak vh kullandık */
+  max-height: 80vh;
 }
 
 .date-time {
   display: flex;
   justify-content: space-between;
-  padding: 0 1.25rem; /* Padding'i rem ile ayarladık */
+  padding: 0 1.25rem;
   background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 0.625rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
 }
 
 .class-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.25rem; /* Gap değerini rem ile ayarladık */
+  gap: 1.25rem;
 }
 
 .class-button {
-  padding: 1.25rem 1.875rem; /* Padding'i rem ile ayarladık */
-  margin: 0.3125rem; /* Margin'i rem ile ayarladık */
+  padding: 1.25rem 1.875rem;
+  margin: 0.3125rem;
   border: none;
   background-color: #ff9800;
   color: #fff;
-  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  border-radius: 1.25rem;
   cursor: pointer;
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   transition: background-color 0.3s ease;
 }
 
@@ -59,17 +58,17 @@
 .lesson-row {
   display: flex;
   justify-content: center;
-  gap: 0.625rem; /* Gap değerini rem ile ayarladık */
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
 }
 
 .attendance-summary {
-  margin-top: 2.5rem; /* Margin'i rem ile ayarladık */
+  margin-top: 2.5rem;
   text-align: left;
 }
 
 .attendance-summary h3 {
-  font-size: 1.5rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.5rem;
   color: #333;
 }
 
@@ -79,7 +78,7 @@
 }
 
 .attendance-summary li {
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   color: #666;
 }
 
@@ -87,21 +86,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.625rem; /* Gap değerini rem ile ayarladık */
+  gap: 0.625rem;
 }
 
 .student-item {
   display: flex;
   align-items: center;
-  gap: 1.25rem; /* Gap değerini rem ile ayarladık */
+  gap: 1.25rem;
 }
 
 .attendance-button {
-  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
+  padding: 0.625rem 1.25rem;
   border: none;
   cursor: pointer;
-  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  border-radius: 1.25rem;
+  font-size: 1rem;
   transition: background-color 0.3s ease;
 }
 
@@ -116,18 +115,18 @@
 }
 
 .attendance-button.focused {
-  box-shadow: 0 0.625rem rgba(0, 0, 0, 0.5); /* Gölgeyi rem ile ayarladık */
+  box-shadow: 0 0.625rem rgba(0, 0, 0, 0.5);
 }
 
 .save-attendance-button, .view-absent-students-button, .send-notification-button, .back-button {
-  margin-top: 1.25rem; /* Margin'i rem ile ayarladık */
-  padding: 1.25rem 1.875rem; /* Padding'i rem ile ayarladık */
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.875rem;
   border: none;
   background-color: #ff9800;
   color: white;
-  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  border-radius: 1.25rem;
   cursor: pointer;
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   transition: background-color 0.3s ease;
 }
 
@@ -137,24 +136,23 @@
 
 .warning-message {
   color: #dc3545;
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  font-size: 1.125rem;
+  margin-bottom: 1.25rem;
 }
 
-/* Dropdown Menu Styles */
 .select-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 1.25rem;
 }
 
 select {
-  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
+  padding: 0.625rem 1.25rem;
   border: none;
-  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  border-radius: 1.25rem;
   background-color: #ff9800;
   color: white;
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   appearance: none;
@@ -163,11 +161,11 @@ select {
 
 select:hover {
   background-color: #e68900;
-  box-shadow: 0 0.625rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
+  box-shadow: 0 0.625rem rgba(0, 0, 0, 0.1);
 }
 
 select:focus {
-  box-shadow: 0 0.625rem rgba(0, 0, 0, 0.2); /* Gölgeyi rem ile ayarladık */
+  box-shadow: 0 0.625rem rgba(0, 0, 0, 0.2);
 }
 
 select option {
@@ -175,34 +173,32 @@ select option {
   color: black;
 }
 
-/* Dropdown Arrow Styles */
 select::-ms-expand {
   display: none;
 }
 
 .select-container::after {
   content: "▼";
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   color: white;
   position: relative;
-  right: 1.875rem; /* Position sağ rem ile ayarlandı */
+  right: 1.875rem;
   pointer-events: none;
 }
 
-/* Pagination Styles */
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-top: 1.25rem;
 }
 
 .pagination-button {
-  padding: 0.625rem 0.9375rem; /* Padding'i rem ile ayarladık */
-  margin: 0 0.3125rem; /* Margin'i rem ile ayarladık */
+  padding: 0.625rem 0.9375rem;
+  margin: 0 0.3125rem;
   border: none;
   background-color: #ff9800;
   color: white;
-  border-radius: 0.3125rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  border-radius: 0.3125rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -218,21 +214,21 @@ select::-ms-expand {
 
 .absent-student-item {
   background-color: #f5f5f5;
-  padding: 0.625rem; /* Padding'i rem ile ayarladık */
-  margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
-  border-radius: 0.625rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 0.625rem;
+  margin-bottom: 0.625rem;
+  border-radius: 0.625rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .absent-student-name {
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   color: #333;
 }
 
 .absent-student-class {
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1rem;
   color: #666;
 }
 
@@ -240,7 +236,7 @@ select::-ms-expand {
   background-color: #dc3545;
   color: white;
   border: none;
-  padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
+  padding: 0.3125rem 0.625rem;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -250,18 +246,17 @@ select::-ms-expand {
   background-color: #c82333;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .attendance-container, .attendance-detail-container, .absent-students-container {
     width: 90%;
-    padding: 1.875rem; /* Padding'i rem ile ayarladık */
-    margin: 1.25rem; /* Margin'i rem ile ayarladık */
+    padding: 1.875rem;
+    margin: 1.25rem;
   }
 
   .class-button, .save-attendance-button, .view-absent-students-button, .send-notification-button, .back-button {
     width: 90%;
-    padding: 0.9375rem 1.5625rem; /* Padding'i rem ile ayarladık */
-    font-size: 1rem; /* Font boyutunu rem ile küçülttük */
+    padding: 0.9375rem 1.5625rem;
+    font-size: 1rem;
   }
 
   .student-list {
@@ -270,28 +265,28 @@ select::-ms-expand {
 
   select {
     width: 90%;
-    padding: 0.625rem 0.9375rem; /* Padding'i rem ile ayarladık */
-    font-size: 1rem; /* Font boyutunu rem ile küçülttük */
+    padding: 0.625rem 0.9375rem;
+    font-size: 1rem;
   }
 
   .select-container::after {
-    right: 1.25rem; /* Position sağ rem ile ayarlandı */
+    right: 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
   .save-attendance-button, .attendance-button, .view-absent-students-button, .send-notification-button, .back-button {
-    padding: 0.625rem 0.9375rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.875rem; /* Font boyutunu rem ile küçülttük */
+    padding: 0.625rem 0.9375rem;
+    font-size: 0.875rem;
   }
 
   select {
     width: 100%;
-    padding: 0.5rem 0.625rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.875rem; /* Font boyutunu rem ile küçülttük */
+    padding: 0.5rem 0.625rem;
+    font-size: 0.875rem;
   }
 
   .select-container::after {
-    right: 0.9375rem; /* Position sağ rem ile ayarlandı */
+    right: 0.9375rem;
   }
 }
