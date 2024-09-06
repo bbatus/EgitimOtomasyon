@@ -1,4 +1,3 @@
-/* Login ve genel form elementlerinin özel stilleri */
 .login-panel h3 {
   margin-bottom: 20px;
   color: #3b3b3b;
@@ -50,7 +49,6 @@
   margin-right: 10px;
 }
 
-/* Specific submit button styles */
 .submit-button {
   width: 80%;
   padding: 10px 5%;
@@ -67,20 +65,21 @@
 }
 
 .back-button {
-  color: #ff9800;
+  color: #fff !important;
+  background-color: #ff9800 !important;
   cursor: pointer;
-  text-decoration: underline;
-  align-self: flex-start;
-  padding-top: 0; /* padding-top'u sıfırlıyoruz */
-  margin-top: 10px; /* Biraz margin veriyoruz, responsive olması için */
-  display: inline-block; /* Butonun display özelliğini ayarlıyoruz */
+  border: none;
+  border-radius: 5px !important;
+  padding: 10px 5% !important;
+  text-decoration: none !important;
+  display: inline-block;
 }
 
 .back-button:hover {
-  color: #e68900;
+  background-color: #ff9800 !important;
+  color: #fff !important;
 }
 
-/* Logo specific styles */
 .logo img {
   width: 100%;
   max-width: 120px;
@@ -88,7 +87,6 @@
   margin-bottom: 20px;
 }
 
-/* Mobil cihazlar için (iPhone, Android) */
 @media (max-width: 600px) {
   .login-panel h3 {
     font-size: 18px;
@@ -102,7 +100,7 @@
 
   .back-button {
     font-size: 1.2rem;
-    margin-top: 5px; /* Mobilde biraz daha az margin */
+    margin-top: 5px;
   }
 
   .logo img {
@@ -110,7 +108,6 @@
   }
 }
 
-/* Tabletler için (iPad, Android tabletler) */
 @media (min-width: 601px) and (max-width: 900px) {
   .login-panel h3 {
     font-size: 20px;
@@ -130,7 +127,6 @@
   }
 }
 
-/* Laptop ve küçük monitörler için (13 inch - 21 inch) */
 @media (min-width: 901px) and (max-width: 1440px) {
   .login-panel h3 {
     font-size: 22px;
@@ -150,7 +146,6 @@
   }
 }
 
-/* Büyük monitörler ve akıllı tahtalar için (24 inch ve üzeri) */
 @media (min-width: 1441px) {
   .login-panel h3 {
     font-size: 26px;

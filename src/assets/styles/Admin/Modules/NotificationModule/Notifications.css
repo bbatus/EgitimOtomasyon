@@ -11,7 +11,41 @@
   min-height: 50vh;
   overflow-y: auto;
   max-height: 80vh;
-  position: relative; /* Absolute pozisyonlamadan kaçınarak container'ın içindeki elemanlara göre yerleşmeyi sağladık */
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .notification-container {
+    padding: 1.25rem;
+    margin: 1.25rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-container {
+    padding: 0.625rem;
+    margin: 0.625rem;
+    width: 100%;
+  }
+
+  .send-notification-button, 
+  .back-button, 
+  .submit-button {
+    padding: 0.3125rem 0.625rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .textbox, 
+  .input-field {
+    width: 100%;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin-bottom: 0.625rem;
+  }
 }
 
 .notification-message {
@@ -84,7 +118,8 @@
   border-radius: 3.75rem;
 }
 
-.back-button, .submit-button {
+.back-button, 
+.submit-button {
   background-color: #ff9800;
   color: #fff;
   border: none;
@@ -93,21 +128,13 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 1.125rem;
-  margin: 0.625rem 0; /* Butonların üst ve altına margin ekleyerek diğer elemanlardan ayırdık */
-  align-self: flex-start; /* Butonların container'ın soluna hizalanmasını sağladık */
+  margin: 0.625rem 0;
+  align-self: flex-start;
 }
 
-.back-button:hover, .submit-button:hover {
+.back-button:hover, 
+.submit-button:hover {
   background-color: #e68900;
-}
-
-.top-controls {
-  display: flex;
-  justify-content: space-between; /* Butonların arasında boşluk bıraktık */
-  width: 100%;
-  max-width: 70%;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap; /* Elemanların sarmasını sağladık, bu sayede ekran küçüldükçe bir alt satıra geçebilirler */
 }
 
 .notification-list {
@@ -156,45 +183,4 @@
 
 .expand-button:hover {
   background-color: #e68900;
-}
-
-@media (max-width: 768px) {
-  .notification-container {
-    width: 90%;
-    padding: 1.875rem;
-    margin: 1.25rem;
-  }
-
-  .input-field, .textbox {
-    width: 90%;
-  }
-
-  .top-controls {
-    width: 90%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .top-controls .submit-button {
-    margin-top: 0.625rem;
-    width: 100%;
-  }
-
-  .dropdown {
-    width: 100%;
-    margin-bottom: 0.625rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .send-notification-button {
-    padding: 0.3125rem 0.625rem;
-    font-size: 1rem;
-  }
-
-  .back-button, .submit-button {
-    padding: 0.3125rem 0.625rem;
-    font-size: 1rem;
-    width: 100%; /* Mobilde butonları tam genişlik yaparak daha iyi bir kullanım sağladık */
-  }
 }
