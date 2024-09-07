@@ -1,4 +1,3 @@
-// src/pages/Student/Modules/StudentMainPage.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../../components/StudentSidebar';
@@ -10,7 +9,7 @@ function StudentMainPage() {
   return (
     <div className="student-dashboard">
       <Sidebar />
-      <div className="student-dashboard-container"> {/* Kapsayıcı Container */}
+      <div className="student-dashboard-container">
         <div className="dashboard-content">
           <h1>Hoş geldiniz Ref Kolej Öğrencisi!</h1>
           <div className="dashboard-buttons">
@@ -22,6 +21,21 @@ function StudentMainPage() {
             </button>
             <button onClick={() => navigate('/student/homework-tracking')} className="dashboard-button">
               Ödev Takibi
+            </button>
+            <button onClick={() => navigate('/student/student-list')} className="dashboard-button">
+              Öğrenci Listesi
+            </button>
+            <button onClick={() => navigate('/student/teacher-list')} className="dashboard-button">
+              Öğretmen Listesi
+            </button>
+            <button onClick={() => navigate('/student/class-list')} className="dashboard-button">
+              Ders Listesi
+            </button>
+            <button onClick={() => navigate('/student/guidance')} className="dashboard-button">
+              Rehberlik
+            </button>
+            <button onClick={() => navigate('/student/notifications')} className="dashboard-button">
+              Bildirimler {/* Bildirimler butonu eklendi */}
             </button>
           </div>
         </div>

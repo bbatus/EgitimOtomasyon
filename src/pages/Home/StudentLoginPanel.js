@@ -43,12 +43,15 @@ const StudentLoginPanel = ({ handleBackClick }) => {
     setFormErrors(errors);
 
     if (!errors.tc) {
-      // Başarılı giriş sonrası yönlendirme
-      navigate('/student/dashboard', { replace: true }); // Öğrenciyi /student/dashboard sayfasına yönlendiriyoruz
+      // TC'yi localStorage'a kaydet
+      localStorage.setItem('tc', tc);
+
+      // Öğrenciyi dashboard'a yönlendir
+      navigate('/student/dashboard', { replace: true }); 
     } else {
       tcRef.current.focus();
     }
-  }, [tc, navigate]);  // navigate bağımlılık olarak eklendi
+  }, [tc, navigate]);  
 
   return (
     <>

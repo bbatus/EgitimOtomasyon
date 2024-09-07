@@ -1,14 +1,18 @@
-// src/pages/Student/StudentLayout.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from '../../components/StudentSidebar';
-import Header from '../../components/Header';
+import Header from '../../components/StudentHeader'; // StudentHeader eklendi
 import StudentDashboard from './Modules/StudentDashboard';
-import StudentMainPage from './Modules/StudentMainPage'; // StudentMainPage import edildi
+import StudentMainPage from './Modules/StudentMainPage';
 import StudentVideoSolutionModule from './Modules/StudentVideoModule/StudentVideoSolutionModule';
 import StudentAttendanceModule from './Modules/StudentAttendanceModule/StudentAttendanceModule';
 import StudentHomeworkTrackingModule from './Modules/StudentHomeworkTrackingModule/StudentHomeworkTrackingModule';
+import StudentGuidanceModule from './Modules/StudentGuidanceModule/StudentGuidanceModule';
+import StudentList from './Modules/StudentList/StudentList';
+import StudentTeacherList from './Modules/StudentTeacherList/StudentTeacherList';
+import StudentClassList from './Modules/StudentClassList/StudentClassList';
+import StudentNotification from './Modules/StudentNotification/StudentNotification';  // Bildirimler bileşeni eklendi
 import '../../App.css';
 
 const StudentLayout = () => {
@@ -16,22 +20,18 @@ const StudentLayout = () => {
     <div className="student-layout">
       <Sidebar />
       <div className="content">
-        <Header username="Öğrenci" />
+        <Header username="Öğrenci" /> {/* Header bileşeni kullanıldı */}
         <Routes>
-          {/* Öğrencinin Dashboard sayfası */}
           <Route path="/dashboard" element={<StudentDashboard />} />
-
-          {/* Öğrencinin Ana sayfası */}
           <Route path="/studentmainpage" element={<StudentMainPage />} />
-
-          {/* Video çözüm modülü */}
           <Route path="video-solution" element={<StudentVideoSolutionModule />} />
-
-          {/* Devamsızlık modülü */}
           <Route path="attendance" element={<StudentAttendanceModule />} />
-
-          {/* Ödev takip modülü */}
           <Route path="homework-tracking" element={<StudentHomeworkTrackingModule />} />
+          <Route path="guidance" element={<StudentGuidanceModule />} />
+          <Route path="student-list" element={<StudentList />} />
+          <Route path="teacher-list" element={<StudentTeacherList />} />
+          <Route path="class-list" element={<StudentClassList />} />
+          <Route path="notifications" element={<StudentNotification />} /> {/* Bildirim bileşeni */}
         </Routes>
       </div>
     </div>
