@@ -5,7 +5,7 @@ import homeIcon from '../assets/images/home.svg';
 import videoSolutionIcon from '../assets/images/videosolution.svg';
 import attendanceIcon from '../assets/images/attendance.svg';
 import homeworkIcon from '../assets/images/homework.svg';
-import notificationIcon from '../assets/images/notification.svg'; // Bildirim simgesi
+import notificationIcon from '../assets/images/notification.svg';
 import guidanceIcon from '../assets/images/guidance.svg';
 import studentIcon from '../assets/images/student.svg';
 import teacherIcon from '../assets/images/teacher.svg';
@@ -105,7 +105,7 @@ const StudentSidebar = () => {
         </li>
         <li>
           <NavLink
-            to="/student/notifications" // Yeni eklenen bildirimler sayfası
+            to="/student/notifications"
             className={({ isActive }) => (isActive ? 'active' : '')}
           >
             <img src={notificationIcon} alt="Notification Icon" className="sidebar-icon" />
