@@ -1,0 +1,57 @@
+.student-topics-container {
+  padding: 5%; /* Padding yüzdelik */
+  background-color: #fff;
+  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölge rem ile */
+  margin: 5% auto; /* Margin yüzdelik */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 62.5rem; /* Maksimum genişlik */
+  box-sizing: border-box;
+}
+
+.student-topics-container h1 {
+  margin-bottom: 2rem; /* Margin rem ile */
+  font-size: 1.5rem; /* Font boyutu rem ile */
+}
+
+.topics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem; /* Margin rem ile */
+}
+
+.topics-table th,
+.topics-table td {
+  border: 0.0625rem solid #ddd; /* Border rem ile */
+  padding: 0.5rem; /* Padding rem ile */
+  text-align: center;
+  font-size: 1rem; /* Font boyutu rem ile */
+}
+
+.topics-table th {
+  background-color: #f2f2f2;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .student-topics-container {
+    width: 95%;
+    padding: 4%; /* Padding yüzdelik */
+  }
+
+  .topics-table th,
+  .topics-table td {
+    padding: 0.3125rem; /* Padding rem ile */
+    font-size: 0.875rem; /* Font boyutu rem ile */
+  }
+}
+
+@media (max-width: 480px) {
+  .student-topics-container {
+    width: 100%;
+    padding: 3%; /* Padding yüzdelik */
+  }
+}

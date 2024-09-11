@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import calendarIcon from '../assets/images/calendar.svg'; 
 import timerIcon from '../assets/images/timer.svg';
@@ -27,7 +26,6 @@ const StudentHeader = () => {
       { id: 1, title: 'Sınav Tarihleri', message: '9. sınıf sınav tarihleri açıklandı.' },
       { id: 2, title: 'Okul Etkinliği', message: 'Okul gezisi kayıtları başladı.' },
       { id: 3, title: 'Yeni Duyuru', message: 'Yeni dönem ders programları açıklandı.' },
-      { id: 4, title: 'Veli Toplantısı', message: 'Veli toplantısı için kayıtlar başladı.' },
     ];
 
     setNotifications(sampleNotifications);
@@ -47,7 +45,6 @@ const StudentHeader = () => {
 
   // Maksimum 3 bildirim gösterimi için
   const displayedNotifications = notifications.slice(0, 3);
-  const hasMoreNotifications = notifications.length > 3;
 
   return (
     <div className="header-container">
@@ -64,7 +61,6 @@ const StudentHeader = () => {
       <div className="notifications">
         <button className="notification-button" onClick={toggleDropdown}>
           <img src={notificationIcon} alt="Notification" />
-          Bildirimler
         </button>
         {dropdownOpen && (
           <ul className="notification-dropdown">
@@ -77,16 +73,11 @@ const StudentHeader = () => {
                 </li>
               ))
             )}
-            {hasMoreNotifications && <li>Daha fazla...</li>}
           </ul>
         )}
       </div>
     </div>
   );
-};
-
-StudentHeader.propTypes = {
-  username: PropTypes.string,
 };
 
 export default StudentHeader;

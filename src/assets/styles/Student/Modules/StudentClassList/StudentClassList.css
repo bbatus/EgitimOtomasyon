@@ -1,0 +1,84 @@
+.student-class-list-container {
+    padding: 5%; /* Padding'i yüzde ile belirledik */
+    background-color: #fff;
+    border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+    box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
+    margin: 5% auto; /* Yüzdelik margin kullanarak ortalama */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 62.5rem; /* Maksimum genişlik */
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .student-class-list-container h1 {
+    margin-bottom: 2rem; /* Margin rem ile */
+    font-size: 1.5rem; /* Font boyutu rem ile */
+  }
+  
+  .class-group {
+    width: 100%;
+    margin-bottom: 2.5rem; /* Margin rem ile */
+  }
+  
+  .class-group h2 {
+    margin-bottom: 1.25rem; /* Margin rem ile */
+  }
+  
+  .class-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem; /* Gap rem ile */
+  }
+  
+  .class-item {
+    background-color: #f8f8f8;
+    border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
+    padding: 1.25rem; /* Padding rem ile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(33.333% - 1.25rem); /* Genişlik rem ile */
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Gölge rem ile */
+    text-align: center;
+  }
+  
+  .class-item h3 {
+    margin-bottom: 0.625rem; /* Margin rem ile */
+    font-size: 1.125rem; /* Font boyutu rem ile */
+  }
+  
+  .see-topics-button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 0.625rem 1.25rem; /* Padding rem ile */
+    border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+    cursor: pointer;
+    font-size: 0.875rem; /* Font boyutu rem ile */
+  }
+  
+  .see-topics-button:hover {
+    background-color: #e68900;
+  }
+  
+  /* Responsive Tasarım */
+  @media (max-width: 768px) {
+    .class-item {
+      width: calc(50% - 1.25rem); /* Genişlik rem ile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .class-item {
+      width: calc(100% - 1.25rem); /* Genişlik rem ile */
+    }
+  
+    .see-topics-button {
+      padding: 0.3125rem 0.625rem; /* Padding rem ile */
+      font-size: 0.75rem; /* Font boyutu rem ile */
+    }
+  }
+  
