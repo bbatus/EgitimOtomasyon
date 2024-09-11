@@ -16,3 +16,28 @@
   margin-left: 0.625rem;
   width: 100%;
 }
+
+/* Responsive Stiller */
+@media (max-width: 768px) {
+  .student-search-box {
+    max-width: 100%; /* Mobil cihazlarda tam genişlik */
+    padding: 0.75rem; /* Padding'i biraz küçülttük */
+  }
+
+  .student-search-box input {
+    font-size: 0.875rem; /* Küçük ekranlar için font boyutunu ayarladık */
+    margin-left: 0.5rem; /* Boşluğu biraz azalttık */
+  }
+}
+
+@media (max-width: 480px) {
+  .student-search-box {
+    max-width: 100%; /* Mobil cihazlarda tam genişlik */
+    padding: 0.5rem; /* Daha küçük ekranlar için padding */
+  }
+
+  .student-search-box input {
+    font-size: 0.75rem; /* Daha küçük ekranlar için font boyutunu ayarladık */
+    margin-left: 0.375rem; /* Boşluğu daha da azalttık */
+  }
+}

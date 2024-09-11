@@ -1,0 +1,214 @@
+.notification-container {
+    background-color: #fff;
+    border-radius: 3.75rem;
+    box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
+    padding: 2.5rem;
+    margin: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    min-height: 50vh;
+    overflow-y: auto;
+    max-height: 80vh;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .notification-container {
+      padding: 1.25rem;
+      margin: 1.25rem;
+      width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .notification-container {
+      padding: 0.625rem;
+      margin: 0.625rem;
+      width: 100%;
+    }
+
+    .send-notification-button, 
+    .back-button, 
+    .submit-button {
+      padding: 0.3125rem 0.625rem;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    .textbox, 
+    .input-field {
+      width: 100%;
+    }
+
+    .dropdown {
+      width: 100%;
+      margin-bottom: 0.625rem;
+    }
+}
+
+.notification-message {
+    font-size: 1.125rem;
+    color: #4F4C4C;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.notification-image {
+    width: 100%;
+    max-width: 12.5rem;
+    height: auto;
+}
+
+.send-notification-button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 1.25rem 1.875rem;
+    border-radius: 3.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+    align-self: flex-end;
+}
+
+.send-notification-button:hover {
+    background-color: #e68900;
+}
+
+.textbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2.5rem;
+}
+
+.input-field {
+    width: 100%;
+    max-width: 70%;
+    margin-bottom: 1.25rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 3.75rem;
+}
+
+.textbox {
+    width: 100%;
+    max-width: 70%;
+    height: 15.625rem;
+    margin-bottom: 1.25rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 1.25rem;
+    resize: none;
+}
+
+.dropdown {
+    width: 100%;
+    max-width: 12.5rem;
+    margin-right: 0.625rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 3.75rem;
+}
+
+.back-button, 
+.submit-button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 3.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.125rem;
+    margin: 0.625rem 0;
+    align-self: flex-start;
+}
+
+.back-button:hover, 
+.submit-button:hover {
+    background-color: #e68900;
+}
+
+.notification-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.notification-item {
+    background-color: #4F4C4C;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 3.75rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Sağ ve sol hizalama */
+    align-items: center;
+    color: white;
+}
+
+.notification-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-preview {
+    font-size: 1rem;
+    color: white;
+}
+
+.notification-date {
+    font-size: 0.875rem; /* Tarih için küçük bir font */
+    color: white;
+    align-self: flex-end; /* Sağ tarafa hizalanmasını sağlar */
+}
+
+.expand-button {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem; /* Buton boyutunu küçültmek için padding azaltıldı */
+    border-radius: 3.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 1.25rem;
+    align-self: flex-end; /* Butonu sağa hizalar */
+}
+
+.expand-button:hover {
+    background-color: #e68900;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.pagination button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 3.75rem;
+    margin: 0 0.3125rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button.active {
+    background-color: #e68900;
+}
+
+.pagination button:hover {
+    background-color: #e68900;
+}

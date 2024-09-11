@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NoNotificationImage from '../../../../assets/images/no notification.svg'; // Admin'deki yoksa gösterilen resim
+import '../../../../assets/styles/Student/Modules/StudentNotification/StudentNotification.css';
 
 const StudentNotification = () => {
   const [notifications, setNotifications] = useState([]);

@@ -63,6 +63,12 @@
   .see-topics-button:hover {
     background-color: #e68900;
   }
+
+  /* NO ve KONU başlığı için turuncu renk */
+  .no-title, .topic-title {
+    color: #ff9800;
+    font-weight: bold;
+  }
   
   /* Responsive Tasarım */
   @media (max-width: 768px) {
@@ -81,4 +87,3 @@
       font-size: 0.75rem; /* Font boyutu rem ile */
     }
   }
-  
