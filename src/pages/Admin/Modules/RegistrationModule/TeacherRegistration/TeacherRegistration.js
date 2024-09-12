@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'; // PropTypes'ı ekledik
+import PropTypes from 'prop-types';
 import RegistrationSearchBarTeacher from './RegistrationSearchBarTeacher';
 import EditIcon from '../../../../../assets/images/pencil.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
@@ -7,7 +7,7 @@ import DeleteIcon from '../../../../../assets/images/delete.svg'; // Silme ikonu
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 import { useNavigate } from 'react-router-dom';
 
-const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers }) => { // deleteTeacher prop olarak alıyoruz
+const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,10 +23,9 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
   };
 
   const handleDeleteClick = (teacher) => {
-    // Kullanıcıdan onay alıyoruz
     const confirmed = window.confirm(`Öğretmen ${teacher.name} silmek istediğinize emin misiniz?`);
     if (confirmed) {
-      deleteTeacher(teacher.id); // Öğretmeni sil
+      deleteTeacher(teacher.id);
       alert('Öğretmen başarıyla silindi!');
     }
   };
@@ -74,13 +73,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
                 onChange={handleDepartmentFilterChange}
               >
                 <option value="">Tüm Bölümler</option>
-                {[
-                  'Matematik',
-                  'Fen Bilimleri',
-                  'Türkçe',
-                  'Sosyal Bilgiler',
-                  'İngilizce',
-                ].map((dept) => (
+                {['Matematik', 'Fen Bilimleri', 'Türkçe', 'Sosyal Bilgiler', 'İngilizce'].map((dept) => (
                   <option key={dept} value={dept}>
                     {dept}
                   </option>
@@ -100,10 +93,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
           {currentTeachers.map((teacher) => (
             <div key={teacher.id} className="teacher-item">
               <span>{teacher.name}</span>
-              <button
-                className="edit-button"
-                onClick={() => handleEditTeacher(teacher)}
-              >
+              <button className="edit-button" onClick={() => handleEditTeacher(teacher)}>
                 <img src={EditIcon} alt="Edit" />
               </button>
               <button className="delete-button" onClick={() => handleDeleteClick(teacher)}>
@@ -113,10 +103,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
           ))}
         </div>
         <div className="pagination">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
+          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
             Önceki
           </button>
           {Array.from({ length: totalPages }, (_, index) => (
@@ -128,10 +115,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
               {index + 1}
             </button>
           ))}
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
+          <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
             Sonraki
           </button>
         </div>
@@ -144,13 +128,13 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
 TeacherRegistration.propTypes = {
   addTeacher: PropTypes.func.isRequired,
   editTeacher: PropTypes.func.isRequired,
-  deleteTeacher: PropTypes.func.isRequired, // deleteTeacher fonksiyonunun gerekliliği belirtiliyor
+  deleteTeacher: PropTypes.func.isRequired,
   teachers: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       department: PropTypes.string.isRequired,
-      tc: PropTypes.string, // Zorunlu değilse opsiyonel bırakabilirsiniz
+      tc: PropTypes.string,
     })
   ).isRequired,
 };

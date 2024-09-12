@@ -6,25 +6,25 @@
     padding: 2.5rem;
     margin: 5% auto;
     width: 90%;
-    max-width: 62.5rem; /* Maksimum genişliği rem ile belirledik */
+    max-width: 62.5rem;
     box-sizing: border-box;
     position: relative;
     overflow-y: auto;
-    max-height: 80vh; /* Yüksekliği sabitleyip, dikey kaydırma sağladık */
+    max-height: 80vh;
 }
 
 .attendance-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 2rem; /* Margin'i rem ile belirledik */
+    margin-bottom: 2rem;
 }
 
 .attendance-table th,
 .attendance-table td {
-    border: 0.0625rem solid #ddd; /* Border'ı rem ile belirledik */
-    padding: 0.75rem 1.25rem; /* Padding'i rem ile belirledik */
+    border: 0.0625rem solid #ddd;
+    padding: 0.75rem 1.25rem;
     text-align: center;
-    font-size: 1rem; /* Font boyutunu rem ile belirledik */
+    font-size: 1rem;
 }
 
 .attendance-table th {
@@ -37,23 +37,22 @@
     color: #333;
 }
 
-/* Pagination Stil Optimizasyonu */
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.625rem; /* Gap'i rem ile belirledik */
-    margin-top: 1.25rem; /* Margin'i rem ile belirledik */
+    gap: 0.625rem;
+    margin-top: 1.25rem;
 }
 
 .pagination-button {
     background-color: #ff9800;
     color: white;
     border: none;
-    padding: 0.625rem 1.25rem; /* Padding'i rem ile belirledik */
-    border-radius: 0.3125rem; /* Köşe yuvarlamayı rem ile belirledik */
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.3125rem;
     cursor: pointer;
-    font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
+    font-size: 0.875rem;
     transition: background-color 0.3s ease;
 }
 
@@ -70,27 +69,26 @@
     cursor: not-allowed;
 }
 
-/* Responsive Stil Optimizasyonu */
 @media (max-width: 768px) {
     .attendance-list {
         width: 95%;
-        padding: 4%; /* Padding'i yüzde ile belirledik */
+        padding: 4%;
     }
 
     .attendance-table th,
     .attendance-table td {
-        padding: 0.625rem; /* Padding'i rem ile belirledik */
-        font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
+        padding: 0.625rem;
+        font-size: 0.875rem;
     }
 
     .pagination {
         flex-direction: column;
-        gap: 0.3125rem; /* Gap'i rem ile belirledik */
+        gap: 0.3125rem;
     }
 
     .pagination-button {
-        padding: 0.625rem; /* Padding'i rem ile belirledik */
-        font-size: 0.875rem; /* Font boyutunu rem ile belirledik */
+        padding: 0.625rem;
+        font-size: 0.875rem;
         width: 100%;
     }
 }
@@ -98,18 +96,18 @@
 @media (max-width: 480px) {
     .attendance-list {
         width: 100%;
-        padding: 3%; /* Padding'i yüzde ile belirledik */
+        padding: 3%;
     }
 
     .attendance-table th,
     .attendance-table td {
-        padding: 0.5rem; /* Padding'i rem ile belirledik */
-        font-size: 0.75rem; /* Font boyutunu rem ile belirledik */
+        padding: 0.5rem;
+        font-size: 0.75rem;
     }
 
     .pagination-button {
-        padding: 0.3125rem 0.625rem; /* Padding'i rem ile belirledik */
-        font-size: 0.75rem; /* Font boyutunu rem ile belirledik */
+        padding: 0.3125rem 0.625rem;
+        font-size: 0.75rem;
         width: 100%;
     }
 }

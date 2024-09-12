@@ -150,7 +150,7 @@
     border-radius: 3.75rem;
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between; /* Sağ ve sol hizalama */
+    justify-content: space-between;
     align-items: center;
     color: white;
 }
@@ -167,21 +167,21 @@
 }
 
 .notification-date {
-    font-size: 0.875rem; /* Tarih için küçük bir font */
+    font-size: 0.875rem;
     color: white;
-    align-self: flex-end; /* Sağ tarafa hizalanmasını sağlar */
+    align-self: flex-end;
 }
 
 .expand-button {
     background-color: #ff9800;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem; /* Buton boyutunu küçültmek için padding azaltıldı */
+    padding: 0.5rem 1rem;
     border-radius: 3.75rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-left: 1.25rem;
-    align-self: flex-end; /* Butonu sağa hizalar */
+    align-self: flex-end;
 }
 
 .expand-button:hover {

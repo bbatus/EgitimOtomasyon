@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types'; // PropTypes eklendi
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseRegistration.css';
 
 const CourseRegistration = ({ courses }) => {
   const navigate = useNavigate();
 
-  // Filtreleme fonksiyonları
   const tytCourses = courses.filter((course) => course.courseType === 'TYT');
   const aytCourses = courses.filter((course) => course.courseType === 'AYT');
 
@@ -54,7 +53,6 @@ const CourseRegistration = ({ courses }) => {
   );
 };
 
-// PropTypes tanımlaması
 CourseRegistration.propTypes = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({

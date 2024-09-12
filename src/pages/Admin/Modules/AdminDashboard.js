@@ -9,7 +9,7 @@ function AdminDashboard() {
   return (
     <div className="admin-dashboard">
       <Sidebar />
-      <div className="admin-dashboard-container"> {/* Kapsayıcı Container Eklendi */}
+      <div className="admin-dashboard-container"> {/* Kapsayıcı Container */}
         <div className="dashboard-content">
           <h1>Hoş geldiniz Ref Kolej Admin Kullanıcısı!</h1>
           <div className="dashboard-buttons">

@@ -58,14 +58,14 @@ const CourseTopics = ({ courses, deleteCourse }) => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      saveEditing(); // Enter tuşuna basıldığında düzenlemeyi kaydet
+      saveEditing();
     }
   };
 
   const confirmDeleteCourse = () => {
-    deleteCourse(parseInt(courseId)); // Ders silme işlemi, ID'nin tam sayı olduğundan emin olduk
+    deleteCourse(parseInt(courseId));
     setShowDeleteConfirmation(false);
-    navigate('/dashboard/registration/course'); // Dersler sayfasına yönlendir
+    navigate('/dashboard/registration/course');
   };
 
   const handlePageChange = (pageNumber) => {
@@ -78,7 +78,7 @@ const CourseTopics = ({ courses, deleteCourse }) => {
   const totalPages = Math.ceil(topics.length / topicsPerPage);
 
   const handleBackClick = () => {
-    navigate('/dashboard/registration/course'); // Geri butonuna basıldığında ders kayıt sayfasına yönlendir
+    navigate('/dashboard/registration/course');
   };
 
   return (
@@ -102,7 +102,7 @@ const CourseTopics = ({ courses, deleteCourse }) => {
                     type="text"
                     value={editingTopicName}
                     onChange={(e) => setEditingTopicName(e.target.value)}
-                    onKeyPress={handleKeyPress} // Enter tuşunu yakalamak için ekledik
+                    onKeyPress={handleKeyPress}
                     autoFocus
                   />
                 ) : (

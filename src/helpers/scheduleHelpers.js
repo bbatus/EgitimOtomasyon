@@ -17,7 +17,6 @@ export const getCurrentLesson = () => {
   const now = new Date();
   const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 
-  // for-of döngüsüne dönüştürüldü
   for (const { start, end, lesson } of schedule) {
     if (currentTime >= start && currentTime < end) {
       return { lesson, nextUpdate: new Date(`${now.toDateString()} ${end}`) };

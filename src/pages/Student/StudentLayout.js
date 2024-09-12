@@ -12,11 +12,10 @@ import StudentGuidanceModule from './Modules/StudentGuidanceModule/StudentGuidan
 import StudentList from './Modules/StudentList/StudentList';
 import StudentTeacherList from './Modules/StudentTeacherList/StudentTeacherList';
 import StudentClassList from './Modules/StudentClassList/StudentClassList';
-import StudentTopics from './Modules/StudentClassList/StudentTopics'; // Ders konuları görüntüleme modülü eklendi
+import StudentTopics from './Modules/StudentClassList/StudentTopics';
 import StudentNotification from './Modules/StudentNotification/StudentNotification';
 import '../../App.css';
 
-// Test için öğrenci verileri
 const students = [
   { id: 1, name: 'Ali Yılmaz', classroom: '10-A' },
   { id: 2, name: 'Ayşe Demir', classroom: '11-B' },
@@ -35,7 +34,6 @@ const teachers = [
   { id: 6, name: 'Elif Koç', department: 'Matematik' }
 ];
 
-// Test için ders verileri
 const courses = [
   { id: 1, courseName: 'Matematik', courseType: 'TYT' },
   { id: 2, courseName: 'Türkçe', courseType: 'TYT' },
@@ -57,12 +55,9 @@ const StudentLayout = () => {
           <Route path="/attendance" element={<StudentAttendanceModule />} />
           <Route path="/homework-tracking" element={<StudentHomeworkTrackingModule />} />
           <Route path="/guidance" element={<StudentGuidanceModule />} />
-          {/* Öğrenci Listesi bileşeni, students prop'u ile birlikte kullanılıyor */}
           <Route path="/student-list" element={<StudentList students={students} />} />
           <Route path="/teacher-list" element={<StudentTeacherList teachers={teachers} />} />
-          {/* Ders Listesi bileşeni, courses prop'u ile birlikte kullanılıyor */}
           <Route path="/class-list" element={<StudentClassList courses={courses} />} />
-          {/* Ders konuları bileşeni, courses prop'u ile birlikte kullanılıyor */}
           <Route path="/class/topics/:courseId" element={<StudentTopics courses={courses} />} />
           <Route path="/notifications" element={<StudentNotification />} />
         </Routes>
@@ -71,7 +66,6 @@ const StudentLayout = () => {
   );
 };
 
-// PropTypes ile students, teachers ve courses verilerinin zorunlu olup olmadığını ve türünü kontrol ediyoruz
 StudentLayout.propTypes = {
   students: PropTypes.array,
   teachers: PropTypes.array,

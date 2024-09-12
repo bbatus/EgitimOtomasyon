@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../../components/StudentSidebar';
-import '../../../assets/styles/StudentDashboard.css'; // Öğrenciye özel stil dosyası
+import '../../../assets/styles/StudentDashboard.css';
 
 function StudentDashboard() {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function StudentDashboard() {
               Rehberlik
             </button>
             <button onClick={() => navigate('/student/notifications')} className="dashboard-button">
-              Bildirimler {/* Bildirimler butonu eklendi */}
+              Bildirimler
             </button>
           </div>
         </div>

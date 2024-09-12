@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import NoNotificationImage from '../../../../assets/images/no notification.svg'; // Admin'deki yoksa gösterilen resim
+import NoNotificationImage from '../../../../assets/images/no notification.svg';
 import '../../../../assets/styles/Student/Modules/StudentNotification/StudentNotification.css';
 
 const StudentNotification = () => {
   const [notifications, setNotifications] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const notificationsPerPage = 3; // Bir sayfada gösterilecek bildirim sayısı
+  const notificationsPerPage = 3;
 
   useEffect(() => {
-    // Bildirimler burada API ya da localStorage ile alınabilir
     const sampleNotifications = [
       {
         id: 1,
@@ -53,22 +52,19 @@ const StudentNotification = () => {
         date: '2024-09-10 14:00',
       }
     ];
-    setNotifications(sampleNotifications); // Burada gerçek bildirim verileri olmalı
+    setNotifications(sampleNotifications);
   }, []);
 
-  // Bildirimlerin o anki sayfa için dilimlenmesi
   const indexOfLastNotification = currentPage * notificationsPerPage;
   const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
   const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification);
 
-  // Sayfa numaralarının hesaplanması
   const totalPages = Math.ceil(notifications.length / notificationsPerPage);
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
-  // Sayfa değiştirme fonksiyonları
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -90,7 +86,7 @@ const StudentNotification = () => {
                   <span>{notif.date}</span>
                   <button
                     className="expand-button"
-                    onClick={() => alert(notif.message)} // Bildirimi okuma butonu
+                    onClick={() => alert(notif.message)}
                   >
                     Oku
                   </button>
@@ -99,7 +95,6 @@ const StudentNotification = () => {
             ))}
           </ul>
 
-          {/* Pagination */}
           <div className="pagination">
             {currentPage > 1 && (
               <button onClick={() => paginate(currentPage - 1)}>Önceki</button>

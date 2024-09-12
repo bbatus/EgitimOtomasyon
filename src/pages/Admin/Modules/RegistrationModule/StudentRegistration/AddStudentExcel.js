@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid'; // UUID modülünü içe aktarıyoruz
+import { v4 as uuidv4 } from 'uuid';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import excelIcon from '../../../../../assets/images/excel.svg';
 
@@ -67,11 +67,11 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
         const name = row[4];
         const surname = row[5];
         const tc = row[6];
-        const classroom = row[7] || 'Belirtilmedi'; // Sınıf belirtilmediyse 'Belirtilmedi' olarak alalım.
+        const classroom = row[7] || 'Belirtilmedi';
 
         if (name || surname || tc) {
           students.push({ 
-            id: uuidv4(), // Benzersiz kimlik oluşturuyoruz
+            id: uuidv4(),
             name: `${name || ''} ${surname || ''}`, 
             tc: tc || 'Belirtilmedi', 
             classroom 
@@ -84,7 +84,6 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
 
       setErrorRows(errors);
 
-      // Öğrenci verilerini state'e ekle
       try {
         addStudentsFromExcel(students);
         alert('Öğrenciler başarıyla kaydedildi!');
@@ -97,7 +96,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
   };
 
   const handleBackClick = () => {
-    navigate('/dashboard/registration/student'); // Geri butonuna basıldığında öğrenci kayıt sayfasına yönlendir
+    navigate('/dashboard/registration/student');
   };
 
   return (

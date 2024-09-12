@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage';
 import AdminLayout from './pages/Admin/AdminLayout';
-import StudentLayout from './pages/Student/StudentLayout';  // StudentLayout import edildi
+import StudentLayout from './pages/Student/StudentLayout';
 
 const App = () => {
   const [attendanceRecords, setAttendanceRecords] = useState({});
@@ -16,8 +16,8 @@ const App = () => {
           element={<AdminLayout attendanceRecords={attendanceRecords} setAttendanceRecords={setAttendanceRecords} />} 
         />
         <Route 
-          path="/student/*"  // /student/* rotası eklendi
-          element={<StudentLayout />}  // StudentLayout'a yönlendiriliyor
+          path="/student/*"  
+          element={<StudentLayout />}  
         />
       </Routes>
     </Router>

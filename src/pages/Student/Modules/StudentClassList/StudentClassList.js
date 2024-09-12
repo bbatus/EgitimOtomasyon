@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types'; // PropTypes eklendi
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import '../../../../assets/styles/Student/Modules/StudentClassList/StudentClassList.css';
 
 const StudentClassList = ({ courses }) => {
   const navigate = useNavigate();
 
-  // Filtreleme fonksiyonları
   const tytCourses = courses.filter((course) => course.courseType === 'TYT');
   const aytCourses = courses.filter((course) => course.courseType === 'AYT');
 

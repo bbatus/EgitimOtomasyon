@@ -1,9 +1,9 @@
 .course-registration-container {
-  padding: 5%; /* Yüzdelik padding kullanarak esneklik sağladık */
+  padding: 5%;
   background-color: #fff;
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
-  margin: 5%; /* Yüzdelik margin kullanarak esneklik sağladık */
+  border-radius: 3.75rem;
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
+  margin: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,17 +15,17 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem; /* Margin'i rem ile belirleyerek esnek hale getirdik */
+  margin-bottom: 2rem;
 }
 
 .add-course-button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 0.625rem 1.25rem;
+  border-radius: 3.75rem;
   cursor: pointer;
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1rem;
 }
 
 .add-course-button:hover {
@@ -34,76 +34,75 @@
 
 .course-group {
   width: 100%;
-  margin-bottom: 2.5rem; /* Margin'i rem ile belirledik */
+  margin-bottom: 2.5rem;
 }
 
 .course-group h2 {
-  margin-bottom: 1.25rem; /* Margin'i rem ile belirledik */
+  margin-bottom: 1.25rem;
 }
 
 .course-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem; /* Gap'i rem ile ayarladık */
+  gap: 1.25rem;
 }
 
 .course-item {
   background-color: #f8f8f8;
-  border-radius: 1.25rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  padding: 1.25rem; /* Padding'i rem ile ayarladık */
+  border-radius: 1.25rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(33.333% - 1.25rem); /* Genişlik ve gap'i rem ile ayarladık */
-  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
+  width: calc(33.333% - 1.25rem);
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .course-item h3 {
-  margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  margin-bottom: 0.625rem;
+  font-size: 1.125rem;
 }
 
 .see-topics-button {
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 0.625rem 1.25rem;
+  border-radius: 3.75rem;
   cursor: pointer;
-  font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 0.875rem;
 }
 
 .see-topics-button:hover {
   background-color: #e68900;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .course-item {
-    width: calc(50% - 1.25rem); /* Genişliği rem ile ayarladık */
+    width: calc(50% - 1.25rem);
   }
 }
 
 @media (max-width: 480px) {
   .course-item {
-    width: calc(100% - 1.25rem); /* Genişliği rem ile ayarladık */
+    width: calc(100% - 1.25rem);
   }
 
   .add-course-button {
-    padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
+    padding: 0.3125rem 0.625rem;
+    font-size: 0.875rem;
   }
 
   .see-topics-button {
-    padding: 0.3125rem 0.625rem; /* Padding'i rem ile ayarladık */
-    font-size: 0.75rem; /* Font boyutunu rem ile ayarladık */
+    padding: 0.3125rem 0.625rem;
+    font-size: 0.75rem;
   }
 
   .course-header {
     flex-direction: column;
     align-items: center;
-    gap: 0.625rem; /* Gap'i rem ile ayarladık */
+    gap: 0.625rem;
   }
 
   .course-group h2 {

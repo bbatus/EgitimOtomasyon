@@ -17,7 +17,6 @@ const ParentLoginPanel = ({ handleBackClick }) => {
   }, [setValue]);
 
   const onSubmit = useCallback((data) => {
-    // Form submission logic
     console.log(data);
   }, []);
 
@@ -47,7 +46,6 @@ const ParentLoginPanel = ({ handleBackClick }) => {
         </div>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      {/* Geri dönüş butonunu button elementi ile oluşturduk */}
       <button className="back-button" onClick={handleBackClick}>
         Seçim ekranına geri dön
       </button>

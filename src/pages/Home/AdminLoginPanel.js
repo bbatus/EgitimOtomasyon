@@ -1,29 +1,34 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import warningIcon from '../../assets/images/delete.svg';
-import { validateUsername } from '../../helpers/validation';
+
+const validateEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase()) ? '' : 'Geçersiz email formatı';
+};
 
 const AdminLoginPanel = ({ handleBackClick }) => {
   const [formErrors, setFormErrors] = useState({});
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const usernameRef = useRef(null);
+  const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleUsernameChange = useCallback((e) => {
-    const value = e.target.value.toUpperCase();
+  const handleEmailChange = useCallback((e) => {
+    const value = e.target.value;
     if (value.length <= 50) {
-      setUsername(value);
-      const error = validateUsername(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
+      setEmail(value);
+      const error = validateEmail(value);
+      setFormErrors((prevErrors) => ({ ...prevErrors, email: error }));
     } else {
-      const error = 'Kullanıcı adı 50 haneden fazla olamaz';
-      setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
+      const error = 'Email 50 haneden fazla olamaz';
+      setFormErrors((prevErrors) => ({ ...prevErrors, email: error }));
     }
   }, []);
 
@@ -37,29 +42,52 @@ const AdminLoginPanel = ({ handleBackClick }) => {
   const handleFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
+
+      console.log('Form gönderildi, işlem başlatılıyor...');
+
       const errors = {
-        username: validateUsername(username),
+        email: validateEmail(email),
         password: password ? '' : 'Şifre alanı boş olamaz',
       };
       setFormErrors(errors);
 
-      if (!errors.username && !errors.password) {
-        try {
-          // Kullanıcı adını localStorage'a kaydediyoruz
-          localStorage.setItem('username', username);
+      if (!errors.email && !errors.password) {
+        console.log('Email ve şifre validasyonu başarılı, API isteği yapılıyor...');
 
-          // Doğrudan dashboard'a yönlendirme yapıyoruz
+        try {
+          const response = await axios.post('http://localhost:3000/auth/login', {
+            email,
+            password,
+          });
+
+          console.log('Giriş başarılı:', response.data);
+          console.log('Tam yanıt:', response);
+
+          localStorage.setItem('access_token', response.data.data.access_token);
+
           navigate('/dashboard');
         } catch (error) {
-          alert(error);
+          if (error.response) {
+            console.error('API Hatası:', error.response.data.message);
+            console.error('Tam hata yanıtı:', error.response);
+            alert('Giriş başarısız: ' + error.response.data.message);
+          } else if (error.request) {
+            console.error('Sunucudan yanıt alınamadı:', error.request);
+          } else {
+            console.error('İstek yapılamadı:', error.message);
+          }
         }
-      } else if (errors.username) {
-        usernameRef.current.focus();
-      } else if (errors.password) {
-        passwordRef.current.focus();
+      } else {
+        console.log('Validasyon başarısız, hatalar:', errors);
+
+        if (errors.email) {
+          emailRef.current.focus();
+        } else if (errors.password) {
+          passwordRef.current.focus();
+        }
       }
     },
-    [username, password, navigate]
+    [email, password, navigate]
   );
 
   return (
@@ -68,19 +96,19 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       <form className="login-form" onSubmit={handleFormSubmit}>
         <div className="input-container">
           <div className="input-with-icon">
-            <img src={usernameIcon} alt="Username" className="input-icon" />
+            <img src={usernameIcon} alt="Email" className="input-icon" />
             <input
               type="text"
-              placeholder="Kullanıcı Adı"
-              value={username}
-              onChange={handleUsernameChange}
-              ref={usernameRef}
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailChange}
+              ref={emailRef}
             />
           </div>
-          {formErrors.username && (
+          {formErrors.email && (
             <p className="error-message">
               <img src={warningIcon} alt="Uyarı" className="warning-icon" />
-              {formErrors.username}
+              {formErrors.email}
             </p>
           )}
         </div>

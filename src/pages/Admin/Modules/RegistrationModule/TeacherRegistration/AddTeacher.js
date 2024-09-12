@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types'; // PropTypes eklendi
+import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/TeacherRegistration/AddTeacher.css';
 import warningIcon from '../../../../../assets/images/delete.svg'; // Warning icon import edildi
@@ -91,14 +91,13 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
       } else if (formErrors.tc) {
         tcRef.current.focus();
       } else {
-        // Diğer hataları kontrol etme
         console.log('Diğer hatalar:', formErrors);
       }
     }
   };
 
   const handleBackClick = () => {
-    navigate('/dashboard/registration/teacher'); // Geri butonuna basıldığında öğretmen kayıt sayfasına yönlendir
+    navigate('/dashboard/registration/teacher');
   };
 
   return (
@@ -119,7 +118,7 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           />
           {formErrors.name && (
             <p className="error-message">
-              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkon eklendi */}
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" />
               {formErrors.name}
             </p>
           )}
@@ -138,7 +137,7 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           />
           {formErrors.tc && (
             <p className="error-message">
-              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkon eklendi */}
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" />
               {formErrors.tc}
             </p>
           )}
@@ -159,7 +158,7 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           </select>
           {formErrors.department && (
             <p className="error-message">
-              <img src={warningIcon} alt="Uyarı" className="warning-icon" /> {/* İkon eklendi */}
+              <img src={warningIcon} alt="Uyarı" className="warning-icon" />
               {formErrors.department}
             </p>
           )}
@@ -173,7 +172,6 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
   );
 };
 
-// PropTypes validasyonu eklendi
 AddTeacher.propTypes = {
   addTeacher: PropTypes.func.isRequired,
   updateTeacher: PropTypes.func.isRequired,

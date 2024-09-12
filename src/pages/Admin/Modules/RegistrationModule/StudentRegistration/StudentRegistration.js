@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'; // PropTypes'ı içe aktarın
+import PropTypes from 'prop-types';
 import RegistrationSearchBar from './RegistrationSearchBar';
 import EditIcon from '../../../../../assets/images/pencil.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
-import DeleteIcon from '../../../../../assets/images/delete.svg'; // Silme ikonu ekliyoruz
+import DeleteIcon from '../../../../../assets/images/delete.svg';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 
-const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students }) => { // deleteStudent prop olarak alıyoruz
+const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddOptions, setShowAddOptions] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,10 +27,9 @@ const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students 
   };
 
   const handleDeleteClick = (student) => {
-    // Kullanıcıdan onay alıyoruz
     const confirmed = window.confirm(`Öğrenci ${student.name} silmek istediğinize emin misiniz?`);
     if (confirmed) {
-      deleteStudent(student.id); // Öğrenciyi sil
+      deleteStudent(student.id);
       alert('Öğrenci başarıyla silindi!');
     }
   };
@@ -108,17 +107,16 @@ const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students 
   );
 };
 
-// PropTypes tanımları
 StudentRegistration.propTypes = {
   addStudent: PropTypes.func.isRequired,
   editStudent: PropTypes.func.isRequired,
-  deleteStudent: PropTypes.func.isRequired, // deleteStudent fonksiyonunun gerekliliği belirtiliyor
+  deleteStudent: PropTypes.func.isRequired,
   students: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       classroom: PropTypes.string.isRequired,
-      tc: PropTypes.string, // Eğer tc zorunlu değilse bu şekilde bırakabilirsiniz
+      tc: PropTypes.string,
     })
   ).isRequired,
 };

@@ -39,7 +39,7 @@ const StudentTopics = ({ courses }) => {
     </div>
   );
 };
-////LoginMethod burada yazdıgın swaggere istek atmak login emthodunu alcann mesela burda çağırcan pamaretre değerlerini de burda methoda yolican bu method gitcek
+
 StudentTopics.propTypes = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({

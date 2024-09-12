@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCurrentLesson } from '../../../../helpers/scheduleHelpers';
-import { sendAttendanceData } from '../../../../api/attendance'; // API çağrısı için gerekli fonksiyon
+import { sendAttendanceData } from '../../../../api/attendance';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
 const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords }) => {
@@ -100,7 +100,6 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
   );
 };
 
-// PropTypes tanımlaması
 AttendanceDetail.propTypes = {
   students: PropTypes.arrayOf(
     PropTypes.shape({

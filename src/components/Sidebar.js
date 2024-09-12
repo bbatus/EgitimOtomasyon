@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../assets/styles/Sidebar.css';
-import homeIcon from '../assets/images/home.svg'; // Anasayfa için simge
-import notificationIcon from '../assets/images/notification.svg'; // Bildirimler için simge
-import videoSolutionIcon from '../assets/images/videosolution.svg'; // Video Çözüm için simge
-import attendanceIcon from '../assets/images/attendance.svg'; // Yoklama için simge
-import homeworkIcon from '../assets/images/homework.svg'; // Ödev Takip için simge
-import guidanceIcon from '../assets/images/guidance.svg'; // Rehberlik için simge
-import registrationIcon from '../assets/images/registration.svg'; // Kayıt için simge
-import exitIcon from '../assets/images/exit.svg'; // Çıkış için simge
+import homeIcon from '../assets/images/home.svg';
+import notificationIcon from '../assets/images/notification.svg';
+import videoSolutionIcon from '../assets/images/videosolution.svg';
+import attendanceIcon from '../assets/images/attendance.svg';
+import homeworkIcon from '../assets/images/homework.svg';
+import guidanceIcon from '../assets/images/guidance.svg';
+import registrationIcon from '../assets/images/registration.svg';
+import exitIcon from '../assets/images/exit.svg';
 
 const Sidebar = () => {
   const navigate = useNavigate();

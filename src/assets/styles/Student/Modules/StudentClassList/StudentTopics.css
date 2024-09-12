@@ -1,85 +1,80 @@
 .student-topics-container {
-    padding: 5%; /* Padding yüzdelik */
-    background-color: #fff;
-    border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-    box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölge rem ile */
-    margin: 5% auto; /* Margin yüzdelik */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    max-width: 62.5rem; /* Maksimum genişlik */
-    box-sizing: border-box;
+  padding: 5%;
+  background-color: #fff;
+  border-radius: 3.75rem;
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 62.5rem;
+  box-sizing: border-box;
+}
+
+.student-topics-container h1 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.topics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.topics-table th,
+.topics-table td {
+  border: 0.0625rem solid #ddd;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.topics-table th {
+  background-color: #f2f2f2;
+}
+
+.topics-table th.no-title,
+.topics-table th.topic-title {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .student-topics-container {
+      width: 95%;
+      padding: 4%;
   }
-  
-  .student-topics-container h1 {
-    margin-bottom: 2rem; /* Margin rem ile */
-    font-size: 1.5rem; /* Font boyutu rem ile */
-  }
-  
-  .topics-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 2rem; /* Margin rem ile */
-  }
-  
+
   .topics-table th,
   .topics-table td {
-    border: 0.0625rem solid #ddd; /* Border rem ile */
-    padding: 0.5rem; /* Padding rem ile */
-    text-align: center;
-    font-size: 1rem; /* Font boyutu rem ile */
+      padding: 0.3125rem;
+      font-size: 0.875rem;
   }
-  
-  .topics-table th {
-    background-color: #f2f2f2;
-  }
-  
-  /* NO ve Konu Başlığı için turuncu renk */
+
   .topics-table th.no-title,
   .topics-table th.topic-title {
-    color: #ff9800; /* Turuncu renk */
-    font-weight: bold;
+      font-size: 0.875rem;
+      color: #ff9800;
   }
-  
-  /* Responsive Tasarım */
-  @media (max-width: 768px) {
-    .student-topics-container {
-      width: 95%;
-      padding: 4%; /* Padding yüzdelik */
-    }
-  
-    .topics-table th,
-    .topics-table td {
-      padding: 0.3125rem; /* Padding rem ile */
-      font-size: 0.875rem; /* Font boyutu rem ile */
-    }
-    
-    /* NO ve Konu başlığı daha küçük ekranlar için küçültüldü */
-    .topics-table th.no-title,
-    .topics-table th.topic-title {
-      font-size: 0.875rem; /* Küçük ekranlar için font küçültüldü */
-      color: #ff9800; /* Turuncu renk korundu */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .student-topics-container {
+}
+
+@media (max-width: 480px) {
+  .student-topics-container {
       width: 100%;
-      padding: 3%; /* Padding yüzdelik */
-    }
-  
-    .topics-table th,
-    .topics-table td {
-      padding: 0.25rem; /* Küçük ekranlar için padding ayarlandı */
-      font-size: 0.75rem; /* Font boyutu küçük ekranlar için */
-    }
-    
-    /* NO ve Konu başlığı için daha küçük ekranlar */
-    .topics-table th.no-title,
-    .topics-table th.topic-title {
-      font-size: 0.75rem; /* Daha küçük ekranlar için font ayarı */
-      color: #ff9800; /* Turuncu renk korundu */
-    }
+      padding: 3%;
   }
-  
+
+  .topics-table th,
+  .topics-table td {
+      padding: 0.25rem;
+      font-size: 0.75rem;
+  }
+
+  .topics-table th.no-title,
+  .topics-table th.topic-title {
+      font-size: 0.75rem;
+      color: #ff9800;
+  }
+}

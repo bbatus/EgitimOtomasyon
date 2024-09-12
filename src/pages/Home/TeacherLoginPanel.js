@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import tcIcon from '../../assets/images/idIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
-import warningIcon from '../../assets/images/delete.svg'; // Added warning icon import
+import warningIcon from '../../assets/images/delete.svg';
 import { validateTc } from '../../helpers/validation';
 
 const TeacherLoginPanel = ({ handleBackClick }) => {

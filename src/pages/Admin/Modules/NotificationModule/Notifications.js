@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'; // useEffect kaldırıldı
+import React, { useState, useCallback } from 'react';
 import '../../../../assets/styles/Admin/Modules/NotificationModule/Notifications.css';
 import NoNotificationImage from '../../../../assets/images/no notification.svg';
 
@@ -8,22 +8,20 @@ const Notifications = () => {
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
   const [role, setRole] = useState('');
-  const [classSelection, setClassSelection] = useState(''); // Sınıf seçimi için yeni state
-  const [notifications, setNotifications] = useState([]); // localStorage kullanımı kaldırıldı
+  const [classSelection, setClassSelection] = useState('');
+  const [notifications, setNotifications] = useState([]);
 
-  // Bildirim gönderme butonuna tıklandığında formu açar
   const handleSendNotificationClick = useCallback(() => {
     setIsSending(true);
   }, []);
 
-  // Geri butonuna tıklandığında formu kapatır ve alanları sıfırlar
   const handleBackClick = useCallback(() => {
     setIsSending(false);
     setFrom('');
     setTitle('');
     setMessage('');
     setRole('');
-    setClassSelection(''); // Sınıf seçimi sıfırlanır
+    setClassSelection('');
   }, []);
 
   const handleFromChange = useCallback((e) => {
@@ -52,7 +50,6 @@ const Notifications = () => {
       return;
     }
 
-    // Yeni bildirim objesi oluşturulur
     const newNotification = {
       id: Date.now(),
       from,
@@ -69,14 +66,11 @@ const Notifications = () => {
       }),
     };
 
-    // Yeni bildirim state'e eklenir
     setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
 
-    // Alanları sıfırlar ve formu kapatır
     handleBackClick();
   }, [from, title, message, role, classSelection, handleBackClick]);
 
-  // Öğrenci veya veli rolüne göre sınıf seçeneklerini döndürür
   const renderClassOptions = () => {
     if (role === 'Öğrenci') {
       return (
@@ -115,7 +109,7 @@ const Notifications = () => {
         </select>
       );
     }
-    return null; // Eğer Öğrenci veya Veli seçilmediyse, seçim kutusu gösterme
+    return null;
   };
 
   return (
@@ -132,7 +126,7 @@ const Notifications = () => {
               <option value="Öğretmen">Öğretmen</option>
               <option value="Veli">Veli</option>
             </select>
-            {renderClassOptions()} {/* Sınıf seçim seçenekleri */}
+            {renderClassOptions()}
             <button className="submit-button" onClick={handleSubmit}>
               Gönder
             </button>

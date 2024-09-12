@@ -1,9 +1,9 @@
 .add-course-container {
-  padding: 2.5rem; /* Padding'i rem ile ayarladık */
+  padding: 2.5rem;
   background-color: #fff;
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3); /* Gölgeyi rem ile ayarladık */
-  margin: 2.5rem; /* Margin'i rem ile ayarladık */
+  border-radius: 3.75rem;
+  box-shadow: 0 0.125rem 5.625rem rgba(0, 0, 0, 0.3);
+  margin: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,11 +12,11 @@
 }
 
 .add-course-container h1 {
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 1.25rem;
 }
 
 .form-group {
-  margin-bottom: 1.25rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,35 +24,35 @@
 
 .form-group label {
   display: block;
-  margin-bottom: 0.625rem; /* Margin'i rem ile ayarladık */
+  margin-bottom: 0.625rem;
   font-weight: bold;
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1.125rem;
   text-align: center;
 }
 
 .form-group input {
   width: 100%;
-  max-width: 70%; /* Maksimum genişlik olarak yüzde kullandık */
-  padding: 0.9375rem; /* Padding'i rem ile ayarladık */
-  border: 0.0625rem solid #ccc; /* Border'ı rem ile ayarladık */
-  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  font-size: 1.125rem; /* Font boyutunu rem ile ayarladık */
+  max-width: 70%;
+  padding: 0.9375rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 1.875rem;
+  font-size: 1.125rem;
   color: #333;
 }
 
 .radio-group {
   display: flex;
   justify-content: center;
-  gap: 1.25rem; /* Gap'i rem ile ayarladık */
+  gap: 1.25rem;
 }
 
 .radio-group label {
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1rem;
 }
 
 .button-group {
   display: flex;
-  gap: 1.25rem; /* Gap'i rem ile ayarladık */
+  gap: 1.25rem;
   justify-content: flex-end;
   width: 100%;
 }
@@ -62,10 +62,10 @@
   background-color: #ff9800;
   color: white;
   border: none;
-  padding: 0.625rem 1.25rem; /* Padding'i rem ile ayarladık */
-  border-radius: 1.875rem; /* Köşe yuvarlamayı rem ile ayarladık */
+  padding: 0.625rem 1.25rem;
+  border-radius: 1.875rem;
   cursor: pointer;
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
+  font-size: 1rem;
   transition: background-color 0.3s ease;
   width: auto;
 }
@@ -84,6 +84,6 @@
   .button-group {
     justify-content: center;
     flex-direction: column;
-    gap: 0.625rem; /* Gap'i rem ile ayarladık */
+    gap: 0.625rem;
   }
 }

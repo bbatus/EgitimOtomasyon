@@ -6,7 +6,7 @@ import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModul
 
 const gradeLevels = ['9', '10', '11', '12'];
 const sections = ['A', 'B', 'C', 'D', 'E'];
-const lessons = ["1. Ders", "2. Ders", "3. Ders", "4. Ders", "5. Ders", "6. Ders"];  // Bu satırı ekledik
+const lessons = ["1. Ders", "2. Ders", "3. Ders", "4. Ders", "5. Ders", "6. Ders"];
 
 const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
   const [currentLesson, setCurrentLesson] = useState(getCurrentLesson());
@@ -114,7 +114,6 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
   );
 };
 
-// PropTypes tanımlaması
 AttendanceModule.propTypes = {
   attendanceRecords: PropTypes.objectOf(
     PropTypes.objectOf(

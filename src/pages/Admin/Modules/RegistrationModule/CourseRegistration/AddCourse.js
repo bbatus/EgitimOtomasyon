@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'; // PropTypes import edildi
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/AddCourse.css';
 
@@ -44,7 +44,7 @@ const AddCourse = ({ addCourse }) => {
               value="TYT"
               checked={courseType === 'TYT'}
               onChange={(e) => setCourseType(e.target.value)}
-            />{' '}
+            />
             TYT
           </label>
           <label htmlFor="aytRadio">
@@ -54,7 +54,7 @@ const AddCourse = ({ addCourse }) => {
               value="AYT"
               checked={courseType === 'AYT'}
               onChange={(e) => setCourseType(e.target.value)}
-            />{' '}
+            />
             AYT
           </label>
         </div>
@@ -71,7 +71,6 @@ const AddCourse = ({ addCourse }) => {
   );
 };
 
-// PropTypes tanımlaması
 AddCourse.propTypes = {
   addCourse: PropTypes.func.isRequired,
 };

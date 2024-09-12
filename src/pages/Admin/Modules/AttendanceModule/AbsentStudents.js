@@ -10,15 +10,12 @@ const AbsentStudents = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const studentsPerPage = 7;
 
-  // Sayfalama için öğrenci dilimini hesaplayın
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = absentStudents.slice(indexOfFirstStudent, indexOfLastStudent);
 
-  // Sayfa numarası değiştirici
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  // Toplam sayfa sayısını hesaplayın
   const totalPages = Math.ceil(absentStudents.length / studentsPerPage);
 
   const handleSendNotification = () => {
@@ -53,7 +50,7 @@ const AbsentStudents = () => {
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
-            key={`page-${index}`} // Key değerini daha benzersiz hale getirin
+            key={`page-${index}`}
             onClick={() => paginate(index + 1)}
             className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
           >

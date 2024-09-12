@@ -2,45 +2,45 @@
   display: flex;
   align-items: center;
   background-color: #fff;
-  border-radius: 3.75rem; /* Köşe yuvarlamayı rem ile ayarladık */
-  padding: 1rem; /* Padding'i rem ile ayarladık */
-  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* Gölgeyi rem ile ayarladık */
-  margin-right: 1.25rem; /* Margin'i rem ile ayarladık */
-  width: 100%; /* Genişliği yüzde olarak belirledik */
-  max-width: 18.75rem; /* Maksimum genişliği rem ile belirledik */
+  border-radius: 3.75rem;
+  padding: 1rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+  margin-right: 1.25rem;
+  width: 100%;
+  max-width: 18.75rem;
 }
 
 .registration-search-box input {
   border: none;
   outline: none;
-  font-size: 1rem; /* Font boyutunu rem ile ayarladık */
-  margin-left: 0.625rem; /* Margin'i rem ile ayarladık */
+  font-size: 1rem;
+  margin-left: 0.625rem;
   width: 100%;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .registration-search-box {
-    padding: 0.75rem; /* Padding'i rem ile ayarladık */
-    margin-right: 1rem; /* Margin'i rem ile ayarladık */
-    max-width: 100%; /* Maksimum genişliği kaldırarak tam genişlik sağladık */
+    padding: 0.75rem;
+    margin-right: 1rem;
+    max-width: 100%;
   }
 
   .registration-search-box input {
-    font-size: 0.875rem; /* Font boyutunu rem ile ayarladık */
-    margin-left: 0.5rem; /* Margin'i rem ile ayarladık */
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .registration-search-box {
-    padding: 0.5rem; /* Padding'i rem ile ayarladık */
-    margin-right: 0.625rem; /* Margin'i rem ile ayarladık */
-    max-width: 100%; /* Maksimum genişliği kaldırarak tam genişlik sağladık */
+    padding: 0.5rem;
+    margin-right: 0.625rem;
+    max-width: 100%;
   }
 
   .registration-search-box input {
-    font-size: 0.75rem; /* Font boyutunu rem ile ayarladık */
-    margin-left: 0.375rem; /* Margin'i rem ile ayarladık */
+    font-size: 0.75rem;
+    margin-left: 0.375rem;
   }
 }

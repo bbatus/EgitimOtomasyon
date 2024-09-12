@@ -2,30 +2,28 @@ import React, { useState } from 'react';
 import StudentSearchBar from './StudentSearchBar';
 import PropTypes from 'prop-types';
 import '../../../../assets/styles/Student/Modules/StudentList/StudentList.css';
-import FilterIcon from '../../../../assets/images/filter.svg'; // Filtre ikonu ekliyoruz
+import FilterIcon from '../../../../assets/images/filter.svg';
 
 const StudentList = ({ students = [] }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedClassroom, setSelectedClassroom] = useState(''); // Sınıf filtresi için state
-  const [currentPage, setCurrentPage] = useState(1); // Sayfalama için state
+  const [selectedClassroom, setSelectedClassroom] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const studentsPerPage = 5; // Her sayfada gösterilecek öğrenci sayısı
+  const studentsPerPage = 5;
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   const handleClassroomFilterChange = (e) => {
-    setSelectedClassroom(e.target.value); // Sınıf filtresini günceller
+    setSelectedClassroom(e.target.value);
   };
 
-  // Filtreleme işlemi: Arama ve sınıf filtresini uygula
   const filteredStudents = students.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (selectedClassroom ? student.classroom === selectedClassroom : true)
   );
 
-  // Pagination için hesaplama
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
@@ -38,8 +36,6 @@ const StudentList = ({ students = [] }) => {
   return (
     <div className="student-list-container">
       <h1>Öğrenci Listesi</h1>
-
-      {/* Filtreleme ve Arama Çubuğu */}
       <div className="search-container">
         <StudentSearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
         <div className="filter-container">
@@ -53,7 +49,6 @@ const StudentList = ({ students = [] }) => {
         </div>
       </div>
 
-      {/* Öğrenci Listesi */}
       <div className="student-list">
         {currentStudents.length > 0 ? (
           currentStudents.map((student) => (
@@ -66,7 +61,6 @@ const StudentList = ({ students = [] }) => {
         )}
       </div>
 
-      {/* Pagination */}
       <div className="pagination">
         <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           Önceki
@@ -88,7 +82,6 @@ const StudentList = ({ students = [] }) => {
   );
 };
 
-// PropTypes ile students prop'unun dizi olduğunu kontrol ediyoruz
 StudentList.propTypes = {
   students: PropTypes.array.isRequired,
 };

@@ -65,7 +65,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     { id: 2, courseName: 'Fizik', courseType: 'AYT' },
   ]);
 
-  const [absentStudents, setAbsentStudents] = useState([]); // Yeni eklenen state
+  const [absentStudents, setAbsentStudents] = useState([]);
 
   const navigate = useNavigate();
 
@@ -125,7 +125,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
     <div className="admin-layout">
       <Sidebar />
       <div className="content">
-        <Header username="Admin" /> {/* Header component added with username prop */}
+        <Header username="Admin" />
         <Routes>
           <Route path="/" element={<AdminDashboard />} />
           <Route path="adminmainpage" element={<AdminMainPage />} />
@@ -195,7 +195,7 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
                 editTeacher={(teacher) =>
                   navigate('/dashboard/registration/teacher/edit', { state: { teacher } })
                 }
-                deleteTeacher={deleteTeacher} // deleteTeacher fonksiyonu eklendi
+                deleteTeacher={deleteTeacher}
                 teachers={teachers}
               />
             }
@@ -226,7 +226,6 @@ const AdminLayout = ({ attendanceRecords, setAttendanceRecords }) => {
   );
 };
 
-// PropTypes tanımlaması
 AdminLayout.propTypes = {
   attendanceRecords: PropTypes.object.isRequired,
   setAttendanceRecords: PropTypes.func.isRequired,

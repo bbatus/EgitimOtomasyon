@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from 'prop-types';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import warningIcon from '../../../../../assets/images/delete.svg';
 
@@ -15,7 +15,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
 
   const nameRef = useRef(null);
   const tcRef = useRef(null);
-  const classRef = useRef(null); // Sınıf seçiminde odaklanma için referans ekledik.
+  const classRef = useRef(null);
 
   useEffect(() => {
     if (studentToEdit) {
@@ -67,16 +67,13 @@ const AddStudent = ({ addStudent, updateStudent }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Her bir alan için ayrı ayrı validasyon yapıyoruz.
     const nameError = validateName(name);
     const tcError = validateTc(tc);
     const classroomError = validateClassroom(classroom);
 
-    // Hataları set ediyoruz
     const errors = { name: nameError, tc: tcError, classroom: classroomError };
     setFormErrors(errors);
 
-    // Eğer bir hata varsa, ilgili input'a odaklanıyoruz.
     if (nameError) {
       nameRef.current.focus();
       return;
@@ -88,7 +85,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     }
 
     if (classroomError) {
-      classRef.current.focus(); // Sınıf hatasında odağı sınıf dropdown'una veriyoruz.
+      classRef.current.focus();
       return;
     }
 
@@ -108,7 +105,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
   };
 
   const handleBackClick = () => {
-    navigate('/dashboard/registration/student'); // Geri butonuna basıldığında öğrenci kayıt sayfasına yönlendir
+    navigate('/dashboard/registration/student');
   };
 
   return (
@@ -158,7 +155,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
             value={classroom}
             onChange={handleClassroomChange}
             className="input-field"
-            ref={classRef} // Sınıf dropdown referansı
+            ref={classRef}
           >
             <option value="">Sınıf Seçin</option>
             {[

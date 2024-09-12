@@ -3,25 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import calendarIcon from '../assets/images/calendar.svg'; 
 import timerIcon from '../assets/images/timer.svg';
 import defaultUserIcon from '../assets/images/personIcon.svg';
-import notificationIcon from '../assets/images/notification.svg'; // Bildirim ikonu
-import '../assets/styles/StudentHeader.css'; // StudentHeader için CSS dosyası
+import notificationIcon from '../assets/images/notification.svg';
+import '../assets/styles/StudentHeader.css';
 
 const StudentHeader = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
-  const [notifications, setNotifications] = useState([]); // Bildirimler state'i
+  const [notifications, setNotifications] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const tc = localStorage.getItem('tc') || 'Misafir'; // TC'yi localStorage'dan al
+  const tc = localStorage.getItem('tc') || 'Misafir';
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Saat ve tarih güncellenmesi
     const interval = setInterval(() => {
       setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
       setCurrentDate(new Date().toLocaleDateString());
     }, 1000);
 
-    // Örnek bildirim verileri
     const sampleNotifications = [
       { id: 1, title: 'Sınav Tarihleri', message: '9. sınıf sınav tarihleri açıklandı.' },
       { id: 2, title: 'Okul Etkinliği', message: 'Okul gezisi kayıtları başladı.' },
@@ -30,7 +28,7 @@ const StudentHeader = () => {
 
     setNotifications(sampleNotifications);
 
-    return () => clearInterval(interval); // Zamanlayıcıyı temizle
+    return () => clearInterval(interval);
   }, []);
 
   const toggleDropdown = () => {
@@ -38,19 +36,17 @@ const StudentHeader = () => {
   };
 
   const handleNotificationClick = (notificationId) => {
-    // Bildirim sayfasına yönlendirme
     navigate('/student/notifications');
-    setDropdownOpen(false); // Bildirime tıklandığında dropdown kapanır
+    setDropdownOpen(false);
   };
 
-  // Maksimum 3 bildirim gösterimi için
   const displayedNotifications = notifications.slice(0, 3);
 
   return (
     <div className="header-container">
       <div className="user-info">
         <img src={defaultUserIcon} alt="User" className="user-icon" />
-        <span className="user-greeting">Hoş geldiniz, {tc}</span> {/* TC Kimlik No görüntülenir */}
+        <span className="user-greeting">Hoş geldiniz, {tc}</span>
       </div>
       <div className="date-time">
         <img src={calendarIcon} alt="Calendar Icon" className="icon" />
