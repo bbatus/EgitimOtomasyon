@@ -6,29 +6,44 @@ import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import warningIcon from '../../assets/images/delete.svg';
 
-const validateEmail = (email) => {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(String(email).toLowerCase()) ? '' : 'Geçersiz email formatı';
+const validateUsername = (username) => {
+  if (username.length < 3) {
+    return 'Kullanıcı adı en az 3 karakter olmalı';
+  }
+  if (username.length > 50) {
+    return 'Kullanıcı adı en fazla 50 karakter olabilir';
+  }
+  const alphanumericRegex = /^[a-zA-Z0-9_]+$/;
+  if (!alphanumericRegex.test(username)) {
+    return 'Kullanıcı adı sadece harf, rakam ve alt çizgi (_) içerebilir';
+  }
+  if (!/^[a-zA-Z0-9]/.test(username)) {
+    return 'Kullanıcı adı harf veya rakamla başlamalıdır';
+  }
+  if (!/[a-zA-Z0-9]$/.test(username)) {
+    return 'Kullanıcı adı harf veya rakamla bitmelidir';
+  }
+  return '';
 };
 
 const AdminLoginPanel = ({ handleBackClick }) => {
   const [formErrors, setFormErrors] = useState({});
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const emailRef = useRef(null);
+  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleEmailChange = useCallback((e) => {
+  const handleUsernameChange = useCallback((e) => {
     const value = e.target.value;
     if (value.length <= 50) {
-      setEmail(value);
-      const error = validateEmail(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, email: error }));
+      setUsername(value);
+      const error = validateUsername(value);
+      setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
     } else {
-      const error = 'Email 50 haneden fazla olamaz';
-      setFormErrors((prevErrors) => ({ ...prevErrors, email: error }));
+      const error = 'Kullanıcı adı 50 haneden fazla olamaz';
+      setFormErrors((prevErrors) => ({ ...prevErrors, username: error }));
     }
   }, []);
 
@@ -43,51 +58,44 @@ const AdminLoginPanel = ({ handleBackClick }) => {
     async (e) => {
       e.preventDefault();
 
-      console.log('Form gönderildi, işlem başlatılıyor...');
-
       const errors = {
-        email: validateEmail(email),
+        username: validateUsername(username),
         password: password ? '' : 'Şifre alanı boş olamaz',
       };
       setFormErrors(errors);
 
-      if (!errors.email && !errors.password) {
-        console.log('Email ve şifre validasyonu başarılı, API isteği yapılıyor...');
-
+      if (!errors.username && !errors.password) {
         try {
           const response = await axios.post('http://localhost:3000/auth/login', {
-            email,
+            username,
             password,
           });
 
-          console.log('Giriş başarılı:', response.data);
-          console.log('Tam yanıt:', response);
-
           localStorage.setItem('access_token', response.data.data.access_token);
-
           navigate('/dashboard');
         } catch (error) {
           if (error.response) {
             console.error('API Hatası:', error.response.data.message);
-            console.error('Tam hata yanıtı:', error.response);
+            console.error('Hata Kodu:', error.response.status);
+            console.error('Hata Yanıt Verileri:', error.response.data);
             alert('Giriş başarısız: ' + error.response.data.message);
           } else if (error.request) {
-            console.error('Sunucudan yanıt alınamadı:', error.request);
+            console.error('Sunucudan yanıt alınamadı. İstek:', error.request);
+            alert('Sunucudan yanıt alınamadı, lütfen daha sonra tekrar deneyin.');
           } else {
             console.error('İstek yapılamadı:', error.message);
+            alert('Beklenmedik bir hata oluştu: ' + error.message);
           }
         }
       } else {
-        console.log('Validasyon başarısız, hatalar:', errors);
-
-        if (errors.email) {
-          emailRef.current.focus();
+        if (errors.username) {
+          usernameRef.current.focus();
         } else if (errors.password) {
           passwordRef.current.focus();
         }
       }
     },
-    [email, password, navigate]
+    [username, password, navigate]
   );
 
   return (
@@ -96,19 +104,19 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       <form className="login-form" onSubmit={handleFormSubmit}>
         <div className="input-container">
           <div className="input-with-icon">
-            <img src={usernameIcon} alt="Email" className="input-icon" />
+            <img src={usernameIcon} alt="Kullanıcı Adı" className="input-icon" />
             <input
               type="text"
-              placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
-              ref={emailRef}
+              placeholder="Kullanıcı Adı"
+              value={username}
+              onChange={handleUsernameChange}
+              ref={usernameRef}
             />
           </div>
-          {formErrors.email && (
+          {formErrors.username && (
             <p className="error-message">
               <img src={warningIcon} alt="Uyarı" className="warning-icon" />
-              {formErrors.email}
+              {formErrors.username}
             </p>
           )}
         </div>
