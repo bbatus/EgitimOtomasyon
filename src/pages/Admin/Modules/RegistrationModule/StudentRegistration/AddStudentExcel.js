@@ -66,16 +66,15 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
       const students = [];
       const errors = [];
       jsonData.slice(1).forEach((row, i) => {
-        const name = row[4];
-        const surname = row[5];
-        const tc = row[6];
-        const classroom = row[7] || 'Belirtilmedi';
+        const name = `${row[0] || ''} ${row[1] || ''}`; // AD ve SOYAD birleştirilmesi
+        const tc = row[5] || 'Belirtilmedi'; // TC NUMARASI
+        const classroom = `${row[6] || ''}-${row[7] || ''}`; // SINIF-ŞUBE birleştirilmesi
 
-        if (name || surname || tc) {
+        if (name.trim() && tc !== 'Belirtilmedi') {
           students.push({ 
             id: uuidv4(),
-            name: `${name || ''} ${surname || ''}`, 
-            tc: tc || 'Belirtilmedi', 
+            name, 
+            tc, 
             classroom 
           });
         } else {

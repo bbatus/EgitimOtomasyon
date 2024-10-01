@@ -27,6 +27,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     }
   }, [studentToEdit]);
 
+  // Validation functions
   const validateName = (name) => {
     if (!name) return 'Ad Soyad boş olamaz';
     if (name.length > 50) return 'Ad Soyad 50 karakterden fazla olamaz';
@@ -35,7 +36,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
 
   const validateTc = (tc) => {
     if (!tc) return 'TC Kimlik No boş olamaz';
-    if (tc.length !== 11 || tc[0] === '0') {
+    if (tc.length !== 11 || !/^[1-9]\d{10}$/.test(tc)) {
       return 'TC Kimlik No 11 haneli olmalı ve 0 ile başlamamalıdır';
     }
     return '';
@@ -45,6 +46,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     return classroom ? '' : 'Lütfen bir sınıf seçiniz';
   };
 
+  // Handle input changes
   const handleNameChange = (e) => {
     const value = e.target.value;
     setName(value);
@@ -54,9 +56,11 @@ const AddStudent = ({ addStudent, updateStudent }) => {
 
   const handleTcChange = (e) => {
     const value = e.target.value;
-    setTc(value);
-    const error = validateTc(value);
-    setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
+    if (/^\d*$/.test(value) && value.length <= 11) { // Only allow numbers and max length of 11
+      setTc(value);
+      const error = validateTc(value);
+      setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
+    }
   };
 
   const handleClassroomChange = (e) => {
