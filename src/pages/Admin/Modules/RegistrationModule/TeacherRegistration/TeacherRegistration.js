@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import RegistrationSearchBarTeacher from './RegistrationSearchBarTeacher';
 import EditIcon from '../../../../../assets/images/pencil.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
-import DeleteIcon from '../../../../../assets/images/delete.svg'; // Silme ikonu ekliyoruz
+import DeleteIcon from '../../../../../assets/images/delete.svg';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
-import { useNavigate } from 'react-router-dom';
 
 const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const teachersPerPage = 5;
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
     const confirmed = window.confirm(`Öğretmen ${teacher.name} silmek istediğinize emin misiniz?`);
     if (confirmed) {
       deleteTeacher(teacher.id);
-      alert('Öğretmen başarıyla silindi!');
+      setNotification({ message: 'Öğretmen başarıyla silindi!', type: 'success' });
     }
   };
 
@@ -54,6 +56,10 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
 
   const handleEditTeacher = (teacher) => {
     navigate('/dashboard/registration/teacher/edit', { state: { teacher } });
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -120,11 +126,17 @@ const TeacherRegistration = ({ addTeacher, editTeacher, deleteTeacher, teachers 
           </button>
         </div>
       </div>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };
 
-// PropTypes tanımları
 TeacherRegistration.propTypes = {
   addTeacher: PropTypes.func.isRequired,
   editTeacher: PropTypes.func.isRequired,

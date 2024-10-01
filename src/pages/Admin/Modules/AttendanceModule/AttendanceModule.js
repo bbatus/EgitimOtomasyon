@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentLesson, isWithinLessonTime, isLessonOver } from '../../../../helpers/scheduleHelpers';
+import NotificationDialog from '../../../../components/NotificationDialog';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
 const gradeLevels = ['9', '10', '11', '12'];
@@ -11,6 +12,7 @@ const lessons = ["1. Ders", "2. Ders", "3. Ders", "4. Ders", "5. Ders", "6. Ders
 const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
   const [currentLesson, setCurrentLesson] = useState(getCurrentLesson());
   const [selectedGrade, setSelectedGrade] = useState('12');
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,20 +26,33 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (currentLesson.nextUpdate) {
-      const timeout = currentLesson.nextUpdate - new Date();
-      const timer = setTimeout(() => setCurrentLesson(getCurrentLesson()), timeout);
-      return () => clearTimeout(timer);
-    }
-  }, [currentLesson.nextUpdate]);
-
   const handleClassClick = (className, lesson) => {
     if (isLessonOver(lesson)) {
-      alert('Bu dersin yoklama saati geçmiştir.');
+      setNotification({ message: 'Bu dersin yoklama saati geçmiştir.', type: 'error' });
     } else {
       navigate(`/dashboard/attendance/${className}/${lesson}`);
     }
+  };
+
+  const handleViewAbsentStudents = () => {
+    const absentStudents = [];
+
+    for (const lesson in attendanceRecords) {
+      for (const className in attendanceRecords[lesson]) {
+        attendanceRecords[lesson][className].forEach(student => {
+          if (student.present === false) {
+            absentStudents.push({ id: student.studentId, name: student.name, classroom: student.classroom, lesson });
+          }
+        });
+      }
+    }
+
+    setNotification({ message: 'Yok yazılan öğrenciler gösteriliyor.', type: 'success' });
+    navigate('/dashboard/absent-students', { state: { absentStudents } });
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   const getClassButtonClass = (className, lesson) => {
@@ -52,22 +67,6 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
     }
   };
 
-  const handleViewAbsentStudents = () => {
-    const absentStudents = [];
-
-    for (const lesson in attendanceRecords) {
-      for (const className in attendanceRecords[lesson]) {
-        attendanceRecords[lesson][className].forEach(student => {
-          if (student.present === false) {
-            absentStudents.push({ name: student.name, classroom: student.classroom, lesson });
-          }
-        });
-      }
-    }
-
-    navigate('/dashboard/absent-students', { state: { absentStudents } });
-  };
-
   const selectedClasses = sections.map(section => `${selectedGrade}-${section}`);
 
   return (
@@ -80,7 +79,6 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
           <span> ({currentLesson.lesson})</span>
         </div>
       </div>
-
       <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)}>
         {gradeLevels.map(grade => (
           <option key={grade} value={grade}>
@@ -88,7 +86,6 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
           </option>
         ))}
       </select>
-
       <div className="attendance-summary">
         {lessons.map((lesson) => (
           <div key={lesson}>
@@ -110,6 +107,13 @@ const AttendanceModule = ({ attendanceRecords, setAttendanceRecords }) => {
       <button className="view-absent-students-button" onClick={handleViewAbsentStudents}>
         Yok Yazılanları Gör
       </button>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };
@@ -119,7 +123,7 @@ AttendanceModule.propTypes = {
     PropTypes.objectOf(
       PropTypes.arrayOf(
         PropTypes.shape({
-          id: PropTypes.number.isRequired,
+          studentId: PropTypes.number.isRequired,
           name: PropTypes.string.isRequired,
           classroom: PropTypes.string.isRequired,
           present: PropTypes.bool.isRequired,

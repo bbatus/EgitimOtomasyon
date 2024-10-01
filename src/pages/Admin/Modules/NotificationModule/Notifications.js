@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import '../../../../assets/styles/Admin/Modules/NotificationModule/Notifications.css';
 import NoNotificationImage from '../../../../assets/images/no notification.svg';
+import NotificationDialog from '../../../../components/NotificationDialog';
 
 const Notifications = () => {
   const [isSending, setIsSending] = useState(false);
@@ -10,6 +11,11 @@ const Notifications = () => {
   const [role, setRole] = useState('');
   const [classSelection, setClassSelection] = useState('');
   const [notifications, setNotifications] = useState([]);
+  const [notification, setNotification] = useState({ message: '', type: '' });
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
+  };
 
   const handleSendNotificationClick = useCallback(() => {
     setIsSending(true);
@@ -46,7 +52,7 @@ const Notifications = () => {
 
   const handleSubmit = useCallback(() => {
     if (!from || !title || !message || !role) {
-      alert('Lütfen tüm alanları doldurun.');
+      setNotification({ message: 'Lütfen tüm alanları doldurun.', type: 'error' });
       return;
     }
 
@@ -67,7 +73,7 @@ const Notifications = () => {
     };
 
     setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
-
+    setNotification({ message: 'Bildirim başarıyla gönderildi!', type: 'success' });
     handleBackClick();
   }, [from, title, message, role, classSelection, handleBackClick]);
 
@@ -180,10 +186,7 @@ const Notifications = () => {
                   </div>
                   <div className="notification-right">
                     <div className="notification-date">{notif.date}</div>
-                    <button
-                      className="expand-button"
-                      onClick={() => alert(notif.message)}
-                    >
+                    <button className="expand-button" onClick={() => alert(notif.message)}>
                       Oku
                     </button>
                   </div>
@@ -192,6 +195,13 @@ const Notifications = () => {
             </ul>
           )}
         </>
+      )}
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
       )}
     </div>
   );

@@ -9,21 +9,25 @@ const StudentList = ({ students = [] }) => {
   const [selectedClassroom, setSelectedClassroom] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const studentsPerPage = 5;
+  const studentsPerPage = 5; // Sayfa başına gösterilecek öğrenci sayısı
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+    setCurrentPage(1); // Arama yapıldığında sayfayı sıfırla
   };
 
   const handleClassroomFilterChange = (e) => {
     setSelectedClassroom(e.target.value);
+    setCurrentPage(1); // Filtreleme yapıldığında sayfayı sıfırla
   };
 
+  // Öğrenci filtreleme işlemi
   const filteredStudents = students.filter((student) =>
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (selectedClassroom ? student.classroom === selectedClassroom : true)
   );
 
+  // Sayfa başına öğrenci gösterme işlemi
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
@@ -62,19 +66,19 @@ const StudentList = ({ students = [] }) => {
       </div>
 
       <div className="pagination">
-        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="pagination-button">
           Önceki
         </button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            className={index + 1 === currentPage ? 'active' : ''}
+            className={`pagination-button ${index + 1 === currentPage ? 'active' : ''}`}
           >
             {index + 1}
           </button>
         ))}
-        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className="pagination-button">
           Sonraki
         </button>
       </div>

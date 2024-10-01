@@ -1,16 +1,25 @@
 import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import tcIcon from '../../assets/images/idIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import warningIcon from '../../assets/images/delete.svg';
 import { validateTc } from '../../helpers/validation';
+import NotificationDialog from '../../components/NotificationDialog';
+import '../../assets/styles/NotificationDialog.css';
 
 const TeacherLoginPanel = ({ handleBackClick }) => {
   const [formErrors, setFormErrors] = useState({});
   const [tc, setTc] = useState('');
   const [password, setPassword] = useState('');
+  const [notification, setNotification] = useState({ message: '', type: '' });
 
   const tcRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
+  };
 
   const handleTcChange = useCallback((e) => {
     const value = e.target.value;
@@ -19,7 +28,10 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
       const error = validateTc(value);
       setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
     } else if (value.startsWith('0')) {
-      setFormErrors((prevErrors) => ({ ...prevErrors, tc: 'TC Kimlik No 0 ile başlamamalıdır' }));
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        tc: 'TC Kimlik No 0 ile başlamamalıdır',
+      }));
     } else {
       setFormErrors((prevErrors) => ({ ...prevErrors, tc: '' }));
     }
@@ -44,21 +56,28 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
     }
   }, []);
 
-  const handleFormSubmit = useCallback((e) => {
-    e.preventDefault();
-    const errors = { tc: validateTc(tc) };
-    setFormErrors(errors);
+  const handleFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const errors = { tc: validateTc(tc) };
+      setFormErrors(errors);
 
-    if (!errors.tc) {
-      // Form submission logic
-    } else {
-      tcRef.current.focus();
-    }
-
-    if (!password) {
-      setFormErrors((prevErrors) => ({ ...prevErrors, password: 'Şifre zorunludur' }));
-    }
-  }, [tc, password]);
+      if (!errors.tc && password) {
+        setNotification({ message: 'Giriş başarılı!', type: 'success' });
+        setTimeout(() => {
+          navigate('/teacher/dashboard', { replace: true });
+        }, 1500);
+      } else {
+        if (errors.tc) {
+          setNotification({ message: errors.tc, type: 'error' });
+          tcRef.current.focus();
+        } else if (!password) {
+          setNotification({ message: 'Şifre zorunludur', type: 'error' });
+        }
+      }
+    },
+    [tc, password, navigate]
+  );
 
   return (
     <>
@@ -108,9 +127,24 @@ const TeacherLoginPanel = ({ handleBackClick }) => {
         </label>
         <button type="submit" className="submit-button">Giriş Yap</button>
       </form>
-      <button className="back-button" onClick={handleBackClick}>
+      <button
+        className="back-button"
+        onClick={handleBackClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleBackClick();
+          }
+        }}
+      >
         Seçim ekranına geri dön
       </button>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </>
   );
 };

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/TeacherRegistration/AddTeacher.css';
-import warningIcon from '../../../../../assets/images/delete.svg'; // Warning icon import edildi
+import warningIcon from '../../../../../assets/images/delete.svg';
 
 const AddTeacher = ({ addTeacher, updateTeacher }) => {
   const [formValues, setFormValues] = useState({ name: '', tc: '', department: '' });
   const [formErrors, setFormErrors] = useState({});
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const navigate = useNavigate();
   const location = useLocation();
   const teacherToEdit = location.state?.teacher;
@@ -24,7 +26,6 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
 
-    // Ad Soyad doğrulama
     if (name === 'name') {
       if (value.length > 50) {
         setFormErrors((prevErrors) => ({ ...prevErrors, [name]: 'Ad Soyad 50 karakterden fazla olamaz' }));
@@ -33,7 +34,6 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
       }
     }
 
-    // TC Kimlik No doğrulama
     if (name === 'tc') {
       const isValidTc = /^\d{11}$/.test(value) && value[0] !== '0';
       if (!isValidTc && value.length > 0) {
@@ -50,7 +50,6 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
   const validateForm = () => {
     const errors = {};
 
-    // Ad Soyad doğrulama
     if (!formValues.name) {
       errors.name = 'Ad Soyad boş olamaz';
     } else if (formValues.name.length > 50) {
@@ -59,7 +58,6 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
       errors.name = '';
     }
 
-    // TC Kimlik No doğrulama
     if (!formValues.tc) {
       errors.tc = 'TC Kimlik No boş olamaz';
     } else if (!/^\d{11}$/.test(formValues.tc) || formValues.tc[0] === '0') {
@@ -68,7 +66,6 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
       errors.tc = '';
     }
 
-    // Bölüm doğrulama
     errors.department = formValues.department ? '' : 'Lütfen bir bölüm seçiniz';
 
     setFormErrors(errors);
@@ -80,24 +77,31 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
     if (validateForm()) {
       if (teacherToEdit) {
         updateTeacher({ ...teacherToEdit, ...formValues });
+        setNotification({ message: 'Öğretmen başarıyla güncellendi!', type: 'success' });
       } else {
         addTeacher(formValues);
+        setNotification({ message: 'Öğretmen başarıyla kaydedildi!', type: 'success' });
       }
-      alert('Öğretmen başarıyla kaydedildi!');
-      navigate('/dashboard/registration/teacher');
+      setTimeout(() => {
+        navigate('/dashboard/registration/teacher');
+      }, 1500);
     } else {
       if (formErrors.name) {
         nameRef.current.focus();
+        setNotification({ message: formErrors.name, type: 'error' });
       } else if (formErrors.tc) {
         tcRef.current.focus();
-      } else {
-        console.log('Diğer hatalar:', formErrors);
+        setNotification({ message: formErrors.tc, type: 'error' });
       }
     }
   };
 
   const handleBackClick = () => {
     navigate('/dashboard/registration/teacher');
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -153,7 +157,9 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           >
             <option value="">Bölüm Seçin</option>
             {['Matematik', 'Fen Bilimleri', 'Türkçe', 'Sosyal Bilgiler', 'İngilizce'].map((dept) => (
-              <option key={dept} value={dept}>{dept}</option>
+              <option key={dept} value={dept}>
+                {dept}
+              </option>
             ))}
           </select>
           {formErrors.department && (
@@ -168,6 +174,13 @@ const AddTeacher = ({ addTeacher, updateTeacher }) => {
           <button type="button" className="back-button" onClick={handleBackClick}>Geri Dön</button>
         </div>
       </form>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

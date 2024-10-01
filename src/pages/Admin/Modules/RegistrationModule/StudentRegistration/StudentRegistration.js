@@ -4,6 +4,7 @@ import RegistrationSearchBar from './RegistrationSearchBar';
 import EditIcon from '../../../../../assets/images/pencil.svg';
 import FilterIcon from '../../../../../assets/images/filter.svg';
 import DeleteIcon from '../../../../../assets/images/delete.svg';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/RegistrationModule.css';
 
 const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students }) => {
@@ -11,6 +12,7 @@ const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students 
   const [showAddOptions, setShowAddOptions] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClassroom, setSelectedClassroom] = useState('');
+  const [notification, setNotification] = useState({ message: '', type: '' });
 
   const studentsPerPage = 5;
 
@@ -30,7 +32,7 @@ const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students 
     const confirmed = window.confirm(`Öğrenci ${student.name} silmek istediğinize emin misiniz?`);
     if (confirmed) {
       deleteStudent(student.id);
-      alert('Öğrenci başarıyla silindi!');
+      setNotification({ message: 'Öğrenci başarıyla silindi!', type: 'success' });
     }
   };
 
@@ -46,6 +48,10 @@ const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students 
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -103,6 +109,13 @@ const StudentRegistration = ({ addStudent, editStudent, deleteStudent, students 
           <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Sonraki</button>
         </div>
       </div>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

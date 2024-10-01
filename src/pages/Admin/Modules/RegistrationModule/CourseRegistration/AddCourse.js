@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/AddCourse.css';
 
 const AddCourse = ({ addCourse }) => {
   const [courseName, setCourseName] = useState('');
   const [courseType, setCourseType] = useState('TYT');
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const navigate = useNavigate();
 
   const handleAddCourse = () => {
     if (courseName.trim()) {
       addCourse({ courseName: courseName.trim(), courseType });
-      navigate('/dashboard/registration/course');
+      setNotification({ message: 'Ders başarıyla eklendi!', type: 'success' });
+      setTimeout(() => navigate('/dashboard/registration/course'), 1500);
     } else {
-      alert('Lütfen ders adını giriniz');
+      setNotification({ message: 'Lütfen ders adını giriniz', type: 'error' });
     }
   };
 
   const handleCancel = () => {
-    navigate('/dashboard/registration/course');
+    setNotification({ message: 'Ders ekleme işlemi iptal edildi.', type: 'error' });
+    setTimeout(() => navigate('/dashboard/registration/course'), 1500);
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -67,6 +75,13 @@ const AddCourse = ({ addCourse }) => {
           Devam Et
         </button>
       </div>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

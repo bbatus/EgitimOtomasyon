@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/CourseRegistration/CourseTopics.css';
 import editIcon from '../../../../../assets/images/pencil.svg';
 import deleteIcon from '../../../../../assets/images/delete.svg';
@@ -19,22 +20,29 @@ const CourseTopics = ({ courses, deleteCourse }) => {
   const [editingTopicId, setEditingTopicId] = useState(null);
   const [editingTopicName, setEditingTopicName] = useState('');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const navigate = useNavigate();
   const { courseId } = useParams();
 
   const topicsPerPage = 5;
+  const indexOfLastTopic = currentPage * topicsPerPage;
+  const indexOfFirstTopic = indexOfLastTopic - topicsPerPage;
+  const currentTopics = topics.slice(indexOfFirstTopic, indexOfLastTopic);
+  const totalPages = Math.ceil(topics.length / topicsPerPage);
 
   const addTopic = () => {
     if (newTopic.trim()) {
       setTopics([...topics, { id: topics.length + 1, name: newTopic.trim() }]);
       setNewTopic('');
+      setNotification({ message: 'Konu başarıyla eklendi!', type: 'success' });
     } else {
-      alert('Lütfen geçerli bir konu başlığı giriniz.');
+      setNotification({ message: 'Lütfen geçerli bir konu başlığı giriniz.', type: 'error' });
     }
   };
 
   const deleteTopic = (id) => {
     setTopics(topics.filter((topic) => topic.id !== id));
+    setNotification({ message: 'Konu başarıyla silindi.', type: 'success' });
   };
 
   const startEditing = (id, name) => {
@@ -51,8 +59,9 @@ const CourseTopics = ({ courses, deleteCourse }) => {
       );
       setEditingTopicId(null);
       setEditingTopicName('');
+      setNotification({ message: 'Konu başarıyla güncellendi.', type: 'success' });
     } else {
-      alert('Lütfen geçerli bir konu başlığı giriniz.');
+      setNotification({ message: 'Lütfen geçerli bir konu başlığı giriniz.', type: 'error' });
     }
   };
 
@@ -65,20 +74,20 @@ const CourseTopics = ({ courses, deleteCourse }) => {
   const confirmDeleteCourse = () => {
     deleteCourse(parseInt(courseId));
     setShowDeleteConfirmation(false);
-    navigate('/dashboard/registration/course');
+    setNotification({ message: 'Ders başarıyla silindi.', type: 'success' });
+    setTimeout(() => navigate('/dashboard/registration/course'), 1500);
   };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const indexOfLastTopic = currentPage * topicsPerPage;
-  const indexOfFirstTopic = indexOfLastTopic - topicsPerPage;
-  const currentTopics = topics.slice(indexOfFirstTopic, indexOfLastTopic);
-  const totalPages = Math.ceil(topics.length / topicsPerPage);
-
   const handleBackClick = () => {
     navigate('/dashboard/registration/course');
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -183,6 +192,13 @@ const CourseTopics = ({ courses, deleteCourse }) => {
       <button type="button" className="back-button" onClick={handleBackClick}>
         Geri Dön
       </button>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

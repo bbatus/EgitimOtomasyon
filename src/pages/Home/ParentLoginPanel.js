@@ -4,10 +4,18 @@ import 'react-phone-number-input/style.css';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import phoneIcon from '../../assets/images/phoneIcon.svg';
+import warningIcon from '../../assets/images/delete.svg';
+import NotificationDialog from '../../components/NotificationDialog';
+import '../../assets/styles/NotificationDialog.css';
 
 const ParentLoginPanel = ({ handleBackClick }) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [notification, setNotification] = useState({ message: '', type: '' });
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
+  };
 
   const handlePhoneNumberChange = useCallback((value) => {
     if (value && value.length <= 16) {
@@ -17,7 +25,7 @@ const ParentLoginPanel = ({ handleBackClick }) => {
   }, [setValue]);
 
   const onSubmit = useCallback((data) => {
-    console.log(data);
+    setNotification({ message: 'Giriş başarılı!', type: 'success' });
   }, []);
 
   return (
@@ -38,7 +46,12 @@ const ParentLoginPanel = ({ handleBackClick }) => {
               })}
             />
           </div>
-          {errors.phoneNumber && <p className="error-message">{errors.phoneNumber.message}</p>}
+          {errors.phoneNumber && (
+            <p className="error-message">
+              <img src={warningIcon} alt="Warning" className="warning-icon" />
+              {errors.phoneNumber.message}
+            </p>
+          )}
         </div>
         <div className="remember-me">
           <input type="checkbox" id="rememberMe" />
@@ -49,6 +62,13 @@ const ParentLoginPanel = ({ handleBackClick }) => {
       <button className="back-button" onClick={handleBackClick}>
         Seçim ekranına geri dön
       </button>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </>
   );
 };

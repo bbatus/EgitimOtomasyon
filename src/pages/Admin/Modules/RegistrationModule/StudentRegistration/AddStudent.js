@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import warningIcon from '../../../../../assets/images/delete.svg';
 
@@ -9,6 +10,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
   const [tc, setTc] = useState('');
   const [classroom, setClassroom] = useState('');
   const [formErrors, setFormErrors] = useState({});
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const navigate = useNavigate();
   const location = useLocation();
   const studentToEdit = location.state?.student;
@@ -76,16 +78,19 @@ const AddStudent = ({ addStudent, updateStudent }) => {
 
     if (nameError) {
       nameRef.current.focus();
+      setNotification({ message: nameError, type: 'error' });
       return;
     }
 
     if (tcError) {
       tcRef.current.focus();
+      setNotification({ message: tcError, type: 'error' });
       return;
     }
 
     if (classroomError) {
       classRef.current.focus();
+      setNotification({ message: classroomError, type: 'error' });
       return;
     }
 
@@ -94,18 +99,25 @@ const AddStudent = ({ addStudent, updateStudent }) => {
     try {
       if (studentToEdit) {
         updateStudent({ ...studentToEdit, ...studentData });
+        setNotification({ message: 'Öğrenci başarıyla güncellendi!', type: 'success' });
       } else {
         addStudent(studentData);
+        setNotification({ message: 'Öğrenci başarıyla kaydedildi!', type: 'success' });
       }
-      alert('Öğrenci başarıyla kaydedildi!');
-      navigate('/dashboard/registration/student');
+      setTimeout(() => {
+        navigate('/dashboard/registration/student');
+      }, 1500);
     } catch (error) {
-      alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
+      setNotification({ message: `Öğrenci eklenirken bir hata oluştu: ${error.message}`, type: 'error' });
     }
   };
 
   const handleBackClick = () => {
     navigate('/dashboard/registration/student');
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -197,6 +209,13 @@ const AddStudent = ({ addStudent, updateStudent }) => {
           </button>
         </div>
       </form>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

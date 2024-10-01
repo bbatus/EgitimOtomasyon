@@ -1,31 +1,37 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import NotificationDialog from '../../../../components/NotificationDialog';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
-const AbsentStudents = () => {
+const AbsentStudents = ({ absentStudents: initialAbsentStudents }) => {
   const location = useLocation();
-  const { absentStudents } = location.state || { absentStudents: [] };
   const navigate = useNavigate();
-
+  const [absentStudents, setAbsentStudents] = useState(location.state?.absentStudents || initialAbsentStudents);
   const [currentPage, setCurrentPage] = useState(1);
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const studentsPerPage = 7;
 
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
   const currentStudents = absentStudents.slice(indexOfFirstStudent, indexOfLastStudent);
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
-
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const totalPages = Math.ceil(absentStudents.length / studentsPerPage);
 
   const handleSendNotification = () => {
-    alert('Bildirim gönderildi!');
-    navigate('/dashboard/attendance');
+    setNotification({ message: 'Bildirim gönderildi!', type: 'success' });
+    setTimeout(() => navigate('/dashboard/attendance'), 1500);
   };
 
   const handleRemoveStudent = (id) => {
     const updatedAbsentStudents = absentStudents.filter(student => student.id !== id);
+    setAbsentStudents(updatedAbsentStudents); // State güncellemesi
+    setNotification({ message: 'Öğrenci başarıyla silindi.', type: 'success' });
     navigate('/dashboard/absent-students', { state: { absentStudents: updatedAbsentStudents } });
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -58,6 +64,13 @@ const AbsentStudents = () => {
           </button>
         ))}
       </div>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

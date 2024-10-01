@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import excelIcon from '../../../../../assets/images/excel.svg';
 
@@ -10,6 +11,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
   const [dragOver, setDragOver] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [errorRows, setErrorRows] = useState([]);
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
@@ -86,10 +88,9 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
 
       try {
         addStudentsFromExcel(students);
-        alert('Öğrenciler başarıyla kaydedildi!');
+        setNotification({ message: 'Öğrenciler başarıyla kaydedildi!', type: 'success' });
       } catch (error) {
-        console.error('Öğrenci ekleme hatası:', error);
-        alert('Öğrenci eklenirken bir hata oluştu: ' + error.message);
+        setNotification({ message: `Öğrenci eklenirken bir hata oluştu: ${error.message}`, type: 'error' });
       }
     };
     reader.readAsArrayBuffer(selectedFile);
@@ -97,6 +98,10 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
 
   const handleBackClick = () => {
     navigate('/dashboard/registration/student');
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -142,6 +147,13 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
             </p>
           ))}
         </div>
+      )}
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
       )}
     </div>
   );

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import StudentAttendanceList from './StudentAttendanceList';
 import StudentAttendanceSummary from './StudentAttendanceSummary';
+import NotificationDialog from '../../../../components/NotificationDialog';
 import '../../../../assets/styles/Student/Modules/StudentAttendanceModule/StudentAttendanceModule.css';
 
 const StudentAttendanceModule = () => {
   const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [notification, setNotification] = useState({ message: '', type: '' });
 
   useEffect(() => {
     const fetchAttendanceRecords = async () => {
@@ -15,24 +17,38 @@ const StudentAttendanceModule = () => {
           { id: 2, date: '2024-09-03', lesson: '2. Ders', absent: true },
         ];
         setAttendanceRecords(fetchedRecords);
-        setLoading(false);
+        setNotification({ message: 'Yoklamalar başarıyla yüklendi.', type: 'success' });
       } catch (error) {
-        console.error('Error fetching attendance:', error);
+        console.error('Yoklamalar yüklenirken bir hata oluştu:', error);
+        setNotification({ message: 'Yoklamalar yüklenirken bir hata oluştu. Lütfen tekrar deneyin.', type: 'error' });
+      } finally {
         setLoading(false);
       }
     };
+
     fetchAttendanceRecords();
   }, []);
 
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
+  };
+
   if (loading) return <div>Loading...</div>;
 
-  const totalAbsences = attendanceRecords.filter(record => record.absent).length;
+  const totalAbsences = attendanceRecords.filter((record) => record.absent).length;
 
   return (
     <div className="student-attendance-module">
       <h1>Yoklamalarım</h1>
       <StudentAttendanceSummary totalAbsences={totalAbsences} />
       <StudentAttendanceList records={attendanceRecords} />
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };

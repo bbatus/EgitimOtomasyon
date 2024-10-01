@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCurrentLesson } from '../../../../helpers/scheduleHelpers';
+import NotificationDialog from '../../../../components/NotificationDialog';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
 const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords }) => {
@@ -10,11 +11,14 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
   const [attendance, setAttendance] = useState(
     students.filter(student => student.classroom === className).map(student => ({
       studentId: student.id,
-      lessonId: lesson,
+      name: student.name,
+      classroom: student.classroom, // Sınıf bilgisi eklendi
+      lesson: lesson, // Ders bilgisi eklendi
       lessonTime: new Date().toLocaleTimeString(),
-      present: null
+      present: null,
     }))
   );
+  const [notification, setNotification] = useState({ message: '', type: '' });
   const [currentLesson, setCurrentLesson] = useState(getCurrentLesson());
 
   useEffect(() => {
@@ -28,14 +32,6 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (currentLesson.nextUpdate) {
-      const timeout = currentLesson.nextUpdate - new Date();
-      const timer = setTimeout(() => setCurrentLesson(getCurrentLesson()), timeout);
-      return () => clearTimeout(timer);
-    }
-  }, [currentLesson.nextUpdate]);
-
   const handleToggleAttendance = (id, present) => {
     setAttendance(prevAttendance =>
       prevAttendance.map(student =>
@@ -45,15 +41,18 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
   };
 
   const handleSaveAttendance = () => {
-    // Yoklama verilerini frontend'de güncellemek için gerekli işlemler
     const updatedRecords = { ...attendanceRecords };
     if (!updatedRecords[lesson]) {
       updatedRecords[lesson] = {};
     }
-    updatedRecords[lesson][className] = attendance;
+    updatedRecords[lesson][className] = attendance; // Tüm bilgiler kaydediliyor
     setAttendanceRecords(updatedRecords);
-    alert('Yoklama başarıyla kaydedildi!');
-    navigate('/dashboard/attendance');
+    setNotification({ message: 'Yoklama başarıyla kaydedildi!', type: 'success' });
+    setTimeout(() => navigate('/dashboard/attendance'), 1500);
+  };
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
   };
 
   return (
@@ -91,6 +90,13 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
       <button className="save-attendance-button" onClick={handleSaveAttendance}>
         Yoklamayı Kaydet
       </button>
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </div>
   );
 };
