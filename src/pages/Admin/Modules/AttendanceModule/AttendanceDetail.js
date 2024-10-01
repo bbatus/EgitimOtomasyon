@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCurrentLesson } from '../../../../helpers/scheduleHelpers';
-import { sendAttendanceData } from '../../../../api/attendance';
 import '../../../../assets/styles/Admin/Modules/AttendanceModule/AttendanceModule.css';
 
 const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords }) => {
@@ -45,20 +44,16 @@ const AttendanceDetail = ({ students, attendanceRecords, setAttendanceRecords })
     );
   };
 
-  const handleSaveAttendance = async () => {
-    try {
-      await sendAttendanceData(attendance);
-      alert('Yoklama başarıyla kaydedildi!');
-      const updatedRecords = { ...attendanceRecords };
-      if (!updatedRecords[lesson]) {
-        updatedRecords[lesson] = {};
-      }
-      updatedRecords[lesson][className] = attendance;
-      setAttendanceRecords(updatedRecords);
-      navigate('/dashboard/attendance');
-    } catch (error) {
-      alert('Yoklama kaydedilirken bir hata oluştu.');
+  const handleSaveAttendance = () => {
+    // Yoklama verilerini frontend'de güncellemek için gerekli işlemler
+    const updatedRecords = { ...attendanceRecords };
+    if (!updatedRecords[lesson]) {
+      updatedRecords[lesson] = {};
     }
+    updatedRecords[lesson][className] = attendance;
+    setAttendanceRecords(updatedRecords);
+    alert('Yoklama başarıyla kaydedildi!');
+    navigate('/dashboard/attendance');
   };
 
   return (

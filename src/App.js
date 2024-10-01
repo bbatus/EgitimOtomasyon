@@ -3,9 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage';
 import AdminLayout from './pages/Admin/AdminLayout';
 import StudentLayout from './pages/Student/StudentLayout';
+import NotificationDialog from './components/NotificationDialog';
 
 const App = () => {
   const [attendanceRecords, setAttendanceRecords] = useState({});
+  const [notification, setNotification] = useState({ message: '', type: '' });
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
+  };
 
   return (
     <Router>
@@ -20,6 +26,14 @@ const App = () => {
           element={<StudentLayout />}  
         />
       </Routes>
+      
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </Router>
   );
 };

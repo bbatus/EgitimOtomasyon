@@ -1,0 +1,77 @@
+.notification-dialog {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 3.75rem;
+    box-shadow: 0 0.125rem 3.75rem rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    max-width: 25rem;
+  }
+  
+  .notification-dialog.success {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .notification-dialog.error {
+    background-color: #7e7d7b;
+    color: white;
+  }
+  
+  .notification-message {
+    flex: 1;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .close-button:hover {
+    transform: scale(1.2);
+  }
+  
+  @media (max-width: 768px) {
+    .notification-dialog {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 2rem;
+      box-shadow: 0 0.125rem 2rem rgba(0, 0, 0, 0.2);
+    }
+  
+    .close-button {
+      font-size: 1rem;
+      padding: 0.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .notification-dialog {
+      bottom: 0.625rem;
+      right: 0.625rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 0.125rem 1.5rem rgba(0, 0, 0, 0.1);
+    }
+  
+    .close-button {
+      font-size: 0.875rem;
+      padding: 0.125rem;
+    }
+  }
+  

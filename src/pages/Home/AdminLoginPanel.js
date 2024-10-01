@@ -1,10 +1,11 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import usernameIcon from '../../assets/images/personIcon.svg';
 import passwordIcon from '../../assets/images/lockIcon.svg';
 import warningIcon from '../../assets/images/delete.svg';
+import NotificationDialog from '../../components/NotificationDialog';
+import '../../assets/styles/NotificationDialog.css';
 
 const validateUsername = (username) => {
   if (username.length < 3) {
@@ -30,10 +31,15 @@ const AdminLoginPanel = ({ handleBackClick }) => {
   const [formErrors, setFormErrors] = useState({});
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [notification, setNotification] = useState({ message: '', type: '' });
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
+
+  const handleNotificationClose = () => {
+    setNotification({ message: '', type: '' });
+  };
 
   const handleUsernameChange = useCallback((e) => {
     const value = e.target.value;
@@ -55,7 +61,7 @@ const AdminLoginPanel = ({ handleBackClick }) => {
   }, []);
 
   const handleFormSubmit = useCallback(
-    async (e) => {
+    (e) => {
       e.preventDefault();
 
       const errors = {
@@ -65,32 +71,16 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       setFormErrors(errors);
 
       if (!errors.username && !errors.password) {
-        try {
-          const response = await axios.post('http://localhost:3000/auth/login', {
-            username,
-            password,
-          });
-
-          localStorage.setItem('access_token', response.data.data.access_token);
+        setNotification({ message: 'Giriş başarılı!', type: 'success' });
+        setTimeout(() => {
           navigate('/dashboard');
-        } catch (error) {
-          if (error.response) {
-            console.error('API Hatası:', error.response.data.message);
-            console.error('Hata Kodu:', error.response.status);
-            console.error('Hata Yanıt Verileri:', error.response.data);
-            alert('Giriş başarısız: ' + error.response.data.message);
-          } else if (error.request) {
-            console.error('Sunucudan yanıt alınamadı. İstek:', error.request);
-            alert('Sunucudan yanıt alınamadı, lütfen daha sonra tekrar deneyin.');
-          } else {
-            console.error('İstek yapılamadı:', error.message);
-            alert('Beklenmedik bir hata oluştu: ' + error.message);
-          }
-        }
+        }, 1500);
       } else {
         if (errors.username) {
+          setNotification({ message: errors.username, type: 'error' });
           usernameRef.current.focus();
         } else if (errors.password) {
+          setNotification({ message: errors.password, type: 'error' });
           passwordRef.current.focus();
         }
       }
@@ -155,6 +145,14 @@ const AdminLoginPanel = ({ handleBackClick }) => {
       >
         Seçim ekranına geri dön
       </button>
+
+      {notification.message && (
+        <NotificationDialog
+          message={notification.message}
+          type={notification.type}
+          onClose={handleNotificationClose}
+        />
+      )}
     </>
   );
 };
