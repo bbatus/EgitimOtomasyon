@@ -1,14 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../assets/styles/NotificationDialog.css';
 
 const NotificationDialog = ({ message, type, onClose }) => {
+  const timerRef = useRef(null); // setTimeout referansı
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Timer'ı başlat ve referansa ata
+    timerRef.current = setTimeout(() => {
       onClose();
     }, 3000);
 
-    return () => clearTimeout(timer);
+    // Bileşen unmount olduğunda veya onClose değiştiğinde timer'ı temizle
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
   }, [onClose]);
 
   return (

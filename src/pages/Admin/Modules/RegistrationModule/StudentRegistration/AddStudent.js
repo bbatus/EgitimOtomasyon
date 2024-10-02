@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import axiosInstance from '../../../../../api/axiosInstance'; // axiosInstance import edildi
+import { STUDENT_API } from '../../../../../api/apiEndpoints'; // API URL'leri import edildi
 import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import warningIcon from '../../../../../assets/images/delete.svg';
 
-const AddStudent = ({ addStudent, updateStudent }) => {
+const AddStudent = () => {
   const [name, setName] = useState('');
   const [tc, setTc] = useState('');
   const [classroom, setClassroom] = useState('');
@@ -14,10 +15,6 @@ const AddStudent = ({ addStudent, updateStudent }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const studentToEdit = location.state?.student;
-
-  const nameRef = useRef(null);
-  const tcRef = useRef(null);
-  const classRef = useRef(null);
 
   useEffect(() => {
     if (studentToEdit) {
@@ -50,51 +47,34 @@ const AddStudent = ({ addStudent, updateStudent }) => {
   const handleNameChange = (e) => {
     const value = e.target.value;
     setName(value);
-    const error = validateName(value);
-    setFormErrors((prevErrors) => ({ ...prevErrors, name: error }));
+    setFormErrors((prevErrors) => ({ ...prevErrors, name: validateName(value) }));
   };
 
   const handleTcChange = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value) && value.length <= 11) { // Only allow numbers and max length of 11
       setTc(value);
-      const error = validateTc(value);
-      setFormErrors((prevErrors) => ({ ...prevErrors, tc: error }));
+      setFormErrors((prevErrors) => ({ ...prevErrors, tc: validateTc(value) }));
     }
   };
 
   const handleClassroomChange = (e) => {
     const value = e.target.value;
     setClassroom(value);
-    const error = validateClassroom(value);
-    setFormErrors((prevErrors) => ({ ...prevErrors, classroom: error }));
+    setFormErrors((prevErrors) => ({ ...prevErrors, classroom: validateClassroom(value) }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Tüm hata kontrollerini yap
     const nameError = validateName(name);
     const tcError = validateTc(tc);
     const classroomError = validateClassroom(classroom);
 
-    const errors = { name: nameError, tc: tcError, classroom: classroomError };
-    setFormErrors(errors);
-
-    if (nameError) {
-      nameRef.current.focus();
-      setNotification({ message: nameError, type: 'error' });
-      return;
-    }
-
-    if (tcError) {
-      tcRef.current.focus();
-      setNotification({ message: tcError, type: 'error' });
-      return;
-    }
-
-    if (classroomError) {
-      classRef.current.focus();
-      setNotification({ message: classroomError, type: 'error' });
+    if (nameError || tcError || classroomError) {
+      setFormErrors({ name: nameError, tc: tcError, classroom: classroomError });
+      setNotification({ message: 'Lütfen formu doğru doldurduğunuzdan emin olun.', type: 'error' });
       return;
     }
 
@@ -102,17 +82,22 @@ const AddStudent = ({ addStudent, updateStudent }) => {
 
     try {
       if (studentToEdit) {
-        updateStudent({ ...studentToEdit, ...studentData });
+        // Güncelleme işlemi
+        await axiosInstance.put(STUDENT_API.ADD, { ...studentToEdit, ...studentData });
         setNotification({ message: 'Öğrenci başarıyla güncellendi!', type: 'success' });
       } else {
-        addStudent(studentData);
+        // Yeni öğrenci ekleme işlemi
+        await axiosInstance.post(STUDENT_API.ADD, studentData);
         setNotification({ message: 'Öğrenci başarıyla kaydedildi!', type: 'success' });
       }
       setTimeout(() => {
         navigate('/dashboard/registration/student');
       }, 1500);
     } catch (error) {
-      setNotification({ message: `Öğrenci eklenirken bir hata oluştu: ${error.message}`, type: 'error' });
+      setNotification({
+        message: `Öğrenci eklenirken bir hata oluştu: ${error.response?.data?.message || error.message}`,
+        type: 'error',
+      });
     }
   };
 
@@ -137,7 +122,7 @@ const AddStudent = ({ addStudent, updateStudent }) => {
             onChange={handleNameChange}
             placeholder="Ad Soyad"
             className="input-field"
-            ref={nameRef}
+            autoFocus
           />
           {formErrors.name && (
             <p className="error-message">
@@ -155,7 +140,6 @@ const AddStudent = ({ addStudent, updateStudent }) => {
             onChange={handleTcChange}
             placeholder="TC Kimlik No"
             className="input-field"
-            ref={tcRef}
           />
           {formErrors.tc && (
             <p className="error-message">
@@ -171,7 +155,6 @@ const AddStudent = ({ addStudent, updateStudent }) => {
             value={classroom}
             onChange={handleClassroomChange}
             className="input-field"
-            ref={classRef}
           >
             <option value="">Sınıf Seçin</option>
             {[
@@ -222,11 +205,6 @@ const AddStudent = ({ addStudent, updateStudent }) => {
       )}
     </div>
   );
-};
-
-AddStudent.propTypes = {
-  addStudent: PropTypes.func.isRequired,
-  updateStudent: PropTypes.func.isRequired,
 };
 
 export default AddStudent;

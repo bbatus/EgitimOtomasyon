@@ -10,6 +10,7 @@ const RegistrationSearchBar = ({ searchTerm, onSearchChange }) => {
         placeholder="Öğrenci adı veya TC kimlik no ile ara"
         value={searchTerm}
         onChange={onSearchChange}
+        className="registration-search-input" // Sınıf ekleyerek stilleri yönetiyoruz
       />
     </div>
   );

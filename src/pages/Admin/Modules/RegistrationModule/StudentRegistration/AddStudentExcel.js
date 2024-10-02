@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import axiosInstance from '../../../../../api/axiosInstance';
+import { STUDENT_API } from '../../../../../api/apiEndpoints';
 import NotificationDialog from '../../../../../components/NotificationDialog';
 import '../../../../../assets/styles/Admin/Modules/RegistrationModule/StudentRegistration/AddStudent.css';
 import excelIcon from '../../../../../assets/images/excel.svg';
 
-const AddStudentExcel = ({ addStudentsFromExcel }) => {
+const AddStudentExcel = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dragOver, setDragOver] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [errorRows, setErrorRows] = useState([]);
   const [notification, setNotification] = useState({ message: '', type: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false); // Kayıt butonu kontrolü için state
   const navigate = useNavigate();
 
+  // Dosya seçme işlemi
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     handleFile(file);
@@ -22,8 +26,7 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
   const handleFile = (file) => {
     if (
       file &&
-      (file.type ===
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+      (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
         file.type === 'application/vnd.ms-excel')
     ) {
       setSelectedFile(file);
@@ -51,45 +54,57 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Dosya seçili değilse hata mesajı göster
     if (!selectedFile) {
       setUploadError('Lütfen bir dosya seçin.');
       return;
     }
 
+    setIsSubmitting(true); // Kayıt işlemi başladığında butonu devre dışı bırak
+    setUploadError('');
+    setErrorRows([]);
+
     const reader = new FileReader();
     reader.onload = async (event) => {
-      const data = new Uint8Array(event.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
-      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-      const students = [];
-      const errors = [];
-      jsonData.slice(1).forEach((row, i) => {
-        const name = `${row[0] || ''} ${row[1] || ''}`; // AD ve SOYAD birleştirilmesi
-        const tc = row[5] || 'Belirtilmedi'; // TC NUMARASI
-        const classroom = `${row[6] || ''}-${row[7] || ''}`; // SINIF-ŞUBE birleştirilmesi
-
-        if (name.trim() && tc !== 'Belirtilmedi') {
-          students.push({ 
-            id: uuidv4(),
-            name, 
-            tc, 
-            classroom 
-          });
-        } else {
-          errors.push({ row: i + 2, data: row });
-          console.error(`Satır ${i + 2} veri eksik: ${row}`);
-        }
-      });
-
-      setErrorRows(errors);
-
       try {
-        addStudentsFromExcel(students);
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+        // Öğrenci verilerini parse et
+        const students = jsonData.slice(1).map((row, i) => {
+          const name = `${row[0] || ''} ${row[1] || ''}`; // AD ve SOYAD birleştirilmesi
+          const tc = row[5] || 'Belirtilmedi'; // TC NUMARASI
+          const classroom = `${row[6] || ''}-${row[7] || ''}`; // SINIF-ŞUBE birleştirilmesi
+
+          // Eğer ad soyad ve TC numarası geçerli değilse hata olarak kaydet
+          if (name.trim() && tc !== 'Belirtilmedi') {
+            return { id: uuidv4(), name, tc, classroom };
+          } else {
+            setErrorRows((prev) => [...prev, { row: i + 2, data: row }]);
+            return null;
+          }
+        }).filter(Boolean); // Null değerleri filtrele
+
+        if (students.length === 0) {
+          setNotification({ message: 'Geçerli bir öğrenci verisi bulunamadı.', type: 'error' });
+          setIsSubmitting(false);
+          return;
+        }
+
+        // Öğrencileri toplu eklemek için API'yi çağırıyoruz
+        await axiosInstance.post(STUDENT_API.MULTIPLE_ADD, students);
         setNotification({ message: 'Öğrenciler başarıyla kaydedildi!', type: 'success' });
+        navigate('/dashboard/registration/student');
       } catch (error) {
-        setNotification({ message: `Öğrenci eklenirken bir hata oluştu: ${error.message}`, type: 'error' });
+        setNotification({
+          message: `Öğrenci eklenirken bir hata oluştu: ${error.response?.data?.message || error.message}`,
+          type: 'error',
+        });
+      } finally {
+        setIsSubmitting(false); // İşlem tamamlandığında butonu tekrar aktif et
       }
     };
     reader.readAsArrayBuffer(selectedFile);
@@ -131,10 +146,10 @@ const AddStudentExcel = ({ addStudentsFromExcel }) => {
         </label>
       </button>
       {uploadError && <p className="error-message">{uploadError}</p>}
-      <button onClick={handleSubmit} className="submit-button">
-        Kaydet
+      <button onClick={handleSubmit} className="submit-button" disabled={isSubmitting}>
+        {isSubmitting ? 'Kaydediliyor...' : 'Kaydet'} {/* Buton metni değiştirildi */}
       </button>
-      <button type="button" className="back-button" onClick={handleBackClick}>
+      <button type="button" className="back-button" onClick={handleBackClick} disabled={isSubmitting}>
         Geri Dön
       </button>
       {errorRows.length > 0 && (
