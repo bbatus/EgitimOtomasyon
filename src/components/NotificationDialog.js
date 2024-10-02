@@ -9,7 +9,7 @@ const NotificationDialog = ({ message, type, onClose }) => {
     // Timer'ı başlat ve referansa ata
     timerRef.current = setTimeout(() => {
       onClose();
-    }, 3000);
+    }, 3003);
 
     // Bileşen unmount olduğunda veya onClose değiştiğinde timer'ı temizle
     return () => {

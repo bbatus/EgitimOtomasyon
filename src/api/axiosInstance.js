@@ -35,8 +35,7 @@ const errorHandler = (error) => {
         break;
     }
 
-    // Hata mesajını konsola basmak yerine Promise.reject ile döndürüyoruz.
-    // Böylece hatayı bileşenlerinizde `catch` bloğu ile yakalayabilirsiniz.
+    // Hata mesajını Promise.reject ile döndürüyoruz.
     return Promise.reject({ message, status });
   } else if (error.request) {
     // Request gönderilmiş ama sunucudan cevap alınamamış
@@ -49,10 +48,11 @@ const errorHandler = (error) => {
 
 // Axios instance oluşturma
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000/api',
+  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3003',
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // CORS ve kimlik doğrulama işlemleri için gerekli olabilir
 });
 
 // JWT token eklemek için bir interceptor oluşturun
@@ -60,7 +60,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('access_token');
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`; // String interpolation düzeltildi
     }
     return config;
   },
