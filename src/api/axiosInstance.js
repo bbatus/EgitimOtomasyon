@@ -15,12 +15,12 @@ const errorHandler = (error) => {
       case 400:
         message = 'Geçersiz istek. Lütfen verilerinizi kontrol edin.';
         break;
-      case 401:
-        message = 'Oturum süreniz doldu, lütfen tekrar giriş yapın.';
-        localStorage.removeItem('access_token');
-        // Yönlendirme işlemi
-        window.location.href = '/login';
-        break;
+        case 401:
+          if (window.confirm('Oturum süreniz dolmuş olabilir, yeniden giriş yapmak ister misiniz?')) {
+            localStorage.removeItem('access_token');
+            window.location.href = '/';
+          }
+          break;
       case 403:
         message = 'Bu işlem için yetkiniz bulunmuyor.';
         break;
@@ -48,7 +48,7 @@ const errorHandler = (error) => {
 
 // Axios instance oluşturma
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3003',
+  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3004',
   headers: {
     'Content-Type': 'application/json',
   },
